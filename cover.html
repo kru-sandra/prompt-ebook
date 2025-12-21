@@ -3,55 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prompt eBook</title>
+<title>Prompt eBook | AI Persona Studio</title>
 
 <style>
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    background:#f6f6f6;
     margin:0;
-    padding:15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
 }
+
 .container{
-    max-width:600px;
-    margin:auto;
-    background:#fff;
-    border-radius:16px;
-    padding:18px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.15);
-}
-h1{
+    width:100%;
+    max-width:420px;
+    background:#000;
     text-align:center;
-    color:#ff4f90;
 }
-textarea{
+
+.cover-img{
     width:100%;
-    min-height:250px;
-    padding:14px;
-    font-size:15px;
-    border-radius:12px;
-    border:1px solid #ccc;
-    resize:none;
+    height:auto;
+    display:block;
 }
-button{
-    width:100%;
-    padding:14px;
-    margin-top:12px;
-    border:none;
-    border-radius:12px;
-    background:#ff6fa5;
+
+.btn-start{
+    display:block;
+    width:90%;
+    margin:20px auto;
+    padding:16px;
+    background:#ff5fa2;
     color:#fff;
-    font-size:16px;
+    font-size:18px;
+    font-weight:600;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
 }
-.logout{
-    background:#ddd;
-    color:#333;
+
+.btn-start:hover{
+    background:#ff3f90;
 }
-.toast{
+
+footer{
+    color:#aaa;
+    font-size:12px;
     text-align:center;
-    margin-top:10px;
-    color:green;
-    display:none;
+    padding:12px 8px 20px;
 }
 </style>
 </head>
@@ -59,38 +59,21 @@ button{
 <body>
 
 <div class="container">
-    <h1>📖 Prompt eBook</h1>
 
-    <textarea readonly>
-ใส่ข้อความ prompt ของคุณตรงนี้
-    </textarea>
+    <!-- ภาพปก ebook -->
+    <img src="images/cover.jpg" alt="Prompt eBook Cover" class="cover-img">
 
-    <button onclick="copyText()">📋 Copy ข้อความ</button>
-    <button class="logout" onclick="logout()">ออกจากระบบ</button>
+    <!-- ปุ่มเริ่มใช้งาน -->
+    <button class="btn-start" onclick="location.href='contents.html'">
+        เริ่มใช้งาน eBook
+    </button>
 
-    <div class="toast" id="toast">คัดลอกเรียบร้อย ✔</div>
+    <!-- footer -->
+    <footer>
+        © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+    </footer>
+
 </div>
-
-<script>
-// กันคนที่ยังไม่ login
-if(localStorage.getItem("loggedIn") !== "true"){
-    window.location.href = "index.html";
-}
-
-function copyText(){
-    const text = document.querySelector("textarea").value;
-    navigator.clipboard.writeText(text).then(()=>{
-        const t = document.getElementById("toast");
-        t.style.display="block";
-        setTimeout(()=>t.style.display="none",2000);
-    });
-}
-
-function logout(){
-    localStorage.removeItem("loggedIn");
-    window.location.href = "index.html";
-}
-</script>
 
 </body>
 </html>
