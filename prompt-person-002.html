@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt บุคคล</title>
+
+<style>
+body{
+  font-family: system-ui, sans-serif;
+  background:#fff5f7;
+  margin:0;
+  padding:16px;
+}
+
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+}
+
+h1{
+  text-align:center;
+  margin:10px 0 20px;
+}
+
+.ai-images{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:120px;
+  border-radius:16px;
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+}
+
+.prompt-box{
+  background:#fff;
+  border-radius:16px;
+  padding:16px;
+  margin-top:20px;
+}
+
+textarea{
+  width:100%;
+  min-height:140px;
+  border-radius:12px;
+  padding:12px;
+  border:1px solid #ddd;
+  font-size:14px;
+}
+
+button{
+  width:100%;
+  margin-top:10px;
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  background:#ff6f91;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#999;
+  margin:20px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="gallery-person-1.html">← กลับหมวดบุคคล</a>
+  <a href="ebook.html">🏠 Home</a>
+</div>
+
+<h1>หมวดบุคคล</h1>
+
+<!-- AI IMAGES -->
+<div class="ai-images">
+  <div class="ai-box">
+    <img src="images/person/CHANGE-gemini.jpg">
+    <span>Gemini</span>
+  </div>
+
+  <div class="ai-box">
+    <img src="images/person/CHANGE-whisk.jpg">
+    <span>Whisk</span>
+  </div>
+
+  <div class="ai-box">
+    <img src="images/person/CHANGE-copilot.jpg">
+    <span>Copilot</span>
+  </div>
+</div>
+
+<!-- THAI PROMPT -->
+<div class="prompt-box">
+  <h3>Thai Prompt :</h3>
+  <textarea id="thaiPrompt">
+ใส่ prompt ภาษาไทยตรงนี้
+  </textarea>
+  <button onclick="copyText('thaiPrompt')">📋 Copy Thai Prompt</button>
+</div>
+
+<!-- ENGLISH PROMPT -->
+<div class="prompt-box">
+  <h3>English Prompt :</h3>
+  <textarea id="engPrompt">
+Put English prompt here
+  </textarea>
+  <button onclick="copyText('engPrompt')">📋 Copy English Prompt</button>
+</div>
+
+<footer>
+© 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+</footer>
+
+<script>
+function copyText(id){
+  const el = document.getElementById(id);
+  el.select();
+  el.setSelectionRange(0,99999);
+  document.execCommand("copy");
+  alert("คัดลอกเรียบร้อยแล้ว");
+}
+</script>
+
+</body>
+</html>
 
