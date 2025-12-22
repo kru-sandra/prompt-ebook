@@ -1,149 +1,157 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompt บุคคล 001</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>หมวดบุคคล | Prompt eBook</title>
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:#f6f6f6;
-      margin:0;
-      padding:16px;
-    }
-
-    .container {
-      max-width:1000px;
-      margin:auto;
-      background:#fff;
-      border-radius:16px;
-      padding:20px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.1);
-    }
-
-    .top-nav {
-      display:flex;
-      justify-content:space-between;
-      margin-bottom:16px;
-    }
-
-    .top-nav a {
-      text-decoration:none;
-      color:#ff5c8a;
-      font-weight:600;
-    }
-
-    h1 {
-      text-align:center;
-      margin-bottom:20px;
-    }
-
-    .gallery {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap:16px;
-      margin-bottom:24px;
-    }
-
-    .card {
-      text-align:center;
-    }
-
-    .card img {
-      width:100%;
-      border-radius:12px;
-    }
-
-    .ai-name {
-      margin-top:8px;
-      font-weight:600;
-    }
-
-    .prompt-box {
-      background:#f9f9f9;
-      border-radius:12px;
-      padding:16px;
-      margin-bottom:16px;
-      white-space:pre-wrap;
-    }
-
-    .copy-btn {
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:12px;
-      background:#ff5c8a;
-      color:#fff;
-      font-size:16px;
-      cursor:pointer;
-    }
-
-    footer {
-      text-align:center;
-      margin-top:24px;
-      font-size:13px;
-      color:#777;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+}
+h1{
+  text-align:center;
+  margin:10px 0 30px;
+}
+.ai-images{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.ai-box{
+  text-align:center;
+  width:30%;
+  min-width:140px;
+}
+.ai-box img{
+  width:100%;
+  border-radius:18px;
+}
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+}
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+}
+.prompt-box h3{
+  margin-top:0;
+}
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+}
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
 </head>
 
 <body>
+<div class="container">
 
-  <div class="container">
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-person-1.html">← กลับหมวดบุคคล</a>
+    <a href="ebook.html">🏠 Home</a>
+  </div>
 
-    <!-- เมนูด้านบน -->
-    <div class="top-nav">
-      <a href="gallery-person-1.html">← กลับหมวดบุคคล</a>
-      <a href="ebook.html">Home</a>
+  <h1>หมวดบุคคล</h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images">
+    <div class="ai-box">
+      <img src="images/person/p001-gemini.jpg">
+      <span>Gemini</span>
     </div>
-
-    <h1>หมวดบุคคล</h1>
-
-    <!-- ภาพตัวอย่าง 3 AI -->
-    <div class="gallery">
-      <div class="card">
-        <img src="images/person/p001.jpg">
-        <div class="ai-name">Raphael</div>
-      </div>
-
-      <div class="card">
-        <img src="images/person/p002.jpg">
-        <div class="ai-name">Gemini</div>
-      </div>
-
-      <div class="card">
-        <img src="images/person/p003.jpg">
-        <div class="ai-name">Copilot</div>
-      </div>
+    <div class="ai-box">
+      <img src="images/person/p001-meta.jpg">
+      <span>Meta AI</span>
     </div>
+    <div class="ai-box">
+      <img src="images/person/p001-copilot.jpg">
+      <span>Copilot</span>
+    </div>
+  </div>
 
-    <!-- Prompt -->
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
     <h3>Thai Prompt :</h3>
-    <div class="prompt-box" id="promptText">
-สร้างภาพเด็กผู้หญิงสไตล์ตุ๊กตา 3D น่ารัก
+    <textarea id="thaiPrompt" rows="6">สร้างภาพเด็กผู้หญิงสไตล์ตุ๊กตา 3D น่ารัก
 ดวงตากลมโต ผิวขาวอมชมพู
 ใส่ชุดโทนพาสเทล ลายขนม
 บรรยากาศคริสต์มาส แสงนุ่มละมุน
-ภาพคมชัดระดับมืออาชีพ
-    </div>
-
-    <button class="copy-btn" onclick="copyPrompt()">📋 Copy Prompt</button>
-
-    <footer>
-      © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
-    </footer>
-
+ภาพคุณภาพสูงระดับมืออาชีพ</textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">📋 Copy Thai Prompt</button>
   </div>
 
-  <script>
-    function copyPrompt() {
-      const text = document.getElementById("promptText").innerText;
-      navigator.clipboard.writeText(text);
-      alert("คัดลอก Prompt เรียบร้อยแล้ว");
-    }
-  </script>
+  <!-- ENG PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="6">Create a cute 3D doll-style little girl
+Big round eyes, soft pastel skin tone
+Wearing pastel outfit with dessert patterns
+Christmas atmosphere, warm soft lighting
+High-quality professional render</textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">📋 Copy English Prompt</button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  text.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+</script>
 
 </body>
 </html>
-
