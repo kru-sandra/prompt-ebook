@@ -27,6 +27,12 @@ body{
   font-weight:600;
 }
 
+.top-actions{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
 h1{
   text-align:center;
   margin:10px 0 20px;
@@ -96,7 +102,11 @@ footer{
 <!-- TOP BAR -->
 <div class="top-bar">
   <a href="gallery-person-1.html">← กลับหมวดบุคคล</a>
-  <a href="ebook.html">🏠 Home</a>
+
+  <div class="top-actions">
+    <a href="ebook.html">🏠 Home</a>
+    <a href="#" onclick="logout()">🚪 Logout</a>
+  </div>
 </div>
 
 <h1>หมวดบุคคล</h1>
@@ -155,6 +165,11 @@ Ultra high quality, sharp focus, soft depth of field, cinematic lighting, studio
 </footer>
 
 <script>
+/* 🔒 Login Guard */
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+
 function copyText(id){
   const el = document.getElementById(id);
   el.select();
@@ -162,8 +177,14 @@ function copyText(id){
   document.execCommand("copy");
   alert("คัดลอกเรียบร้อยแล้ว");
 }
+
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
 </script>
 
 </body>
 </html>
-
