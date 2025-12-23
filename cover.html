@@ -21,6 +21,25 @@ body{
     max-width:420px;
     background:#000;
     text-align:center;
+    position:relative;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn{
+    position:absolute;
+    top:12px;
+    right:12px;
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+    border:none;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:rgba(255,255,255,0.3);
 }
 
 .cover-img{
@@ -60,6 +79,9 @@ footer{
 
 <div class="container">
 
+    <!-- LOGOUT -->
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+
     <!-- ภาพปก ebook -->
     <img src="images/cover.jpg" alt="Prompt eBook Cover" class="cover-img">
 
@@ -74,6 +96,20 @@ footer{
     </footer>
 
 </div>
+
+<script>
+/* 🔒 Login Guard */
+if(localStorage.getItem("loggedIn") !== "true"){
+    window.location.href = "index.html";
+}
+
+function logout(){
+    if(confirm("ต้องการออกจากระบบหรือไม่?")){
+        localStorage.removeItem("loggedIn");
+        window.location.href = "index.html";
+    }
+}
+</script>
 
 </body>
 </html>
