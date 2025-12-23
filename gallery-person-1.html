@@ -16,6 +16,7 @@ body{
 .top-bar{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:10px;
 }
 
@@ -23,6 +24,12 @@ body{
   text-decoration:none;
   color:#ff6f91;
   font-weight:600;
+  margin-left:10px;
+}
+
+.top-actions{
+  display:flex;
+  align-items:center;
 }
 
 h1{
@@ -87,6 +94,10 @@ footer{
 <!-- TOP -->
 <div class="top-bar">
   <a href="ebook.html">🏠 Home</a>
+
+  <div class="top-actions">
+    <a href="#" onclick="logout()">🚪 Logout</a>
+  </div>
 </div>
 
 <h1>หมวดบุคคล</h1>
@@ -205,6 +216,20 @@ footer{
 <footer>
 © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
 </footer>
+
+<script>
+/* 🔒 Login Guard */
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
 
 </body>
 </html>
