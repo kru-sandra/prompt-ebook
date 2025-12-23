@@ -72,11 +72,17 @@
   </div>
 
   <script>
+    // ถ้า login อยู่แล้ว ไม่ต้องเห็นหน้า login
+    if(localStorage.getItem("loggedIn") === "true"){
+      window.location.href = "cover.html";
+    }
+
     function login(){
       const password = document.getElementById("password").value;
       const correctPassword = "sandra.prompt";
 
       if(password === correctPassword){
+        localStorage.setItem("loggedIn", "true"); // ✅ บันทึกสถานะ login
         window.location.href = "cover.html";
       }else{
         document.getElementById("error").style.display = "block";
