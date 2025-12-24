@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>หมวดบุคคลหน้าที่ 3</title>
+
+<style>
+body{
+  margin:0;
+  padding:16px;
+  font-family:system-ui, sans-serif;
+  background:#fff5f7;
+}
+
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  margin-left:10px;
+}
+
+.top-actions{
+  display:flex;
+  align-items:center;
+}
+
+h1{
+  text-align:center;
+  margin:10px 0 20px;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:16px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.06);
+}
+
+.card img{
+  width:100%;
+  border-radius:12px;
+}
+
+.card a{
+  display:block;
+  margin-top:8px;
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+  font-size:14px;
+}
+
+.pagination{
+  display:flex;
+  justify-content:space-between;
+  margin:30px 0 10px;
+}
+
+.pagination a{
+  text-decoration:none;
+  background:#ff6f91;
+  color:white;
+  padding:10px 20px;
+  border-radius:999px;
+  font-weight:600;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#999;
+  margin:20px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP -->
+<div class="top-bar">
+  <a href="ebook.html">🏠 Home</a>
+
+  <div class="top-actions">
+    <a href="#" onclick="logout()">🚪 Logout</a>
+  </div>
+</div>
+
+<h1>หมวดบุคคล</h1>
+
+<!-- GALLERY -->
+<div class="gallery">
+
+  <div class="card">
+    <img src="images/person/p4001.jpg" alt="Prompt บุคคล 076">
+    <a href="prompt-person-001.html">Prompt 076</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4002.jpg" alt="Prompt บุคคล 075">
+    <a href="prompt-person-002.html">Prompt 075</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4003.jpg" alt="Prompt บุคคล 074">
+    <a href="prompt-person-003.html">Prompt 074</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4004.jpg" alt="Prompt บุคคล 073">
+    <a href="prompt-person-004.html">Prompt 073</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4005.jpg" alt="Prompt บุคคล 072">
+    <a href="prompt-person-005.html">Prompt 072</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4006.jpg" alt="Prompt บุคคล 071">
+    <a href="prompt-person-006.html">Prompt 071</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4007.jpg" alt="Prompt บุคคล 070">
+    <a href="prompt-person-007.html">Prompt 070</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4008.jpg" alt="Prompt บุคคล 069">
+    <a href="prompt-person-008.html">Prompt 069</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4009.jpg" alt="Prompt บุคคล 068">
+    <a href="prompt-person-009.html">Prompt 068</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4010.jpg" alt="Prompt บุคคล 067">
+    <a href="prompt-person-010.html">Prompt 067</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4011.jpg" alt="Prompt บุคคล 066">
+    <a href="prompt-person-011.html">Prompt 066</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4012.jpg" alt="Prompt บุคคล 065">
+    <a href="prompt-person-012.html">Prompt 065</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4013.jpg" alt="Prompt บุคคล 064">
+    <a href="prompt-person-013.html">Prompt 064</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4014.jpg" alt="Prompt บุคคล 063">
+    <a href="prompt-person-014.html">Prompt 063</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4015.jpg" alt="Prompt บุคคล 062">
+    <a href="prompt-person-015.html">Prompt 062</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4016.jpg" alt="Prompt บุคคล 061">
+    <a href="prompt-person-016.html">Prompt 061</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4017.jpg" alt="Prompt บุคคล 060">
+    <a href="prompt-person-017.html">Prompt 060</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4018.jpg" alt="Prompt 059">
+    <a href="prompt-person-018.html">Prompt 059</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4019.jpg" alt="Prompt บุคคล 058">
+    <a href="prompt-person-019.html">Prompt 058</a>
+  </div>
+
+  <div class="card">
+    <img src="images/person/p4020.jpg" alt="Prompt บุคคล 057">
+    <a href="prompt-person-020.html">Prompt 057</a>
+  </div>
+
+</div>
+
+<!-- PAGINATION -->
+<div class="pagination">
+  <a href="gallery-person-4.html">← Previous</a>
+  <a href="gallery-person-2.html">Next →</a>
+</div>
+
+
+<footer>
+© 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+</footer>
+
+<script>
+/* 🔒 Login Guard */
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
 
