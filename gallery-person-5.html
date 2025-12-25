@@ -32,13 +32,27 @@ body{
   align-items:center;
 }
 
-h1{
+/* PAGE TITLE */
+#pageTitle{
   text-align:center;
-  margin:10px 0 12px;
-  font-size:20px;   /* ← ปรับเล็กลง (ลอง 18–22px ได้) */
-  font-weight:600;
+  margin:10px 0 14px;
+  line-height:1.2;
 }
 
+#pageTitle .title-main{
+  display:block;
+  font-size:20px;
+  font-weight:600;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:14px;
+  font-weight:500;
+  color:#999;
+  margin-top:4px;
+}
 
 /* PAGE NAV (SCROLLABLE + PREV NEXT) */
 .page-nav{
@@ -146,7 +160,11 @@ footer{
   </div>
 </div>
 
-<h1 id="pageTitle">หมวดบุคคล</h1>
+<!-- TITLE -->
+<h1 id="pageTitle">
+  <span class="title-main">หมวดบุคคล</span>
+  <span class="title-sub"></span>
+</h1>
 
 <!-- PAGE NAV (TOP) -->
 <div class="page-nav" id="pageNavTop">
@@ -209,27 +227,25 @@ function logout(){
 const match = location.pathname.match(/gallery-person-(\d+)\.html/);
 const currentPage = match ? parseInt(match[1]) : 1;
 
-/* ตั้งหัวข้ออัตโนมัติ */
-document.getElementById("pageTitle").textContent =
-  `หมวดบุคคล หน้าที่ ${currentPage}`;
+/* TITLE */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `หน้าที่ ${currentPage}`;
 
-/* ตั้ง active + prev / next */
+/* PAGE NAV ACTIVE + PREV NEXT */
 document.querySelectorAll(".page-nav").forEach(nav=>{
-  const links = nav.querySelectorAll("a[href^='gallery-person']");
-  links.forEach(a=>{
+  nav.querySelectorAll("a[href^='gallery-person']").forEach(a=>{
     if(a.getAttribute("href").includes(`-${currentPage}.html`)){
       a.classList.add("active");
     }
   });
 
-  const prev = nav.querySelector("[data-nav='prev']");
-  const next = nav.querySelector("[data-nav='next']");
+  nav.querySelector("[data-nav='prev']").href =
+    currentPage > 1
+      ? `gallery-person-${currentPage - 1}.html`
+      : `gallery-person-1.html`;
 
-  prev.href = currentPage > 1
-    ? `gallery-person-${currentPage - 1}.html`
-    : `gallery-person-1.html`;
-
-  next.href = `gallery-person-${currentPage + 1}.html`;
+  nav.querySelector("[data-nav='next']").href =
+    `gallery-person-${currentPage + 1}.html`;
 });
 
 /* 🔗 AUTO LINK + AUTO PROMPT NUMBER */
