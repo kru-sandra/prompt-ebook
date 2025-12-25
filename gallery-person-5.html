@@ -35,7 +35,35 @@ body{
 
 h1{
   text-align:center;
-  margin:10px 0 20px;
+  margin:10px 0 12px;
+}
+
+/* PAGE NUMBER NAV */
+.page-nav{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.page-nav a{
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  text-decoration:none;
+  font-weight:600;
+  color:#ff6f91;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+.page-nav a.active{
+  background:#ff6f91;
+  color:#fff;
+  pointer-events:none;
 }
 
 /* GALLERY */
@@ -78,10 +106,10 @@ h1{
   color:#333;
   font-weight:600;
   font-size:14px;
-  pointer-events:none; /* คลิกที่ card อย่างเดียว */
+  pointer-events:none;
 }
 
-/* PAGINATION */
+/* PAGINATION (Next/Prev) */
 .pagination{
   display:flex;
   justify-content:space-between;
@@ -118,6 +146,15 @@ footer{
 </div>
 
 <h1>หมวดบุคคล</h1>
+
+<!-- PAGE NUMBER NAV -->
+<div class="page-nav">
+  <a href="gallery-person-1.html">1</a>
+  <a href="gallery-person-2.html">2</a>
+  <a href="gallery-person-3.html">3</a>
+  <a href="gallery-person-4.html">4</a>
+  <a href="gallery-person-5.html" class="active">5</a>
+</div>
 
 <!-- GALLERY -->
 <div class="gallery">
@@ -164,7 +201,7 @@ footer{
 
 </div>
 
-<!-- PAGINATION -->
+<!-- NEXT / PREV -->
 <div class="pagination">
   <span></span>
   <a href="gallery-person-4.html">Next →</a>
@@ -192,21 +229,15 @@ document.querySelectorAll(".card").forEach(card => {
   const img = card.querySelector("img");
   const text = card.querySelector("a");
 
-  // 1. ดึงเลขจากชื่อรูป p5008.jpg → 5008
   const fileName = img.src.split("/").pop();
   const imgNumber = parseInt(fileName.match(/\d+/)[0]);
 
-  // 2. ลิงก์ปลายทาง (ใช้เลขรูปตรง ๆ)
   const link = `prompt-person-${imgNumber}.html`;
 
-  // 3. คำนวณเลข Prompt สำหรับแสดงผล
   const promptNumber = imgNumber - 4924;
   const promptText = String(promptNumber).padStart(3, "0");
 
-  // 4. แสดงข้อความ
   text.textContent = `Prompt ${promptText}`;
-
-  // 5. คลิกได้ทั้งการ์ด
   card.onclick = () => location.href = link;
 });
 </script>
