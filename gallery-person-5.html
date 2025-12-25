@@ -38,17 +38,24 @@ h1{
   margin:10px 0 12px;
 }
 
-/* PAGE NUMBER NAV */
+/* PAGE NUMBER NAV (SCROLLABLE) */
 .page-nav{
   display:flex;
-  justify-content:center;
   gap:10px;
+  overflow-x:auto;
+  padding:6px 4px 14px;
   margin-bottom:20px;
+  -webkit-overflow-scrolling:touch;
+}
+
+.page-nav::-webkit-scrollbar{
+  display:none;
 }
 
 .page-nav a{
-  width:36px;
+  min-width:36px;
   height:36px;
+  flex-shrink:0;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -109,7 +116,7 @@ h1{
   pointer-events:none;
 }
 
-/* PAGINATION (Next/Prev) */
+/* NEXT / PREV */
 .pagination{
   display:flex;
   justify-content:space-between;
@@ -201,7 +208,7 @@ footer{
 
 </div>
 
-<!-- NEXT / PREV -->
+<!-- NEXT -->
 <div class="pagination">
   <span></span>
   <a href="gallery-person-4.html">Next →</a>
