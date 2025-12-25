@@ -57,6 +57,11 @@ body{
   padding:6px 4px 14px;
   margin-bottom:20px;
   justify-content:center;
+  -webkit-overflow-scrolling:touch;
+}
+
+.page-nav.bottom{
+  margin-top:30px;
 }
 
 .page-nav::-webkit-scrollbar{display:none;}
@@ -104,11 +109,11 @@ body{
   box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
-/* PROMPT NUMBER */
+/* PROMPT NUMBER (BLACK) */
 .card .prompt-no{
   font-size:14px;
   font-weight:700;
-  color:#ff6f91;
+  color:#000;        /* ← เปลี่ยนเป็นสีดำ */
   margin-bottom:6px;
 }
 
@@ -140,11 +145,14 @@ footer{
   <span class="title-sub"></span>
 </h1>
 
-<!-- PAGE NAV -->
-<div class="page-nav" id="pageNav"></div>
+<!-- PAGE NAV (TOP) -->
+<div class="page-nav" id="pageNavTop"></div>
 
 <!-- GALLERY -->
 <div class="gallery" id="gallery"></div>
+
+<!-- PAGE NAV (BOTTOM) -->
+<div class="page-nav bottom" id="pageNavBottom"></div>
 
 <footer>
 © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
@@ -178,7 +186,7 @@ const startIndex = (currentPage - 1) * PER_PAGE;
 const endIndex = startIndex + PER_PAGE;
 const pageImages = IMAGES.slice(startIndex, endIndex);
 
-/* ============ BUILD GALLERY (REVERSE ORDER) ============ */
+/* ============ BUILD GALLERY (DESC ORDER) ============ */
 const gallery = document.getElementById("gallery");
 
 pageImages.slice().reverse().forEach(num=>{
@@ -195,33 +203,55 @@ pageImages.slice().reverse().forEach(num=>{
   gallery.appendChild(card);
 });
 
-/* ============ BUILD PAGE NAV ============ */
-const pageNav = document.getElementById("pageNav");
+/* ============ BUILD PAGE NAV (TOP & BOTTOM) ============ */
+function buildPageNav(containerId){
+  const nav = document.getElementById(containerId);
+  nav.innerHTML = "";
 
-// Prev
-if(currentPage > 1){
-  const prev = document.createElement("a");
-  prev.href = `gallery-person-${currentPage - 1}.html`;
-  prev.textContent = "←";
-  pageNav.appendChild(prev);
+  if(currentPage > 1){
+    const prev = document.createElement("a");
+    prev.href = `gallery-person-${currentPage - 1}.html`;
+    prev.textContent = "←";
+    nav.appendChild(prev);
+  }
+
+  for(let i=1;i<=TOTAL_PAGES;i++){
+    const a = document.createElement("a");
+    a.href = `gallery-person-${i}.html`;
+    a.textContent = i;
+    if(i === currentPage) a.classList.add("active");
+    nav.appendChild(a);
+  }
+
+  if(currentPage < TOTAL_PAGES){
+    const next = document.createElement("a");
+    next.href = `gallery-person-${currentPage + 1}.html`;
+    next.textContent = "→";
+    nav.appendChild(next);
+  }
 }
 
-// Numbers
-for(let i=1;i<=TOTAL_PAGES;i++){
-  const a = document.createElement("a");
-  a.href = `gallery-person-${i}.html`;
-  a.textContent = i;
-  if(i === currentPage) a.classList.add("active");
-  pageNav.appendChild(a);
+buildPageNav("pageNavTop");
+buildPageNav("pageNavBottom");
+
+/* ============ AUTO SCROLL TO ACTIVE ============ */
+function scrollToActive(navId){
+  const nav = document.getElementById(navId);
+  const active = nav.querySelector(".active");
+  if(!nav || !active) return;
+
+  const offset =
+    active.offsetLeft -
+    nav.clientWidth / 2 +
+    active.clientWidth / 2;
+
+  nav.scrollTo({ left: offset, behavior: "smooth" });
 }
 
-// Next
-if(currentPage < TOTAL_PAGES){
-  const next = document.createElement("a");
-  next.href = `gallery-person-${currentPage + 1}.html`;
-  next.textContent = "→";
-  pageNav.appendChild(next);
-}
+window.addEventListener("load", ()=>{
+  scrollToActive("pageNavTop");
+  scrollToActive("pageNavBottom");
+});
 </script>
 
 </body>
