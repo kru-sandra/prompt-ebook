@@ -93,10 +93,10 @@ body{
   background:#fff;
   border-radius:16px;
   padding:10px;
-  text-align:center;
   box-shadow:0 4px 10px rgba(0,0,0,.06);
   cursor:pointer;
   transition:transform .25s ease, box-shadow .25s ease;
+  text-align:center;
 }
 
 .card:hover{
@@ -104,17 +104,17 @@ body{
   box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
+/* PROMPT NUMBER */
+.card .prompt-no{
+  font-size:14px;
+  font-weight:700;
+  color:#ff6f91;
+  margin-bottom:6px;
+}
+
 .card img{
   width:100%;
   border-radius:12px;
-}
-
-.card a{
-  display:block;
-  margin-top:8px;
-  font-weight:600;
-  color:#333;
-  pointer-events:none;
 }
 
 /* FOOTER */
@@ -152,10 +152,10 @@ footer{
 
 <script>
 /* ================= CONFIG ================= */
-const TOTAL_PAGES = 10;   // 👈 มีทั้งหมดกี่หน้า
-const PER_PAGE = 20;      // 👈 20 รูปต่อหน้า
+const TOTAL_PAGES = 10;
+const PER_PAGE = 20;
 
-// ตอนนี้คุณมีรูป p001–p016
+// ตอนนี้มี p001 – p016
 const START = 1;
 const END = 16;
 
@@ -178,17 +178,17 @@ const startIndex = (currentPage - 1) * PER_PAGE;
 const endIndex = startIndex + PER_PAGE;
 const pageImages = IMAGES.slice(startIndex, endIndex);
 
-/* ============ BUILD GALLERY ============ */
+/* ============ BUILD GALLERY (REVERSE ORDER) ============ */
 const gallery = document.getElementById("gallery");
 
-pageImages.forEach(num=>{
+pageImages.slice().reverse().forEach(num=>{
   const id = String(num).padStart(3,"0");
 
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
+    <div class="prompt-no">Prompt ${id}</div>
     <img src="images/person/p${id}.jpg" alt="Prompt ${id}">
-    <a>Prompt ${id}</a>
   `;
 
   card.onclick = ()=>location.href = `prompt-person-${id}.html`;
@@ -226,4 +226,3 @@ if(currentPage < TOTAL_PAGES){
 
 </body>
 </html>
-
