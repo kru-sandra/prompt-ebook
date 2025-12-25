@@ -25,7 +25,6 @@ body{
   text-decoration:none;
   color:#ff6f91;
   font-weight:600;
-  margin-left:10px;
 }
 
 .top-actions{
@@ -38,7 +37,7 @@ h1{
   margin:10px 0 12px;
 }
 
-/* PAGE NUMBER NAV (SCROLLABLE) */
+/* PAGE NAV (NUMBER + PREV NEXT) */
 .page-nav{
   display:flex;
   gap:10px;
@@ -65,6 +64,10 @@ h1{
   color:#ff6f91;
   background:#fff;
   box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+.page-nav a.nav-btn{
+  font-size:18px;
 }
 
 .page-nav a.active{
@@ -116,22 +119,6 @@ h1{
   pointer-events:none;
 }
 
-/* NEXT / PREV */
-.pagination{
-  display:flex;
-  justify-content:space-between;
-  margin:30px 0 10px;
-}
-
-.pagination a{
-  text-decoration:none;
-  background:#ff6f91;
-  color:white;
-  padding:10px 20px;
-  border-radius:999px;
-  font-weight:600;
-}
-
 /* FOOTER */
 footer{
   text-align:center;
@@ -154,13 +141,20 @@ footer{
 
 <h1>หมวดบุคคล</h1>
 
-<!-- PAGE NUMBER NAV -->
+<!-- PAGE NAV -->
 <div class="page-nav">
+  <!-- PREV -->
+  <a href="gallery-person-4.html" class="nav-btn">←</a>
+
+  <!-- NUMBERS -->
   <a href="gallery-person-1.html">1</a>
   <a href="gallery-person-2.html">2</a>
   <a href="gallery-person-3.html">3</a>
   <a href="gallery-person-4.html">4</a>
   <a href="gallery-person-5.html" class="active">5</a>
+
+  <!-- NEXT -->
+  <a href="gallery-person-6.html" class="nav-btn">→</a>
 </div>
 
 <!-- GALLERY -->
@@ -208,12 +202,6 @@ footer{
 
 </div>
 
-<!-- NEXT -->
-<div class="pagination">
-  <span></span>
-  <a href="gallery-person-4.html">Next →</a>
-</div>
-
 <footer>
 © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
 </footer>
@@ -232,7 +220,7 @@ function logout(){
 }
 
 /* 🔗 AUTO LINK + AUTO PROMPT NUMBER */
-document.querySelectorAll(".card").forEach(card => {
+document.querySelectorAll(".card").forEach(card=>{
   const img = card.querySelector("img");
   const text = card.querySelector("a");
 
@@ -242,10 +230,10 @@ document.querySelectorAll(".card").forEach(card => {
   const link = `prompt-person-${imgNumber}.html`;
 
   const promptNumber = imgNumber - 4924;
-  const promptText = String(promptNumber).padStart(3, "0");
+  const promptText = String(promptNumber).padStart(3,"0");
 
   text.textContent = `Prompt ${promptText}`;
-  card.onclick = () => location.href = link;
+  card.onclick = ()=>location.href = link;
 });
 </script>
 
