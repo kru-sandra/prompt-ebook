@@ -37,7 +37,7 @@ h1{
   margin:10px 0 12px;
 }
 
-/* PAGE NAV (NUMBER + PREV NEXT) */
+/* PAGE NAV (SCROLLABLE + PREV NEXT) */
 .page-nav{
   display:flex;
   gap:10px;
@@ -45,6 +45,10 @@ h1{
   padding:6px 4px 14px;
   margin-bottom:20px;
   -webkit-overflow-scrolling:touch;
+}
+
+.page-nav.bottom{
+  margin-top:30px;
 }
 
 .page-nav::-webkit-scrollbar{
@@ -141,19 +145,16 @@ footer{
 
 <h1>หมวดบุคคล</h1>
 
-<!-- PAGE NAV -->
+<!-- PAGE NAV (TOP) -->
 <div class="page-nav">
-  <!-- PREV -->
   <a href="gallery-person-4.html" class="nav-btn">←</a>
 
-  <!-- NUMBERS -->
   <a href="gallery-person-1.html">1</a>
   <a href="gallery-person-2.html">2</a>
   <a href="gallery-person-3.html">3</a>
   <a href="gallery-person-4.html">4</a>
   <a href="gallery-person-5.html" class="active">5</a>
 
-  <!-- NEXT -->
   <a href="gallery-person-6.html" class="nav-btn">→</a>
 </div>
 
@@ -200,6 +201,19 @@ footer{
     <a></a>
   </div>
 
+</div>
+
+<!-- PAGE NAV (BOTTOM) -->
+<div class="page-nav bottom">
+  <a href="gallery-person-4.html" class="nav-btn">←</a>
+
+  <a href="gallery-person-1.html">1</a>
+  <a href="gallery-person-2.html">2</a>
+  <a href="gallery-person-3.html">3</a>
+  <a href="gallery-person-4.html">4</a>
+  <a href="gallery-person-5.html" class="active">5</a>
+
+  <a href="gallery-person-6.html" class="nav-btn">→</a>
 </div>
 
 <footer>
