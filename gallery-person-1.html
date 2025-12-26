@@ -27,6 +27,24 @@ body{
   font-weight:600;
 }
 
+/* LOGOUT BUTTON */
+.logout-btn{
+  border:none;
+  background:#fff;
+  color:#ff6f91;
+  font-weight:600;
+  padding:8px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+  transition:all .25s ease;
+}
+
+.logout-btn:hover{
+  background:#ff6f91;
+  color:#fff;
+}
+
 /* TITLE */
 #pageTitle{
   text-align:center;
@@ -109,11 +127,11 @@ body{
   box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
-/* PROMPT NUMBER (BLACK) */
+/* PROMPT NUMBER */
 .card .prompt-no{
   font-size:14px;
   font-weight:700;
-  color:#000;        /* ← เปลี่ยนเป็นสีดำ */
+  color:#000;
   margin-bottom:6px;
 }
 
@@ -137,6 +155,7 @@ footer{
 <!-- TOP -->
 <div class="top-bar">
   <a href="ebook.html">🏠 Home</a>
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
 </div>
 
 <!-- TITLE -->
@@ -159,10 +178,17 @@ footer{
 </footer>
 
 <script>
-
-  /* 🔒 LOGIN GUARD — ใส่เป็นบรรทัดแรก */
+/* 🔒 LOGIN GUARD — ใส่เป็นบรรทัดแรก */
 if(localStorage.getItem("loggedIn") !== "true"){
   window.location.href = "index.html";
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
 }
 
 /* ================= CONFIG ================= */
@@ -233,32 +259,4 @@ function buildPageNav(containerId){
     const next = document.createElement("a");
     next.href = `gallery-person-${currentPage + 1}.html`;
     next.textContent = "→";
-    nav.appendChild(next);
-  }
-}
-
-buildPageNav("pageNavTop");
-buildPageNav("pageNavBottom");
-
-/* ============ AUTO SCROLL TO ACTIVE ============ */
-function scrollToActive(navId){
-  const nav = document.getElementById(navId);
-  const active = nav.querySelector(".active");
-  if(!nav || !active) return;
-
-  const offset =
-    active.offsetLeft -
-    nav.clientWidth / 2 +
-    active.clientWidth / 2;
-
-  nav.scrollTo({ left: offset, behavior: "smooth" });
-}
-
-window.addEventListener("load", ()=>{
-  scrollToActive("pageNavTop");
-  scrollToActive("pageNavBottom");
-});
-</script>
-
-</body>
-</html>
+    n
