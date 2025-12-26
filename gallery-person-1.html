@@ -159,6 +159,12 @@ footer{
 </footer>
 
 <script>
+
+  /* 🔒 LOGIN GUARD — ใส่เป็นบรรทัดแรก */
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+
 /* ================= CONFIG ================= */
 const TOTAL_PAGES = 7;
 const PER_PAGE = 20;
