@@ -27,68 +27,61 @@ body{
   font-weight:600;
 }
 
-.top-actions{
-  display:flex;
-  align-items:center;
+.logout-btn{
+  border:none;
+  background:#fff;
+  color:#ff6f91;
+  font-weight:600;
+  padding:8px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
 }
 
-/* PAGE TITLE */
+.logout-btn:hover{
+  background:#ff6f91;
+  color:#fff;
+}
+
+/* TITLE */
 #pageTitle{
   text-align:center;
   margin:10px 0 14px;
-  line-height:1.2;
 }
 
 #pageTitle .title-main{
-  display:block;
   font-size:20px;
   font-weight:600;
-  color:#333;
 }
 
 #pageTitle .title-sub{
-  display:block;
   font-size:14px;
-  font-weight:500;
   color:#999;
-  margin-top:4px;
 }
 
-/* PAGE NAV (SCROLLABLE + PREV NEXT) */
+/* PAGE NAV */
 .page-nav{
   display:flex;
   gap:10px;
   overflow-x:auto;
-  padding:6px 4px 14px;
+  justify-content:center;
   margin-bottom:20px;
-  -webkit-overflow-scrolling:touch;
 }
 
-.page-nav.bottom{
-  margin-top:30px;
-}
-
-.page-nav::-webkit-scrollbar{
-  display:none;
-}
+.page-nav.bottom{margin-top:30px;}
 
 .page-nav a{
-  min-width:36px;
+  width:36px;
   height:36px;
-  flex-shrink:0;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:50%;
-  text-decoration:none;
-  font-weight:600;
-  color:#ff6f91;
   background:#fff;
+  color:#ff6f91;
+  font-weight:600;
+  text-decoration:none;
   box-shadow:0 2px 6px rgba(0,0,0,.1);
-}
-
-.page-nav a.nav-btn{
-  font-size:18px;
 }
 
 .page-nav a.active{
@@ -104,40 +97,24 @@ body{
   gap:16px;
 }
 
-/* CARD */
 .card{
   background:#fff;
   border-radius:16px;
   padding:10px;
   text-align:center;
-  box-shadow:0 4px 10px rgba(0,0,0,.06);
   cursor:pointer;
-  transition:transform .25s ease, box-shadow .25s ease;
+  box-shadow:0 4px 10px rgba(0,0,0,.06);
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 10px 20px rgba(0,0,0,.12);
+.card .prompt-no{
+  font-weight:700;
+  color:#000;
+  margin-bottom:6px;
 }
 
 .card img{
   width:100%;
   border-radius:12px;
-  transition:transform .3s ease;
-}
-
-.card:hover img{
-  transform:scale(1.05);
-}
-
-.card a{
-  display:block;
-  margin-top:8px;
-  text-decoration:none;
-  color:#333;
-  font-weight:600;
-  font-size:14px;
-  pointer-events:none;
 }
 
 /* FOOTER */
@@ -152,117 +129,94 @@ footer{
 
 <body>
 
-<!-- TOP -->
 <div class="top-bar">
   <a href="ebook.html">🏠 Home</a>
-  <div class="top-actions">
-    <a href="#" onclick="logout()">🚪 Logout</a>
-  </div>
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
 </div>
 
-<!-- TITLE -->
 <h1 id="pageTitle">
   <span class="title-main">หมวดบุคคล</span>
   <span class="title-sub"></span>
 </h1>
 
-<!-- PAGE NAV (TOP) -->
-<div class="page-nav" id="pageNavTop">
-  <a href="#" class="nav-btn" data-nav="prev">←</a>
-
-  <a href="gallery-person-1.html">1</a>
-  <a href="gallery-person-2.html">2</a>
-  <a href="gallery-person-3.html">3</a>
-  <a href="gallery-person-4.html">4</a>
-  <a href="gallery-person-5.html">5</a>
-
-  <a href="#" class="nav-btn" data-nav="next">→</a>
-</div>
-
-<!-- GALLERY -->
-<div class="gallery">
-
-  <div class="card"><img src="images/person/p5008.jpg"><a></a></div>
-  <div class="card"><img src="images/person/p5007.jpg"><a></a></div>
-  <div class="card"><img src="images/person/p5006.jpg"><a></a></div>
-  <div class="card"><img src="images/person/p5005.jpg"><a></a></div>
-  <div class="card"><img src="images/person/p5004.jpg"><a></a></div>
-  <div class="card"><img src="images/person/p5003.jpg"><a></a></div>
-  <div class="card"><img src="images/person/p5002.jpg"><a></a></div>
-  <div class="card"><img src="images/person/p5001.jpg"><a></a></div>
-
-</div>
-
-<!-- PAGE NAV (BOTTOM) -->
-<div class="page-nav bottom" id="pageNavBottom">
-  <a href="#" class="nav-btn" data-nav="prev">←</a>
-
-  <a href="gallery-person-1.html">1</a>
-  <a href="gallery-person-2.html">2</a>
-  <a href="gallery-person-3.html">3</a>
-  <a href="gallery-person-4.html">4</a>
-  <a href="gallery-person-5.html">5</a>
-
-  <a href="#" class="nav-btn" data-nav="next">→</a>
-</div>
+<div class="page-nav" id="pageNavTop"></div>
+<div class="gallery" id="gallery"></div>
+<div class="page-nav bottom" id="pageNavBottom"></div>
 
 <footer>
-© 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+© 2025 AI Persona Studio | Created by Kru Sandra
 </footer>
 
 <script>
-/* 🔒 Login Guard */
+/* 🔒 LOGIN GUARD */
 if(localStorage.getItem("loggedIn") !== "true"){
-  window.location.href = "index.html";
+  location.href = "index.html";
 }
 
-function logout(){
-  if(confirm("ต้องการออกจากระบบหรือไม่?")){
-    localStorage.removeItem("loggedIn");
-    window.location.href = "index.html";
-  }
-}
+/* CONFIG */
+const PER_PAGE = 20;
+const START = 1;
+const END = 84;
+const TOTAL_PAGES = Math.ceil(END / PER_PAGE);
 
-/* 🔢 AUTO PAGE NUMBER FROM FILE NAME */
+/* CURRENT PAGE (AUTO FROM FILE NAME) */
 const match = location.pathname.match(/gallery-person-(\d+)\.html/);
 const currentPage = match ? parseInt(match[1]) : 1;
 
-/* TITLE */
-document.querySelector("#pageTitle .title-sub").textContent =
-  `หน้าที่ ${currentPage}`;
+document.querySelector(".title-sub").textContent = `หน้าที่ ${currentPage}`;
 
-/* PAGE NAV ACTIVE + PREV NEXT */
-document.querySelectorAll(".page-nav").forEach(nav=>{
-  nav.querySelectorAll("a[href^='gallery-person']").forEach(a=>{
-    if(a.getAttribute("href").includes(`-${currentPage}.html`)){
-      a.classList.add("active");
-    }
-  });
+/* BUILD IMAGE LIST */
+const IMAGES = Array.from({length: END}, (_,i)=>i+1);
+const pageImages = IMAGES.slice(
+  (currentPage-1)*PER_PAGE,
+  currentPage*PER_PAGE
+);
 
-  nav.querySelector("[data-nav='prev']").href =
-    currentPage > 1
-      ? `gallery-person-${currentPage - 1}.html`
-      : `gallery-person-1.html`;
+/* BUILD GALLERY (เลขมากอยู่บน) */
+const gallery = document.getElementById("gallery");
 
-  nav.querySelector("[data-nav='next']").href =
-    `gallery-person-${currentPage + 1}.html`;
+pageImages.slice().reverse().forEach(n=>{
+  const id = String(n).padStart(3,"0");
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="prompt-no">Prompt ${id}</div>
+    <img src="images/person/p${id}.jpg">
+  `;
+  card.onclick = ()=>location.href = `prompt-person-${id}.html`;
+  gallery.appendChild(card);
 });
 
-/* 🔗 AUTO LINK + AUTO PROMPT NUMBER */
-document.querySelectorAll(".card").forEach(card=>{
-  const img = card.querySelector("img");
-  const text = card.querySelector("a");
+/* PAGINATION */
+function buildNav(id){
+  const nav = document.getElementById(id);
+  nav.innerHTML = "";
 
-  const fileName = img.src.split("/").pop();
-  const imgNumber = parseInt(fileName.match(/\d+/)[0]);
+  if(currentPage > 1)
+    nav.innerHTML += `<a href="gallery-person-${currentPage-1}.html">←</a>`;
 
-  const link = `prompt-person-${imgNumber}.html`;
-  const promptNumber = imgNumber - 4924;
-  const promptText = String(promptNumber).padStart(3,"0");
+  for(let i=1;i<=TOTAL_PAGES;i++){
+    nav.innerHTML += `
+      <a href="gallery-person-${i}.html"
+         class="${i===currentPage?'active':''}">
+         ${i}
+      </a>`;
+  }
 
-  text.textContent = `Prompt ${promptText}`;
-  card.onclick = ()=>location.href = link;
-});
+  if(currentPage < TOTAL_PAGES)
+    nav.innerHTML += `<a href="gallery-person-${currentPage+1}.html">→</a>`;
+}
+
+buildNav("pageNavTop");
+buildNav("pageNavBottom");
+
+/* LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    location.href = "index.html";
+  }
+}
 </script>
 
 </body>
