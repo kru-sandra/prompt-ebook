@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>หมวดบุคคลหน้าที่ 4</title>
+<title>หมวดบุคคล</title>
 
 <style>
 body{
@@ -13,6 +13,7 @@ body{
   background:#fff5f7;
 }
 
+/* TOP BAR */
 .top-bar{
   display:flex;
   justify-content:space-between;
@@ -24,31 +25,96 @@ body{
   text-decoration:none;
   color:#ff6f91;
   font-weight:600;
-  margin-left:10px;
 }
 
-.top-actions{
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 14px;
+  line-height:1.2;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:20px;
+  font-weight:600;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:14px;
+  font-weight:500;
+  color:#999;
+  margin-top:4px;
+}
+
+/* PAGE NAV */
+.page-nav{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:6px 4px 14px;
+  margin-bottom:20px;
+  justify-content:center;
+  -webkit-overflow-scrolling:touch;
+}
+
+.page-nav.bottom{
+  margin-top:30px;
+}
+
+.page-nav::-webkit-scrollbar{display:none;}
+
+.page-nav a{
+  min-width:36px;
+  height:36px;
   display:flex;
   align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  text-decoration:none;
+  font-weight:600;
+  color:#ff6f91;
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
 }
 
-h1{
-  text-align:center;
-  margin:10px 0 20px;
+.page-nav a.active{
+  background:#ff6f91;
+  color:#fff;
+  pointer-events:none;
 }
 
+/* GALLERY */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
   gap:16px;
 }
 
+/* CARD */
 .card{
   background:#fff;
   border-radius:16px;
   padding:10px;
-  text-align:center;
   box-shadow:0 4px 10px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:transform .25s ease, box-shadow .25s ease;
+  text-align:center;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+/* PROMPT NUMBER (BLACK) */
+.card .prompt-no{
+  font-size:14px;
+  font-weight:700;
+  color:#000;
+  margin-bottom:6px;
 }
 
 .card img{
@@ -56,30 +122,7 @@ h1{
   border-radius:12px;
 }
 
-.card a{
-  display:block;
-  margin-top:8px;
-  text-decoration:none;
-  color:#333;
-  font-weight:600;
-  font-size:14px;
-}
-
-.pagination{
-  display:flex;
-  justify-content:space-between;
-  margin:30px 0 10px;
-}
-
-.pagination a{
-  text-decoration:none;
-  background:#ff6f91;
-  color:white;
-  padding:10px 20px;
-  border-radius:999px;
-  font-weight:600;
-}
-
+/* FOOTER */
 footer{
   text-align:center;
   font-size:12px;
@@ -94,142 +137,121 @@ footer{
 <!-- TOP -->
 <div class="top-bar">
   <a href="ebook.html">🏠 Home</a>
-
-  <div class="top-actions">
-    <a href="#" onclick="logout()">🚪 Logout</a>
-  </div>
 </div>
 
-<h1>หมวดบุคคล</h1>
+<!-- TITLE -->
+<h1 id="pageTitle">
+  <span class="title-main">หมวดบุคคล</span>
+  <span class="title-sub"></span>
+</h1>
+
+<!-- PAGE NAV (TOP) -->
+<div class="page-nav" id="pageNavTop"></div>
 
 <!-- GALLERY -->
-<div class="gallery">
+<div class="gallery" id="gallery"></div>
 
-  <div class="card">
-    <img src="images/person/p4001.jpg" alt="Prompt บุคคล 076">
-    <a href="prompt-person-001.html">Prompt 076</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4002.jpg" alt="Prompt บุคคล 075">
-    <a href="prompt-person-002.html">Prompt 075</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4003.jpg" alt="Prompt บุคคล 074">
-    <a href="prompt-person-003.html">Prompt 074</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4004.jpg" alt="Prompt บุคคล 073">
-    <a href="prompt-person-004.html">Prompt 073</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4005.jpg" alt="Prompt บุคคล 072">
-    <a href="prompt-person-005.html">Prompt 072</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4006.jpg" alt="Prompt บุคคล 071">
-    <a href="prompt-person-006.html">Prompt 071</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4007.jpg" alt="Prompt บุคคล 070">
-    <a href="prompt-person-007.html">Prompt 070</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4008.jpg" alt="Prompt บุคคล 069">
-    <a href="prompt-person-008.html">Prompt 069</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4009.jpg" alt="Prompt บุคคล 068">
-    <a href="prompt-person-009.html">Prompt 068</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4010.jpg" alt="Prompt บุคคล 067">
-    <a href="prompt-person-010.html">Prompt 067</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4011.jpg" alt="Prompt บุคคล 066">
-    <a href="prompt-person-011.html">Prompt 066</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4012.jpg" alt="Prompt บุคคล 065">
-    <a href="prompt-person-012.html">Prompt 065</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4013.jpg" alt="Prompt บุคคล 064">
-    <a href="prompt-person-013.html">Prompt 064</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4014.jpg" alt="Prompt บุคคล 063">
-    <a href="prompt-person-014.html">Prompt 063</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4015.jpg" alt="Prompt บุคคล 062">
-    <a href="prompt-person-015.html">Prompt 062</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4016.jpg" alt="Prompt บุคคล 061">
-    <a href="prompt-person-016.html">Prompt 061</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4017.jpg" alt="Prompt บุคคล 060">
-    <a href="prompt-person-017.html">Prompt 060</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4018.jpg" alt="Prompt 059">
-    <a href="prompt-person-018.html">Prompt 059</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4019.jpg" alt="Prompt บุคคล 058">
-    <a href="prompt-person-019.html">Prompt 058</a>
-  </div>
-
-  <div class="card">
-    <img src="images/person/p4020.jpg" alt="Prompt บุคคล 057">
-    <a href="prompt-person-020.html">Prompt 057</a>
-  </div>
-
-</div>
-
-<!-- PAGINATION -->
-<div class="pagination">
-  <a href="gallery-person-5.html">← Previous</a>
-  <a href="gallery-person-3.html">Next →</a>
-</div>
-
+<!-- PAGE NAV (BOTTOM) -->
+<div class="page-nav bottom" id="pageNavBottom"></div>
 
 <footer>
 © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
 </footer>
 
 <script>
-/* 🔒 Login Guard */
-if(localStorage.getItem("loggedIn") !== "true"){
-  window.location.href = "index.html";
-}
+/* ================= CONFIG ================= */
+const TOTAL_PAGES = 8;     // มีทั้งหมด 8 หน้า
+const PER_PAGE = 20;
 
-function logout(){
-  if(confirm("ต้องการออกจากระบบหรือไม่?")){
-    localStorage.removeItem("loggedIn");
-    window.location.href = "index.html";
+// ตอนนี้มีรูปถึง p076
+const START = 1;
+const END = 76;
+
+/* ============ CURRENT PAGE (AUTO) ============ */
+const match = location.pathname.match(/gallery-person-(\d+)\.html/);
+const currentPage = match ? parseInt(match[1]) : 1;
+
+/* ============ TITLE ============ */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `หน้าที่ ${currentPage}`;
+
+/* ============ BUILD IMAGES ARRAY ============ */
+const IMAGES = Array.from(
+  {length: END - START + 1},
+  (_,i)=>START + i
+);
+
+/* ============ PAGINATION CALC ============ */
+const startIndex = (currentPage - 1) * PER_PAGE;
+const endIndex = startIndex + PER_PAGE;
+const pageImages = IMAGES.slice(startIndex, endIndex);
+
+/* ============ BUILD GALLERY (DESC ORDER) ============ */
+const gallery = document.getElementById("gallery");
+
+pageImages.slice().reverse().forEach(num=>{
+  const id = String(num).padStart(3,"0");
+
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="prompt-no">Prompt ${id}</div>
+    <img src="images/person/p${id}.jpg" alt="Prompt ${id}">
+  `;
+
+  card.onclick = ()=>location.href = `prompt-person-${id}.html`;
+  gallery.appendChild(card);
+});
+
+/* ============ BUILD PAGE NAV (TOP & BOTTOM) ============ */
+function buildPageNav(containerId){
+  const nav = document.getElementById(containerId);
+  nav.innerHTML = "";
+
+  if(currentPage > 1){
+    const prev = document.createElement("a");
+    prev.href = `gallery-person-${currentPage - 1}.html`;
+    prev.textContent = "←";
+    nav.appendChild(prev);
+  }
+
+  for(let i=1;i<=TOTAL_PAGES;i++){
+    const a = document.createElement("a");
+    a.href = `gallery-person-${i}.html`;
+    a.textContent = i;
+    if(i === currentPage) a.classList.add("active");
+    nav.appendChild(a);
+  }
+
+  if(currentPage < TOTAL_PAGES){
+    const next = document.createElement("a");
+    next.href = `gallery-person-${currentPage + 1}.html`;
+    next.textContent = "→";
+    nav.appendChild(next);
   }
 }
+
+buildPageNav("pageNavTop");
+buildPageNav("pageNavBottom");
+
+/* ============ AUTO SCROLL TO ACTIVE ============ */
+function scrollToActive(navId){
+  const nav = document.getElementById(navId);
+  const active = nav.querySelector(".active");
+  if(!nav || !active) return;
+
+  const offset =
+    active.offsetLeft -
+    nav.clientWidth / 2 +
+    active.clientWidth / 2;
+
+  nav.scrollTo({ left: offset, behavior: "smooth" });
+}
+
+window.addEventListener("load", ()=>{
+  scrollToActive("pageNavTop");
+  scrollToActive("pageNavBottom");
+});
 </script>
 
 </body>
