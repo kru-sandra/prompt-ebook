@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>หมวดบุคคล | Prompt eBook</title>
+<title>หมวดบุคคล | Prompt eBook 84</title>
 
 <style>
 body{
@@ -11,23 +11,51 @@ body{
   font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:#fff6f8;
 }
+
 .container{
   max-width:900px;
   margin:auto;
   padding:20px;
 }
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
 h1{
   text-align:center;
-  margin-bottom:30px;
+  margin:10px 0 30px;
 }
+
+/* AI IMAGE GRID */
 .ai-images{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   gap:12px;
 }
+
 .ai-box{
   text-align:center;
 }
+
 .ai-box img{
   width:100%;
   aspect-ratio:3 / 4;
@@ -35,11 +63,73 @@ h1{
   border-radius:18px;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
+
 .ai-box span{
   display:block;
   margin-top:6px;
   font-weight:600;
   text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .ai-images{
+    grid-template-columns: repeat(3, 1fr);
+    gap:8px;
+  }
+
+  .ai-box span{
+    font-size:12px;
+  }
+
+  .ai-box img{
+    border-radius:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  }
 }
 </style>
 </head>
@@ -47,38 +137,98 @@ h1{
 <body>
 <div class="container">
 
-<h1 id="pageTitle"></h1>
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-person-5.html">← กลับหมวดบุคคล</a>
 
-<div class="ai-images" id="imageGrid"></div>
+    <div class="top-actions">
+      <a href="ebook.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <h1>หมวดบุคคล <br> prompt 084</h1>
+
+  <!-- AI IMAGES (ดึงชื่อจากไฟล์รูปอัตโนมัติ) -->
+  <div class="ai-images">
+
+    <div class="ai-box">
+      <img src="images/person/person_prompt/p084-gemini.jpg" alt="">
+      <span></span>
+    </div>
+
+    <div class="ai-box">
+      <img src="images/person/person_prompt/p084-leonado.jpg" alt="">
+      <span></span>
+    </div>
+
+    <div class="ai-box">
+      <img src="images/person/person_prompt/p084-copilot.jpg" alt="">
+      <span></span>
+    </div>
+
+  </div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+เด็กผู้หญิงสไตล์ชิบิ ตัวเล็กหัวโต ตาโตเป็นประกาย สีตาน้ำตาลเข้ม  แก้มชมพูอมแดง ดูน่าทะนุถนอม
+...
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">📋 Copy Thai Prompt</button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">
+A chibi-style little girl with a small body and oversized head...
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">📋 Copy English Prompt</button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
 
 </div>
 
 <script>
-/* ===============================
-   CONFIG (แก้แค่ตรงนี้)
-================================ */
-const PROMPT_ID = "084";   // ← เปลี่ยนเลขตามชื่อไฟล์
-const MODELS = ["gemini", "leonado", "copilot"];
+/* 🔒 Login Guard */
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
 
-/* ===============================
-   AUTO GENERATE
-================================ */
-const imagePath = "images/person/person_prompt/";
-const grid = document.getElementById("imageGrid");
+/* 📋 Copy */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  text.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
 
-document.getElementById("pageTitle").innerHTML =
-  `หมวดบุคคล <br> prompt ${PROMPT_ID}`;
+/* 🚪 Logout */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
 
-MODELS.forEach(model => {
-  const fileName = `p${PROMPT_ID}-${model}.jpg`;
+/* 🖼️ AUTO LABEL FROM IMAGE NAME */
+document.querySelectorAll(".ai-box").forEach(box => {
+  const img = box.querySelector("img");
+  const span = box.querySelector("span");
+  if(!img || !span) return;
 
-  const box = document.createElement("div");
-  box.className = "ai-box";
-  box.innerHTML = `
-    <img src="${imagePath}${fileName}" alt="${model}">
-    <span>${model}</span>
-  `;
-  grid.appendChild(box);
+  const fileName = img.src.split("/").pop();
+  const label = fileName
+    .replace(/^p\d+-/, "")
+    .replace(/\.(jpg|jpeg|png|webp)$/i, "");
+
+  span.textContent = label;
 });
 </script>
 
