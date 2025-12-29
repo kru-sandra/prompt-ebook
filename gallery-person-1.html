@@ -25,38 +25,29 @@ body{
   text-decoration:none;
   color:#ff6f91;
   font-weight:600;
-}
-
-.logout-btn{
-  border:none;
-  background:#fff;
-  color:#ff6f91;
-  font-weight:600;
-  padding:8px 14px;
-  border-radius:999px;
-  cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.12);
-}
-
-.logout-btn:hover{
-  background:#ff6f91;
-  color:#fff;
+  font-size:14px;
 }
 
 /* TITLE */
 #pageTitle{
   text-align:center;
   margin:10px 0 14px;
+  line-height:1.2;
 }
 
 #pageTitle .title-main{
+  display:block;
   font-size:20px;
   font-weight:600;
+  color:#333;
 }
 
 #pageTitle .title-sub{
+  display:block;
   font-size:14px;
+  font-weight:500;
   color:#999;
+  margin-top:4px;
 }
 
 /* PAGE NAV */
@@ -64,26 +55,28 @@ body{
   display:flex;
   gap:10px;
   overflow-x:auto;
-  justify-content:center;
+  padding:6px 4px 14px;
   margin-bottom:20px;
+  justify-content:center;
+  -webkit-overflow-scrolling:touch;
 }
-
-.page-nav.bottom{margin-top:30px;}
+.page-nav.bottom{ margin-top:30px; }
+.page-nav::-webkit-scrollbar{display:none;}
 
 .page-nav a{
-  width:36px;
+  min-width:36px;
   height:36px;
-  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#fff;
-  color:#ff6f91;
-  font-weight:600;
+  border-radius:50%;
   text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  color:#ff6f91;
+  background:#fff;
   box-shadow:0 2px 6px rgba(0,0,0,.1);
 }
-
 .page-nav a.active{
   background:#ff6f91;
   color:#fff;
@@ -97,16 +90,24 @@ body{
   gap:16px;
 }
 
+/* CARD */
 .card{
   background:#fff;
   border-radius:16px;
   padding:10px;
-  text-align:center;
-  cursor:pointer;
   box-shadow:0 4px 10px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:transform .25s ease, box-shadow .25s ease;
+  text-align:center;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
+/* PROMPT NUMBER */
 .card .prompt-no{
+  font-size:14px;
   font-weight:700;
   color:#000;
   margin-bottom:6px;
@@ -129,93 +130,120 @@ footer{
 
 <body>
 
+<!-- 🔐 LOGIN CHECK -->
+<script>
+if(!sessionStorage.getItem("isLoggedIn")){
+  location.href = "index.html";
+}
+</script>
+
+<!-- TOP -->
 <div class="top-bar">
   <a href="ebook.html">🏠 Home</a>
-  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <a href="#" onclick="logout()">🚪 Logout</a>
 </div>
 
+<!-- TITLE -->
 <h1 id="pageTitle">
   <span class="title-main">หมวดบุคคล</span>
   <span class="title-sub"></span>
 </h1>
 
+<!-- PAGE NAV (TOP) -->
 <div class="page-nav" id="pageNavTop"></div>
+
+<!-- GALLERY -->
 <div class="gallery" id="gallery"></div>
+
+<!-- PAGE NAV (BOTTOM) -->
 <div class="page-nav bottom" id="pageNavBottom"></div>
 
 <footer>
-© 2025 AI Persona Studio | Created by Kru Sandra
+© 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
 </footer>
 
+<!-- 📌 โหลด config กลางก่อน -->
+<script src="gallery-config.js"></script>
+
 <script>
-/* 🔒 LOGIN GUARD */
-if(localStorage.getItem("loggedIn") !== "true"){
-  location.href = "index.html";
-}
+/* ============ ดึงค่าจาก CONFIG ============ */
+const { START, END, PER_PAGE, TOTAL_PAGES } = window.galleryConfig;
 
-/* CONFIG */
-const PER_PAGE = 20;
-const START = 1;
-const END = 84;
-const TOTAL_PAGES = Math.ceil(END / PER_PAGE);
-
-/* CURRENT PAGE (AUTO FROM FILE NAME) */
+/* ============ หาหน้าปัจจุบันจากชื่อไฟล์ ============ */
 const match = location.pathname.match(/gallery-person-(\d+)\.html/);
 const currentPage = match ? parseInt(match[1]) : 1;
 
-document.querySelector(".title-sub").textContent = `หน้าที่ ${currentPage}`;
+/* ============ ตั้งชื่อหน้า ============ */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `หน้าที่ ${currentPage}`;
 
-/* BUILD IMAGE LIST */
-const IMAGES = Array.from({length: END}, (_,i)=>i+1);
-const pageImages = IMAGES.slice(
-  (currentPage-1)*PER_PAGE,
-  currentPage*PER_PAGE
+/* ============ สร้างรายการรูป ============ */
+const IMAGES = Array.from(
+  {length: END - START + 1},
+  (_,i)=>START + i
 );
 
-/* BUILD GALLERY (เลขมากอยู่บน) */
+/* ============ เลือกรูปตามหน้า ============ */
+const startIndex = (currentPage - 1) * PER_PAGE;
+const endIndex = startIndex + PER_PAGE;
+const pageImages = IMAGES.slice(startIndex, endIndex);
+
+/* ============ สร้างแกลเลอรี่ (เรียงล่าสุดบนสุด) ============ */
 const gallery = document.getElementById("gallery");
 
-pageImages.slice().reverse().forEach(n=>{
-  const id = String(n).padStart(3,"0");
+pageImages.slice().reverse().forEach(num=>{
+  const id = String(num).padStart(3,"0");
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
     <div class="prompt-no">Prompt ${id}</div>
-    <img src="images/person/p${id}.jpg">
+    <img src="images/person/p${id}.jpg" alt="Prompt ${id}">
   `;
   card.onclick = ()=>location.href = `prompt-person-${id}.html`;
   gallery.appendChild(card);
 });
 
-/* PAGINATION */
-function buildNav(id){
-  const nav = document.getElementById(id);
+/* ============ สร้างปุ่มเลือกหน้า ============ */
+function buildPageNav(containerId){
+  const nav = document.getElementById(containerId);
   nav.innerHTML = "";
 
-  if(currentPage > 1)
+  if(currentPage > 1){
     nav.innerHTML += `<a href="gallery-person-${currentPage-1}.html">←</a>`;
+  }
 
   for(let i=1;i<=TOTAL_PAGES;i++){
-    nav.innerHTML += `
-      <a href="gallery-person-${i}.html"
-         class="${i===currentPage?'active':''}">
-         ${i}
-      </a>`;
+    nav.innerHTML +=
+      `<a href="gallery-person-${i}.html" class="${i===currentPage?'active':''}">${i}</a>`;
   }
 
-  if(currentPage < TOTAL_PAGES)
+  if(currentPage < TOTAL_PAGES){
     nav.innerHTML += `<a href="gallery-person-${currentPage+1}.html">→</a>`;
-}
-
-buildNav("pageNavTop");
-buildNav("pageNavBottom");
-
-/* LOGOUT */
-function logout(){
-  if(confirm("ต้องการออกจากระบบหรือไม่?")){
-    localStorage.removeItem("loggedIn");
-    location.href = "index.html";
   }
+}
+buildPageNav("pageNavTop");
+buildPageNav("pageNavBottom");
+
+/* ============ AUTO SCROLL ACTIVE ============ */
+function autoScroll(navId){
+  const nav = document.getElementById(navId);
+  const active = nav.querySelector(".active");
+  if(active){
+    nav.scrollTo({
+      left: active.offsetLeft - nav.clientWidth/2 + active.clientWidth/2,
+      behavior:"smooth"
+    });
+  }
+}
+window.onload = ()=>{
+  autoScroll("pageNavTop");
+  autoScroll("pageNavBottom");
+};
+
+/* ============ LOGOUT ============ */
+function logout(){
+  sessionStorage.removeItem("isLoggedIn");
+  location.href = "index.html";
 }
 </script>
 
