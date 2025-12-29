@@ -27,6 +27,16 @@ body{
   font-weight:600;
 }
 
+/* LOGOUT BUTTON */
+.logout-btn{
+  background:white;
+  padding:6px 14px;
+  border-radius:20px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  color:#ff6f91;
+  font-weight:600;
+}
+
 /* TITLE */
 #pageTitle{
   text-align:center;
@@ -59,13 +69,10 @@ body{
   justify-content:center;
   -webkit-overflow-scrolling:touch;
 }
-
 .page-nav.bottom{
   margin-top:30px;
 }
-
 .page-nav::-webkit-scrollbar{display:none;}
-
 .page-nav a{
   min-width:36px;
   height:36px;
@@ -79,7 +86,6 @@ body{
   background:#fff;
   box-shadow:0 2px 6px rgba(0,0,0,.1);
 }
-
 .page-nav a.active{
   background:#ff6f91;
   color:#fff;
@@ -103,7 +109,6 @@ body{
   transition:transform .25s ease, box-shadow .25s ease;
   text-align:center;
 }
-
 .card:hover{
   transform:translateY(-6px);
   box-shadow:0 10px 20px rgba(0,0,0,.12);
@@ -116,7 +121,6 @@ body{
   color:#000;
   margin-bottom:6px;
 }
-
 .card img{
   width:100%;
   border-radius:12px;
@@ -134,9 +138,19 @@ footer{
 
 <body>
 
+<!-- 🔐 LOGIN CHECK -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
 <!-- TOP -->
 <div class="top-bar">
   <a href="ebook.html">🏠 Home</a>
+
+  <!-- 🚪 LOGOUT BUTTON -->
+  <a href="#" class="logout-btn" onclick="logout()">📕 Logout</a>
 </div>
 
 <!-- TITLE -->
@@ -160,10 +174,8 @@ footer{
 
 <script>
 /* ================= CONFIG ================= */
-const TOTAL_PAGES = 7;     // 👈 มีทั้งหมด 8 หน้า
+const TOTAL_PAGES = 7;     // 👈 แก้จำนวนหน้าตามที่มีจริง
 const PER_PAGE = 20;
-
-// ตอนนี้มีรูปถึง p036
 const START = 1;
 const END = 84;
 
@@ -188,7 +200,6 @@ const pageImages = IMAGES.slice(startIndex, endIndex);
 
 /* ============ BUILD GALLERY (DESC ORDER) ============ */
 const gallery = document.getElementById("gallery");
-
 pageImages.slice().reverse().forEach(num=>{
   const id = String(num).padStart(3,"0");
 
@@ -198,7 +209,6 @@ pageImages.slice().reverse().forEach(num=>{
     <div class="prompt-no">Prompt ${id}</div>
     <img src="images/person/p${id}.jpg" alt="Prompt ${id}">
   `;
-
   card.onclick = ()=>location.href = `prompt-person-${id}.html`;
   gallery.appendChild(card);
 });
@@ -209,49 +219,28 @@ function buildPageNav(containerId){
   nav.innerHTML = "";
 
   if(currentPage > 1){
-    const prev = document.createElement("a");
-    prev.href = `gallery-person-${currentPage - 1}.html`;
-    prev.textContent = "←";
-    nav.appendChild(prev);
+    nav.innerHTML += `<a href="gallery-person-${currentPage - 1}.html">←</a>`;
   }
 
   for(let i=1;i<=TOTAL_PAGES;i++){
-    const a = document.createElement("a");
-    a.href = `gallery-person-${i}.html`;
-    a.textContent = i;
-    if(i === currentPage) a.classList.add("active");
-    nav.appendChild(a);
+    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-person-${i}.html">${i}</a>`;
   }
 
   if(currentPage < TOTAL_PAGES){
-    const next = document.createElement("a");
-    next.href = `gallery-person-${currentPage + 1}.html`;
-    next.textContent = "→";
-    nav.appendChild(next);
+    nav.innerHTML += `<a href="gallery-person-${currentPage + 1}.html">→</a>`;
   }
 }
 
 buildPageNav("pageNavTop");
 buildPageNav("pageNavBottom");
 
-/* ============ AUTO SCROLL TO ACTIVE ============ */
-function scrollToActive(navId){
-  const nav = document.getElementById(navId);
-  const active = nav.querySelector(".active");
-  if(!nav || !active) return;
-
-  const offset =
-    active.offsetLeft -
-    nav.clientWidth / 2 +
-    active.clientWidth / 2;
-
-  nav.scrollTo({ left: offset, behavior: "smooth" });
+/* ============ LOGOUT FUNCTION ============ */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
 }
-
-window.addEventListener("load", ()=>{
-  scrollToActive("pageNavTop");
-  scrollToActive("pageNavBottom");
-});
 </script>
 
 </body>
