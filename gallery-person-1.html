@@ -6,120 +6,22 @@
 <title>หมวดบุคคล - หน้า 1</title>
 
 <style>
-body{
-  margin:0;
-  padding:16px;
-  font-family:system-ui, sans-serif;
-  background:#fff5f7;
-}
-
-/* TOP BAR */
-.top-bar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
-.top-bar a{
-  text-decoration:none;
-  color:#ff6f91;
-  font-weight:600;
-}
-.logout-btn{
-  background:white;
-  padding:6px 14px;
-  border-radius:20px;
-  box-shadow:0 2px 6px rgba(0,0,0,.1);
-}
-
-/* TITLE */
-#pageTitle{
-  text-align:center;
-  margin:10px 0 14px;
-  line-height:1.2;
-}
-#pageTitle .title-main{
-  display:block;
-  font-size:20px;
-  font-weight:600;
-  color:#333;
-}
-#pageTitle .title-sub{
-  display:block;
-  font-size:14px;
-  font-weight:500;
-  color:#999;
-  margin-top:4px;
-}
-
-/* PAGE NAV */
-.page-nav{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding:6px 4px 14px;
-  margin-bottom:20px;
-  justify-content:center;
-}
-.page-nav::-webkit-scrollbar{display:none;}
-.page-nav a{
-  min-width:36px;
-  height:36px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  text-decoration:none;
-  font-weight:600;
-  color:#ff6f91;
-  background:#fff;
-  box-shadow:0 2px 6px rgba(0,0,0,.1);
-}
-.page-nav a.active{
-  background:#ff6f91;
-  color:#fff;
-  pointer-events:none;
-}
-
-/* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-  gap:16px;
-}
-
-/* CARD */
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,.06);
-  cursor:pointer;
-  transition:transform .25s, box-shadow .25s;
-  text-align:center;
-}
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 10px 20px rgba(0,0,0,.12);
-}
-.prompt-no{
-  font-size:14px;
-  font-weight:700;
-  color:#000;
-  margin-bottom:6px;
-}
-.card img{
-  width:100%;
-  border-radius:12px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  font-size:12px;
-  color:#999;
-  margin:20px 0;
-}
+body{margin:0;padding:16px;font-family:system-ui,sans-serif;background:#fff5f7;}
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.top-bar a{text-decoration:none;color:#ff6f91;font-weight:600;}
+.logout-btn{background:white;padding:6px 14px;border-radius:20px;box-shadow:0 2px 6px rgba(0,0,0,.1);}
+#pageTitle{text-align:center;margin:10px 0 14px;line-height:1.2;}
+#pageTitle .title-main{display:block;font-size:20px;font-weight:600;color:#333;}
+#pageTitle .title-sub{display:block;font-size:14px;font-weight:500;color:#999;margin-top:4px;}
+.page-nav{display:flex;gap:10px;overflow-x:auto;padding:6px 4px 14px;margin-bottom:20px;justify-content:center;}
+.page-nav a{min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;text-decoration:none;font-weight:600;color:#ff6f91;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.1);}
+.page-nav a.active{background:#ff6f91;color:#fff;pointer-events:none;}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;}
+.card{background:#fff;border-radius:16px;padding:10px;box-shadow:0 4px 10px rgba(0,0,0,.06);cursor:pointer;transition:.25s;text-align:center;}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 20px rgba(0,0,0,.12);}
+.prompt-no{font-size:14px;font-weight:700;color:#000;margin-bottom:6px;}
+.card img{width:100%;border-radius:12px;}
+footer{text-align:center;font-size:12px;color:#999;margin:20px 0;}
 </style>
 </head>
 
@@ -128,7 +30,7 @@ footer{
 <!-- 🔐 LOGIN CHECK -->
 <script>
 if(localStorage.getItem("loggedIn") !== "true"){
-  window.location.href = "index.html"; // ❗เปลี่ยนจาก cover.html → index.html
+  window.location.href = "index.html";
 }
 </script>
 
@@ -138,75 +40,68 @@ if(localStorage.getItem("loggedIn") !== "true"){
   <a href="#" class="logout-btn" onclick="logout()">📕 Logout</a>
 </div>
 
-<!-- TITLE -->
 <h1 id="pageTitle">
   <span class="title-main">หมวดบุคคล</span>
   <span class="title-sub"></span>
 </h1>
 
-<!-- PAGE NAV (TOP) -->
 <div class="page-nav" id="pageNavTop"></div>
-
-<!-- GALLERY -->
 <div class="gallery" id="gallery"></div>
+<div class="page-nav" id="pageNavBottom"></div>
 
-<!-- PAGE NAV (BOTTOM) -->
-<div class="page-nav" id="pageNavBottom" style="margin-top:30px;"></div>
+<footer>© 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.</footer>
 
-<footer>
-© 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
-</footer>
-
-<!-- ⬇️ ใช้ CONFIG กลาง -->
+<!-- ⬇️ ต้องมีไฟล์นี้ก่อน script -->
 <script src="gallery-config.js"></script>
 
 <script>
+// 📌 ดึงค่าจาก config.js
 const { START, END, PER_PAGE, TOTAL_PAGES } = window.galleryConfig;
+
+// 📌 หาหน้าปัจจุบันจากชื่อไฟล์
 const match = location.pathname.match(/gallery-person-(\d+)\.html/);
 const currentPage = match ? parseInt(match[1]) : 1;
 
-document.querySelector("#pageTitle .title-sub").textContent =
-  `หน้าที่ ${currentPage}`;
+// 📍 แสดงชื่อหน้า
+document.querySelector("#pageTitle .title-sub").textContent = `หน้าที่ ${currentPage}`;
 
-const IMAGES = Array.from({ length: END - START + 1},(_,i)=>START+i);
+// 📌 สร้างข้อมูลรูปทั้งหมด
+const IMAGES = Array.from({length: END - START + 1}, (_,i) => START + i);
 
-const startIndex = (currentPage - 1) * PER_PAGE;
-const endIndex = startIndex + PER_PAGE;
-const pageImages = IMAGES.slice(startIndex, endIndex);
+// 📌 คำนวณช่วงรูปที่ต้องแสดงของหน้านี้
+const start = (currentPage - 1) * PER_PAGE;
+const end = start + PER_PAGE;
+const pageImages = IMAGES.slice(start, end);
 
+// 📌 สร้างการ์ดรูป
 const gallery = document.getElementById("gallery");
-pageImages.slice().reverse().forEach(num=>{
+gallery.innerHTML = ""; // เคลียร์ก่อนกันซ้ำ
+
+pageImages.slice().reverse().forEach(num => {
   const id = String(num).padStart(3,"0");
   gallery.innerHTML += `
     <div class="card" onclick="location.href='prompt-person-${id}.html'">
       <div class="prompt-no">Prompt ${id}</div>
-      <img src="images/person/p${id}.jpg">
+      <img src="images/person/p${id}.jpg" onerror="this.style.display='none'">
     </div>`;
 });
 
-/* PAGE NAV FUNCTION */
+// 📌 สร้างปุ่มเลขหน้า
 function buildNav(id){
   const nav = document.getElementById(id);
   nav.innerHTML = "";
 
-  if(currentPage > 1){
-    nav.innerHTML += `<a href="gallery-person-${currentPage-1}.html">←</a>`;
-  }
+  if(currentPage > 1) nav.innerHTML += `<a href="gallery-person-${currentPage-1}.html">←</a>`;
   for(let i=1;i<=TOTAL_PAGES;i++){
-    nav.innerHTML += `<a href="gallery-person-${i}.html" class="${i===currentPage?'active':''}">${i}</a>`;
+    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-person-${i}.html">${i}</a>`;
   }
-  if(currentPage < TOTAL_PAGES){
-    nav.innerHTML += `<a href="gallery-person-${currentPage+1}.html">→</a>`;
-  }
+  if(currentPage < TOTAL_PAGES) nav.innerHTML += `<a href="gallery-person-${currentPage+1}.html">→</a>`;
 }
 buildNav("pageNavTop");
 buildNav("pageNavBottom");
 
-/* LOGOUT */
-function logout(){
-  localStorage.removeItem("loggedIn");
-  window.location.href = "index.html";
-}
+// 🚪 LOGOUT
+function logout(){ localStorage.removeItem("loggedIn"); location.href="index.html"; }
 </script>
 
 </body>
