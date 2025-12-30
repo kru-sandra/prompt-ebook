@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title id="pageTitleText">หมวดบุคคล | Prompt</title>
+<title>หมวดบุคคล | Prompt</title>
 
 <style>
 body{
@@ -120,7 +120,7 @@ footer{
 
 <body>
 
-<!-- 🔐 LOGIN GUARD -->
+<!-- 🔐 LOGIN CHECK -->
 <script>
 if(localStorage.getItem("loggedIn") !== "true"){
   window.location.href = "index.html";
@@ -140,42 +140,31 @@ if(localStorage.getItem("loggedIn") !== "true"){
   </div>
 
   <!-- TITLE (AUTO) -->
-  <h1 id="pageTitle">
-    หมวดบุคคล<br>Prompt
-  </h1>
+  <h1 id="pageTitle">หมวดบุคคล<br>Prompt</h1>
 
-  <!-- AI IMAGES -->
-  <div class="ai-images">
-
-    <div class="ai-box">
-      <img src="images/person/person_prompt/p084-gemini.jpg">
-      <span></span>
-    </div>
-
-    <div class="ai-box">
-      <img src="images/person/person_prompt/p084-leonado.jpg">
-      <span></span>
-    </div>
-
-    <div class="ai-box">
-      <img src="images/person/person_prompt/p084-copilot.jpg">
-      <span></span>
-    </div>
-
-  </div>
+  <!-- AI IMAGES (AUTO) -->
+  <div class="ai-images" id="aiImages"></div>
 
   <!-- THAI PROMPT -->
   <div class="prompt-box">
     <h3>Thai Prompt :</h3>
-    <textarea id="thaiPrompt" rows="8">...</textarea>
-    <button class="copy-btn" onclick="copyText('thaiPrompt')">📋 Copy Thai Prompt</button>
+    <textarea id="thaiPrompt" rows="8">
+ใส่ prompt ภาษาไทยของคุณที่นี่
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
   </div>
 
   <!-- ENGLISH PROMPT -->
   <div class="prompt-box">
     <h3>English Prompt :</h3>
-    <textarea id="engPrompt" rows="8">...</textarea>
-    <button class="copy-btn" onclick="copyText('engPrompt')">📋 Copy English Prompt</button>
+    <textarea id="engPrompt" rows="8">
+Put your English prompt here
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
   </div>
 
   <footer>
@@ -187,25 +176,39 @@ if(localStorage.getItem("loggedIn") !== "true"){
 <script>
 /* 🔢 AUTO PROMPT NUMBER FROM FILE NAME */
 const fileMatch = location.pathname.match(/prompt-person-(\d+)\.html/);
-const promptNo = fileMatch ? fileMatch[1] : "???";
+const promptNo = fileMatch ? fileMatch[1] : "000";
 
-/* SET TITLE + H1 */
+/* SET TITLE */
 document.getElementById("pageTitle").innerHTML =
   `หมวดบุคคล<br>Prompt ${promptNo}`;
-
 document.title = `หมวดบุคคล | Prompt ${promptNo}`;
 
-/* 🖼 AUTO LABEL FROM IMAGE NAME */
-document.querySelectorAll(".ai-box").forEach(box=>{
-  const img = box.querySelector("img");
-  const span = box.querySelector("span");
-  if(!img || !span) return;
+/* 🧠 AI LIST (แก้ตรงนี้ ถ้ามี AI เพิ่ม) */
+const AI_LIST = ["gemini", "leonardo", "copilot"];
 
-  const name = img.src.split("/").pop()
-    .replace(/^p\d+-/,"")
-    .replace(/\.(jpg|jpeg|png|webp)$/i,"");
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "images/person/person_prompt";
 
-  span.textContent = name;
+/* 🖼 BUILD IMAGES AUTO */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const box = document.createElement("div");
+  box.className = "ai-box";
+
+  const img = document.createElement("img");
+  img.src = `${IMAGE_PATH}/p${promptNo}-${ai}.jpg`;
+  img.alt = ai;
+
+  /* ซ่อนรูป ถ้าไม่มีไฟล์ */
+  img.onerror = () => box.style.display = "none";
+
+  const span = document.createElement("span");
+  span.textContent = ai;
+
+  box.appendChild(img);
+  box.appendChild(span);
+  container.appendChild(box);
 });
 
 /* 📋 COPY */
