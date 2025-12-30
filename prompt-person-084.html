@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>หมวดบุคคล | Prompt eBook 84</title>
+
+<title id="pageTitleText">หมวดบุคคล | Prompt</title>
 
 <style>
 body{
@@ -114,27 +115,18 @@ footer{
   color:#999;
   margin:40px 0 10px;
 }
-
-/* MOBILE */
-@media (max-width:768px){
-  .ai-images{
-    grid-template-columns: repeat(3, 1fr);
-    gap:8px;
-  }
-
-  .ai-box span{
-    font-size:12px;
-  }
-
-  .ai-box img{
-    border-radius:12px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  }
-}
 </style>
 </head>
 
 <body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
 <div class="container">
 
   <!-- TOP BAR -->
@@ -147,23 +139,26 @@ footer{
     </div>
   </div>
 
-  <h1>หมวดบุคคล <br> prompt 084</h1>
+  <!-- TITLE (AUTO) -->
+  <h1 id="pageTitle">
+    หมวดบุคคล<br>Prompt
+  </h1>
 
-  <!-- AI IMAGES (ดึงชื่อจากไฟล์รูปอัตโนมัติ) -->
+  <!-- AI IMAGES -->
   <div class="ai-images">
 
     <div class="ai-box">
-      <img src="images/person/person_prompt/p084-gemini.jpg" alt="">
+      <img src="images/person/person_prompt/p084-gemini.jpg">
       <span></span>
     </div>
 
     <div class="ai-box">
-      <img src="images/person/person_prompt/p084-leonado.jpg" alt="">
+      <img src="images/person/person_prompt/p084-leonado.jpg">
       <span></span>
     </div>
 
     <div class="ai-box">
-      <img src="images/person/person_prompt/p084-copilot.jpg" alt="">
+      <img src="images/person/person_prompt/p084-copilot.jpg">
       <span></span>
     </div>
 
@@ -172,19 +167,14 @@ footer{
   <!-- THAI PROMPT -->
   <div class="prompt-box">
     <h3>Thai Prompt :</h3>
-    <textarea id="thaiPrompt" rows="8">
-เด็กผู้หญิงสไตล์ชิบิ ตัวเล็กหัวโต ตาโตเป็นประกาย สีตาน้ำตาลเข้ม  แก้มชมพูอมแดง ดูน่าทะนุถนอม
-...
-    </textarea>
+    <textarea id="thaiPrompt" rows="8">...</textarea>
     <button class="copy-btn" onclick="copyText('thaiPrompt')">📋 Copy Thai Prompt</button>
   </div>
 
   <!-- ENGLISH PROMPT -->
   <div class="prompt-box">
     <h3>English Prompt :</h3>
-    <textarea id="engPrompt" rows="8">
-A chibi-style little girl with a small body and oversized head...
-    </textarea>
+    <textarea id="engPrompt" rows="8">...</textarea>
     <button class="copy-btn" onclick="copyText('engPrompt')">📋 Copy English Prompt</button>
   </div>
 
@@ -195,41 +185,44 @@ A chibi-style little girl with a small body and oversized head...
 </div>
 
 <script>
-/* 🔒 Login Guard */
-if(localStorage.getItem("loggedIn") !== "true"){
-  window.location.href = "index.html";
-}
+/* 🔢 AUTO PROMPT NUMBER FROM FILE NAME */
+const fileMatch = location.pathname.match(/prompt-person-(\d+)\.html/);
+const promptNo = fileMatch ? fileMatch[1] : "???";
 
-/* 📋 Copy */
+/* SET TITLE + H1 */
+document.getElementById("pageTitle").innerHTML =
+  `หมวดบุคคล<br>Prompt ${promptNo}`;
+
+document.title = `หมวดบุคคล | Prompt ${promptNo}`;
+
+/* 🖼 AUTO LABEL FROM IMAGE NAME */
+document.querySelectorAll(".ai-box").forEach(box=>{
+  const img = box.querySelector("img");
+  const span = box.querySelector("span");
+  if(!img || !span) return;
+
+  const name = img.src.split("/").pop()
+    .replace(/^p\d+-/,"")
+    .replace(/\.(jpg|jpeg|png|webp)$/i,"");
+
+  span.textContent = name;
+});
+
+/* 📋 COPY */
 function copyText(id){
   const text = document.getElementById(id);
   text.select();
-  text.setSelectionRange(0, 99999);
   navigator.clipboard.writeText(text.value);
   alert("คัดลอกเรียบร้อยแล้ว ✨");
 }
 
-/* 🚪 Logout */
+/* 🚪 LOGOUT */
 function logout(){
   if(confirm("ต้องการออกจากระบบหรือไม่?")){
     localStorage.removeItem("loggedIn");
     window.location.href = "index.html";
   }
 }
-
-/* 🖼️ AUTO LABEL FROM IMAGE NAME */
-document.querySelectorAll(".ai-box").forEach(box => {
-  const img = box.querySelector("img");
-  const span = box.querySelector("span");
-  if(!img || !span) return;
-
-  const fileName = img.src.split("/").pop();
-  const label = fileName
-    .replace(/^p\d+-/, "")
-    .replace(/\.(jpg|jpeg|png|webp)$/i, "");
-
-  span.textContent = label;
-});
 </script>
 
 </body>
