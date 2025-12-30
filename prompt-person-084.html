@@ -183,7 +183,7 @@ document.getElementById("pageTitle").innerHTML =
   `หมวดบุคคล<br>Prompt ${promptNo}`;
 document.title = `หมวดบุคคล | Prompt ${promptNo}`;
 
-/* 🧠 AI LIST (ทั้งหมดตามที่คุณกำหนด) */
+/* 🧠 AI LIST */
 const AI_LIST = [
   "gemini",
   "whisk",
@@ -200,26 +200,26 @@ const AI_LIST = [
 /* 📂 IMAGE PATH */
 const IMAGE_PATH = "images/person/person_prompt";
 
-/* 🖼 BUILD AI IMAGES AUTO */
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
 const container = document.getElementById("aiImages");
 
 AI_LIST.forEach(ai => {
-  const box = document.createElement("div");
-  box.className = "ai-box";
-
-  const img = document.createElement("img");
+  const img = new Image();
   img.src = `${IMAGE_PATH}/p${promptNo}-${ai}.jpg`;
-  img.alt = ai;
 
-  /* ถ้าไม่มีไฟล์ → ซ่อน */
-  img.onerror = () => box.style.display = "none";
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
 
-  const span = document.createElement("span");
-  span.textContent = ai;
+    img.alt = ai;
 
-  box.appendChild(img);
-  box.appendChild(span);
-  container.appendChild(box);
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
 });
 
 /* 📋 COPY */
