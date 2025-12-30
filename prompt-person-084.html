@@ -120,7 +120,7 @@ footer{
 
 <body>
 
-<!-- 🔐 LOGIN CHECK -->
+<!-- 🔐 LOGIN GUARD -->
 <script>
 if(localStorage.getItem("loggedIn") !== "true"){
   window.location.href = "index.html";
@@ -139,10 +139,10 @@ if(localStorage.getItem("loggedIn") !== "true"){
     </div>
   </div>
 
-  <!-- TITLE (AUTO) -->
+  <!-- TITLE -->
   <h1 id="pageTitle">หมวดบุคคล<br>Prompt</h1>
 
-  <!-- AI IMAGES (AUTO) -->
+  <!-- AI IMAGES -->
   <div class="ai-images" id="aiImages"></div>
 
   <!-- THAI PROMPT -->
@@ -174,22 +174,33 @@ Put your English prompt here
 </div>
 
 <script>
-/* 🔢 AUTO PROMPT NUMBER FROM FILE NAME */
-const fileMatch = location.pathname.match(/prompt-person-(\d+)\.html/);
-const promptNo = fileMatch ? fileMatch[1] : "000";
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-person-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
 
 /* SET TITLE */
 document.getElementById("pageTitle").innerHTML =
   `หมวดบุคคล<br>Prompt ${promptNo}`;
 document.title = `หมวดบุคคล | Prompt ${promptNo}`;
 
-/* 🧠 AI LIST (แก้ตรงนี้ ถ้ามี AI เพิ่ม) */
-const AI_LIST = ["gemini", "leonardo", "copilot"];
+/* 🧠 AI LIST (ทั้งหมดตามที่คุณกำหนด) */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina"
+];
 
 /* 📂 IMAGE PATH */
 const IMAGE_PATH = "images/person/person_prompt";
 
-/* 🖼 BUILD IMAGES AUTO */
+/* 🖼 BUILD AI IMAGES AUTO */
 const container = document.getElementById("aiImages");
 
 AI_LIST.forEach(ai => {
@@ -200,7 +211,7 @@ AI_LIST.forEach(ai => {
   img.src = `${IMAGE_PATH}/p${promptNo}-${ai}.jpg`;
   img.alt = ai;
 
-  /* ซ่อนรูป ถ้าไม่มีไฟล์ */
+  /* ถ้าไม่มีไฟล์ → ซ่อน */
   img.onerror = () => box.style.display = "none";
 
   const span = document.createElement("span");
