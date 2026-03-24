@@ -169,14 +169,21 @@ if(localStorage.getItem("loggedIn") !== "true"){
     <h3>Thai Prompt :</h3>
     <textarea id="thaiPrompt" rows="8">
       
-ภาพประกอบดิจิทัล 3 มิติ สไตล์ Pixar แบบเต็มตัว ของเด็กผู้หญิงน่ารักเหมือนตุ๊กตา เธอมีผมสีน้ำตาลยาวเป็นลอน มัดหางม้าสูง และผูกโบว์ริบบิ้นสีเหลืองสดขนาดใหญ่ สวมแจ็กเก็ตยีนส์สีฟ้าอ่อนทับเสื้อยืดสีชมพูอ่อน กางเกงยีนส์สีน้ำเงินเข้ม และรองเท้าผ้าใบสีขาวเชือกสีเหลือง เธอถือ iPhone 17 สีส้มไว้ในมือหนึ่ง ในท่าทางสบาย ๆ ดูอ่อนโยนเป็นธรรมชาติ
+สร้างภาพ จาก prompt การ์ตูน 3Dสมจริง 
+เด็กหญิง ตัวอ้วน  แก้มจ้ำม่ำ
+ทรงผมสไตล์คาวาอี้ ถักเปียสองข้างหลวมๆ มีหน้าม้าปัดนุ่ม ๆ ประดับด้วย กิ๊บดอกเดซี่สีขาวและชมพูอ่อน และริบบิ้นเล็ก ๆ มีเส้นไรผมบาง ๆ รอบหน้าผาก  มีลักยิ้ม
 
-ข้าง ๆ เธอมีลูกสุนัขพันธุ์ปอมเมอเรเนียนขนฟูน่ารัก ขนนุ่มฟู สีอ่อน สีหน้าเป็นมิตร สวมหมวกแก๊ปสุดคิวต์ เพิ่มความขี้เล่นและความน่าเอ็นดูให้กับภาพ
+สวมชุดไทยประยุกต์ผ้าไหมสีชมพู ลวดลายทองประณีต มีสไบพาดไหล่ แต่งกายด้วยเครื่องประดับทองแบบไทย เช่น สร้อยคอ กำไล ต่างหู และเครื่องประดับผม
+มือถือกระเช้าสานใบเล็ก ภายในใส่พวงมาลัยดอกมะลิแบบไทย
+ยืนอยู่กลางลานวัดไทย มีเจดีย์สีทองและสถาปัตยกรรมไทยแบบดั้งเดิมอยู่ด้านหลัง รายละเอียดวิจิตร งดงาม
 
-ฉากหลังเป็นคาเฟ่สไตล์มินิมอล โทนสีอ่อน สะอาดตา ใช้เฟอร์นิเจอร์ไม้สีอ่อน การตกแต่งเรียบง่าย ให้บรรยากาศอบอุ่น โปร่ง โล่ง และทันสมัย มีแสงธรรมชาติอ่อน ๆ ส่องเข้ามา สร้างอารมณ์ภาพที่สงบ นุ่มละมุน และน่ารัก
+รายล้อมด้วยต้นไม้และดอกไม้เขตร้อน สีเขียวสด บรรยากาศสงบ อบอุ่นแบบวัฒนธรรมไทย
 
-รายละเอียดสูง แสงนุ่มเป็นธรรมชาติ โทนสดใส น่าดึงดูด สไตล์มินิมอลคาวาอี้ ฉากหลังเบลอเล็กน้อย (shallow depth of field) อัตราส่วนภาพ 9:16
-      
+
+สัดส่วนแบบ Chibi Doll face 
+เรนเดอร์แบบสมจริงนิดๆ (Semi-realistic Rendering)
+อัตราส่วน 9:16
+ความละเอียด4K
     </textarea>
     <button class="copy-btn" onclick="copyText('thaiPrompt')">
       📋 Copy Thai Prompt
@@ -188,13 +195,23 @@ if(localStorage.getItem("loggedIn") !== "true"){
     <h3>English Prompt :</h3>
     <textarea id="engPrompt" rows="8">
       
-A full-body 3D Pixar-style digital illustration of a cute, doll-like young girl. She has long, wavy brown hair tied in a high ponytail with a large, bright yellow ribbon bow. She is wearing a stylish light blue denim jacket over a soft pink t-shirt, dark blue denim jeans, and white sneakers with yellow laces. She is holding an orange iPhone 17 naturally in one hand, with a relaxed and gentle pose.
+Create an image from the following prompt:
 
-Standing beside her is a fluffy, adorable Pomeranian puppy with soft, puffy fur and a sweet expression. The puppy is wearing a cute baseball cap, adding a playful and charming touch to the scene.
+A semi-realistic 3D cartoon of a chubby little girl with plump cheeks.
+She has a kawaii-style hairstyle with two loose braids, soft side-swept bangs, decorated with white and light pink daisy hair clips and small ribbons. Fine baby hairs frame her forehead, and she has dimples.
 
-The background is a cute minimalist-style café with clean lines, soft neutral tones, light wood furniture, and simple decorations. The atmosphere is cozy, airy, and modern, with soft natural light creating a calm, aesthetic, and charming mood.
+She is wearing a pink Thai silk fusion outfit with intricate gold patterns, along with a traditional shoulder sash (sabai). She is adorned with Thai gold jewelry such as a necklace, bracelets, earrings, and hair accessories.
 
-High detail, soft natural lighting, charming and vibrant, minimalist kawaii style, shallow depth of field, 9:16 aspect ratio.
+She is holding a small woven basket containing a traditional Thai jasmine flower garland.
+
+She stands in the middle of a Thai temple courtyard, with a golden pagoda and traditional Thai architecture in the background, featuring exquisite and ornate details.
+
+The scene is surrounded by lush green tropical trees and flowers, creating a peaceful and warm atmosphere inspired by Thai culture.
+
+Chibi doll face proportions.
+Semi-realistic rendering.
+4K resolution.
+Aspect ratio 9:16.
 
       
     </textarea>
