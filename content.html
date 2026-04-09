@@ -30,12 +30,6 @@ body{
   text-decoration:none;
   color:#ff6f91;
   font-weight:600;
-  font-size:15px;
-}
-
-.top-actions{
-  display:flex;
-  gap:14px;
 }
 
 /* TITLE */
@@ -45,39 +39,71 @@ h1{
   letter-spacing:2px;
 }
 
-/* CONTENT LIST */
+/* CARD */
 .content-list{
   display:flex;
   flex-direction:column;
-  gap:16px;
+  gap:18px;
 }
 
-/* CARD */
 .content-item{
-  background:#fff;
-  padding:18px 20px;
-  border-radius:18px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
   display:flex;
-  justify-content:space-between;
+  gap:16px;
   align-items:center;
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
   text-decoration:none;
   color:#333;
-  transition:0.2s;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+  transition:0.25s;
 }
 
 .content-item:hover{
-  transform:translateY(-3px);
-  box-shadow:0 6px 16px rgba(0,0,0,0.12);
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* IMAGE */
+.content-item img{
+  width:140px;
+  height:100%;
+  object-fit:cover;
+}
+
+/* TEXT */
+.content-text{
+  flex:1;
+  padding:16px 10px;
 }
 
 .content-title{
   font-weight:600;
+  margin-bottom:4px;
 }
 
 .arrow{
-  font-size:18px;
+  padding-right:16px;
+  font-size:20px;
   color:#ff6f91;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .content-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .content-item img{
+    width:100%;
+    height:160px;
+  }
+
+  .arrow{
+    align-self:flex-end;
+    padding-bottom:10px;
+  }
 }
 
 /* FOOTER */
@@ -96,35 +122,38 @@ footer{
   <!-- TOP BAR -->
   <div class="top-bar">
     <a href="ebook.html">← กลับหน้าหลัก</a>
-
-    <div class="top-actions">
-      <a href="ebook.html">🏠 Home</a>
-      <a href="#" onclick="logout()">🚪 Logout</a>
-    </div>
+    <a href="#" onclick="logout()">🚪 Logout</a>
   </div>
 
-  <!-- TITLE -->
   <h1>CONTENTS</h1>
 
-  <!-- LIST -->
   <div class="content-list">
 
     <!-- HOW TO USE -->
     <a href="how-to-use.html" class="content-item">
-      <span class="content-title">แนะนำวิธีใช้งาน AI สร้างภาพ</span>
-      <span class="arrow">›</span>
+      <img src="images/content/howto.jpg">
+      <div class="content-text">
+        <div class="content-title">แนะนำวิธีใช้งาน AI สร้างภาพ</div>
+      </div>
+      <div class="arrow">›</div>
     </a>
 
     <!-- CATEGORY 1 -->
     <a href="gallery-cute-cartoon.html" class="content-item">
-      <span class="content-title">หมวดหมู่ที่ 1 การ์ตูนน่ารัก</span>
-      <span class="arrow">›</span>
+      <img src="images/content/category1.jpg">
+      <div class="content-text">
+        <div class="content-title">หมวดหมู่ที่ 1 การ์ตูนน่ารัก</div>
+      </div>
+      <div class="arrow">›</div>
     </a>
 
     <!-- CATEGORY 2 -->
     <a href="gallery-fashion.html" class="content-item">
-      <span class="content-title">หมวดหมู่ที่ 2 ตู้เสื้อผ้าชุดสวยพิเศษ</span>
-      <span class="arrow">›</span>
+      <img src="images/content/category2.jpg">
+      <div class="content-text">
+        <div class="content-title">หมวดหมู่ที่ 2 ตู้เสื้อผ้าชุดสวยพิเศษ</div>
+      </div>
+      <div class="arrow">›</div>
     </a>
 
   </div>
