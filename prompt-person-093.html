@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>prompt น้องการ์ตูนน่ารัก | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-person-5.html">← กลับหมวดน้องการ์ตูนน่ารัก</a>
+
+    <div class="top-actions">
+      <a href="ebook.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">prompt น้องการ์ตูนน่ารัก</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างภาพเด็กผู้หญิงสไตล์ชิบิ น่ารักมาก ตัวเล็ก หัวโต ตาโตเป็นประกาย สีตาน้ำตาลเข้ม ใบหน้าคล้ายตุ๊กตา ผิวขาวเนียนเหมือนพอร์ซเลน แก้มชมพูอมแดง จมูกเล็ก ปากเล็กสีชมพูอ่อน อารมณ์ใสซื่อ น่าทะนุถนอม
+ 
+มีหยดน้ำกระเซ็นบนใบหน้า ผมยาวสีน้ำตาลเข้มดัดลอนอ่อนๆ ปล่อยลงไหล่ มีการเก็บผมด้านข้างเล็กน้อย ประดับดอกไม้สีทองเล็กๆ ที่ผม ทรงผมดูฟุ้งนุ่ม ใส่ต่างหูทองแบบห้อยระย้า สวมสร้อยคอทองลายไทยเส้นใหญ่พร้อมจี้ลวดลายวิจิตร และสร้อยทองเส้นยาวซ้อนกันหลายชั้น ใส่กำไลทองที่ข้อมือ
+
+สวมชุดไทยประยุกต์ ผ้าสไบเฉียงสีเขียวอมฟ้า (เขียวหยก) ลวดลายไทยหรูหรา มีขอบสีทองและด้านในซับด้วยผ้าสีชมพูอ่อน นุ่งผ้าซิ่นลายไทยโทนสีน้ำตาลเข้มลวดลายละเอียด
+ถือขันเงินลวดลายแกะสลักแบบไทย ภายในมีน้ำ มือกำลังตักน้ำเล่น น้ำกระเซ็นออกจากขันอย่างสมจริง
+
+ฉากหลังเป็นถนนในเมืองช่วงเทศกาลสงกรานต์ มีผู้คนจำนวนมากกำลังเล่นน้ำ ใส่เสื้อผ้าสีสันสดใส เช่น เสื้อฮาวาย มีปืนฉีดน้ำ บรรยากาศสนุกสนาน มีธงสามเหลี่ยมสีสดแขวนข้ามถนน อาคารสองข้างทางเป็นตึกแถวเก่าแบบไทย แสงธรรมชาติช่วงกลางวัน
+โฟกัสที่ตัวแบบ (depth of field ตื้น) ฉากหลังเบลอแบบโบเก้ มีหยดน้ำลอยกลางอากาศแบบ freeze motion รายละเอียดคมชัดระดับสูง ผิวและผ้าแสดง texture ชัดเจน
+
+ภาพสไตล์ภาพประกอบ 3D คุณภาพสูง แนวตุ๊กตา Blythe / Pixar / Disney โทนสีพาสเทล รายละเอียดสูงมาก แสงนุ่ม ละลายฉากหลังเล็กน้อย อารมณ์ฝัน ๆ เหมือนเทพนิยาย ความละเอียดสูงมาก 8K
+อัตราส่วน 9:16
+ องค์ประกอบสมดุล ตัวแบบอยู่กึ่งกลางค่อนไปด้านซ้ายเล็กน้อย
+
+โทนสี: สดใส อบอุ่น มีความเป็นเทศกาล สีผิวดูมีชีวิตชีวา
+
+ </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Create an image of a very cute chibi-style girl with a small body, oversized head, and large sparkling eyes. Her eyes are deep brown. She has a doll-like face with smooth porcelain-like fair skin, rosy pink cheeks, a tiny nose, and small light pink lips. Her expression is innocent, pure, and delicate.
+
+There are water droplets splashing on her face. She has long dark brown hair styled in soft waves, flowing down to her shoulders, with some hair gently tucked to the side. Her hair is decorated with small golden flowers, giving it a soft and fluffy look. She wears dangling gold earrings, a large traditional Thai gold necklace with an intricate pendant, layered long gold necklaces, and gold bracelets on her wrists.
+
+She is dressed in a modern Thai traditional outfit. She wears a jade-green (blue-green) sabai draped diagonally across her body, featuring luxurious Thai patterns with gold trimming and a soft pink inner lining. She also wears a traditional Thai patterned sinh skirt in dark brown with fine detailed designs.
+
+She is holding a silver bowl with traditional Thai engravings filled with water. Her hand is scooping water playfully, with water splashing realistically out of the bowl.
+
+The background is a city street during the Songkran festival. Many people are playing with water, wearing colorful clothes such as Hawaiian shirts, and holding water guns. The atmosphere is lively and festive. Bright triangular flags are strung across the street. On both sides are old-style Thai shophouses. The lighting is natural daylight.
+
+The focus is on the character (shallow depth of field), with a blurred bokeh background. Water droplets are frozen mid-air with high detail. Skin and fabric textures are highly detailed and sharp.
+
+The image is a high-quality 3D illustration in a Blythe / Pixar / Disney doll-like style, with pastel tones, very high detail, soft lighting, slightly blurred background, and a dreamy, fairy-tale mood. Ultra-high resolution, 8K.
+
+Aspect ratio: 9:16
+Balanced composition, with the subject centered slightly to the left.
+
+Color tone: bright, warm, festive, with lively-looking skin tones.
+
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-person-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดบุคคล | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "flowai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "images/person/person_prompt";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/p${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
