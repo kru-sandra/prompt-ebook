@@ -180,7 +180,7 @@ const START = 1;
 const END = 2;
 
 /* ============ CURRENT PAGE (AUTO) ============ */
-const match = location.pathname.match(/gallery-person-(\d+)\.html/);
+const match = location.pathname.match(/gallery-suit-(\d+)\.html/);
 const currentPage = match ? parseInt(match[1]) : 1;
 
 /* ============ TITLE ============ */
@@ -219,15 +219,15 @@ function buildPageNav(containerId){
   nav.innerHTML = "";
 
   if(currentPage > 1){
-    nav.innerHTML += `<a href="gallery-person-${currentPage - 1}.html">←</a>`;
+    nav.innerHTML += `<a href="gallery-suit-${currentPage - 1}.html">←</a>`;
   }
 
   for(let i=1;i<=TOTAL_PAGES;i++){
-    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-person-${i}.html">${i}</a>`;
+    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-suit-${i}.html">${i}</a>`;
   }
 
   if(currentPage < TOTAL_PAGES){
-    nav.innerHTML += `<a href="gallery-person-${currentPage + 1}.html">→</a>`;
+    nav.innerHTML += `<a href="gallery-suit-${currentPage + 1}.html">→</a>`;
   }
 }
 
