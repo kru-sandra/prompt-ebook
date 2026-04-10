@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดชุดสวยพิเศษ | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-person-5.html">← กลับหมวดบุคคล</a>
+
+    <div class="top-actions">
+      <a href="ebook.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดชุดสวยพิเศษ</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างภาพเด็กผู้หญิงสไตล์ชิบิ น่ารักมาก ตัวเล็ก หัวโต ตาโตเป็นประกาย สีตาน้ำตาลเข้ม ใบหน้าคล้ายตุ๊กตา ผิวขาวเนียนเหมือนพอร์ซเลน แก้มชมพูอมแดง จมูกเล็ก ปากเล็กสีชมพูอ่อน อารมณ์ใสซื่อ น่าทะนุถนอม
+ผมสีน้ำตาลเข้ม รวบมวยสูงแบบยุ่งเล็กน้อย มีหน้าม้าบาง ๆ ประดับกิ๊บน่ารักสีพาสเทล ทรงผมดูฟุ้งนุ่ม
+
+
+สวมเสื้อครอปสายเดี่ยวลายดอกไม้มีเชือกผูกด้านหน้า และกางเกงขาสั้นสีชมพูพองๆ คาดแว่นตากันน้ำสีแดงไว้บนศีรษะ  ถือปืนฉีดน้ำพลาสติกสีแดง-เหลือง รอยยิ้มร่าเริงมีความสุข ฉากหลังเป็นบรรยากาศเทศกาลสงกรานต์ มีผู้คนสวมเสื้อฮาวายกำลังเล่นน้ำเบลอๆ เป็นฉากหลัง มีธงราวสามเหลี่ยมหลากสีประดับอยู่ด้านบน มีเอฟเฟกต์หยดน้ำและสายน้ำสาดกระจายรอบๆ ตัว พื้นถนนเปียกน้ำ
+
+โดนปะแป้ง2ข้างตัวเปียก
+
+
+ภาพสไตล์ภาพประกอบ 3D คุณภาพสูง แนวตุ๊กตา Blythe / Pixar / Disney โทนสีพาสเทล รายละเอียดสูงมาก แสงนุ่ม ละลายฉากหลังเล็กน้อย อารมณ์ฝัน ๆ เหมือนเทพนิยาย ความละเอียดสูงมาก 8K
+อัตราส่วน 9:16    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Create an image from the following prompt:
+
+A very cute chibi-style girl with a small body, big head, and large sparkling eyes. Her eyes are dark brown, and her face resembles a doll. She has smooth, porcelain-like fair skin, rosy pink cheeks, a small nose, and small light pink lips. Her expression is innocent and delicate, evoking a sense of tenderness.
+
+Her hair is dark brown, tied up in a slightly messy high bun with soft, wispy bangs. She wears cute pastel-colored hair clips, and her hairstyle looks fluffy and soft.
+
+She is wearing a floral crop camisole top with a front tie, paired with puffy pink shorts. Red waterproof goggles rest on her head. She is holding a red-and-yellow plastic water gun, smiling brightly with joy.
+
+The background shows a Songkran festival atmosphere, with people in Hawaiian shirts playing with water, blurred in the background. Colorful triangular bunting flags are strung overhead. There are water splash effects and droplets scattered around her, and the street is wet.
+
+She has powder smeared on both cheeks, and her body is soaked.
+
+The image is in a high-quality 3D illustration style, inspired by Blythe dolls / Pixar / Disney. The color tone is pastel with extremely high detail, soft lighting, and a slightly blurred background. The mood is dreamy, like a fairytale. Ultra-high resolution, 8K.
+
+Aspect ratio: 9:16      
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-person-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดบุคคล | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "flowai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "images/person/person_prompt";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/p${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
