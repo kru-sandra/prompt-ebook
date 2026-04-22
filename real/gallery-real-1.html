@@ -206,10 +206,10 @@ pageImages.slice().reverse().forEach(num=>{
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-    <div class="prompt-no">Prompt ${id}</div>
-    <img src="images/person/p${id}.jpg" alt="Prompt ${id}">
+    <div class="prompt-no">Promptคนสวย ${id}</div>
+    <img src="images/real/r${id}.jpg" alt="Promptคนสวย ${id}">
   `;
-  card.onclick = ()=>location.href = `prompt-person-${id}.html`;
+  card.onclick = ()=>location.href = `prompt-real-${id}.html`;
   gallery.appendChild(card);
 });
 
@@ -219,7 +219,7 @@ function buildPageNav(containerId){
   nav.innerHTML = "";
 
   if(currentPage > 1){
-    nav.innerHTML += `<a href="gallery-person-${currentPage - 1}.html">←</a>`;
+    nav.innerHTML += `<a href="gallery-real-${currentPage - 1}.html">←</a>`;
   }
 
   for(let i=1;i<=TOTAL_PAGES;i++){
@@ -227,7 +227,7 @@ function buildPageNav(containerId){
   }
 
   if(currentPage < TOTAL_PAGES){
-    nav.innerHTML += `<a href="gallery-person-${currentPage + 1}.html">→</a>`;
+    nav.innerHTML += `<a href="gallery-real-${currentPage + 1}.html">→</a>`;
   }
 }
 
