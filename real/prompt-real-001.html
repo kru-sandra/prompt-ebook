@@ -211,7 +211,7 @@ Aspect ratio 9:16.
 
 <script>
 /* 🔢 GET PROMPT NUMBER FROM FILE NAME */
-const match = location.pathname.match(/prompt-person-(\d+)\.html/);
+const match = location.pathname.match(/prompt-real-(\d+)\.html/);
 const promptNo = match ? match[1] : "000";
 
 /* SET TITLE TEXT */
@@ -236,7 +236,7 @@ const AI_LIST = [
 ];
 
 /* 📂 IMAGE PATH */
-const IMAGE_PATH = "images/person/person_prompt";
+const IMAGE_PATH = "images/real";
 
 /* 🖼 BUILD AI IMAGES (LOAD SAFE) */
 const container = document.getElementById("aiImages");
