@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดคนสวยสมจริง | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-real-1.html">← กลับหมวดคนสวย</a>
+
+    <div class="top-actions">
+      <a href="../content.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดคนสวยเหมือนจริง</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างภาพผู้หญิงที่แนบมา หน้าเหมือนเดิม 
+ภาพถ่ายสมจริงระดับสตูดิโอ ผู้หญิงรูปร่างสูงเพรียว งดงาม แบบเต็มตัว นั่งอย่างสง่างามบนพรมหรูที่กำลังเหาะอยู่กลางท้องฟ้า มือหนึ่งถือ ตะเกียงแก้วอะลาดิน (Genie Lamp) ที่เปล่งแสงเรืองรอง ทำจากแก้วใสแวววาว ลวดลายทอง–ชมพู ฐานและฝาทองเงางามราวกับมีจินนี่ซ่อนอยู่ 
+การแต่งกาย (โทนชมพูทั้งหมด): เสื้อเกาะอกคล้องคอชมพูอ่อน ประดับลูกไม้และดิ้นเงิน เพนต์ลายทอง, แขนเสื้อโปร่งบางพองฟูชมพูอ่อน, กางเกงฮาเร็มแพนท์ชมพูเข้ม เนื้อผ้าพริ้ว รวบปลายขา ลายทองเพนต์ทั่วกางเกง, ผ้าคลุมศีรษะโปร่งสีชมพูอมทองประดับเครื่องประดับละเอียดหรูหรา 
+เครื่องประดับ: สร้อยคอหลายชั้นประดับมุก คริสตัล และโชคเกอร์, เครื่องประดับศีรษะฝังเพชรเล็ก ๆ, เข็มขัดเอวประดับเพชรและลูกปัด, กำไลทองเต็มข้อมือ, เล็บเคลือบใสผสมกากเพชรทอง 
+ทรงผม: ถักเปียยาว ประดับด้วยดอกไม้และอัญมณีเล็ก ๆ 
+เมคอัพ: ผิวใสเนียนสว่าง, ดวงตาโทนชมพู กรีดไลเนอร์บาง, แก้มชมพูอ่อน, ริมฝีปากชมพูอมแดง, กลิตเตอร์รอบดวงตาและแก้ม 
+ข้าง ๆ มี แมวขนฟูสีม่วงอ่อน นั่งอยู่ 
+บรรยากาศ: โรแมนติก แฟนตาซี หรูหรา รายล้อมด้วยหมอกและควันโปร่งใสสีชมพู–ฟ้า ผสมกากเพชรทอง–ชมพู พรมเหาะเหนือก้อนเมฆระยิบระยับ มีโบเก้แสงเล็ก ๆ ล่องลอย 
+แสง (Lighting): ไฟหลักนุ่มด้านหน้า, ไฟเสริมด้านข้างลดเงา, ไฟหลังทำให้ผ้าคลุมศีรษะโปร่งใสดูมีมิติ 
+สไตล์การถ่ายภาพ: สมจริงคุณภาพสตูดิโอ, แสงแบบภาพยนตร์, Depth of Field ตื้น, เลนส์ 85mm หรือ 50mm, รูรับแสง f/1.4–f/2.8, ฉากหลังละลาย 
+อัตราส่วนภาพ: 9:16, hyper-realistic, ultra-detailed, masterpiece   
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Create an image of the attached woman, keeping her face exactly the same.
+
+A hyper-realistic studio-quality photograph of a tall, slender, elegant woman shown full body, sitting gracefully on a luxurious flying carpet soaring through the sky. In one hand, she is holding a glowing Aladdin-style genie lamp made of transparent shimmering glass, decorated with intricate gold and pink patterns, with a polished golden base and lid as if a genie is hidden inside.
+
+**Outfit (entirely pink theme):**
+A soft pink halter bandeau top adorned with lace, silver embroidery, and hand-painted gold patterns; sheer puffy light-pink sleeves; deep pink flowing harem pants gathered at the ankles with gold-painted patterns across the fabric; a translucent pink-gold veil decorated with delicate luxurious ornaments.
+
+**Accessories:**
+Layered pearl and crystal necklaces with a choker; jeweled headpiece with tiny diamonds; diamond-and-bead embellished waist belt; stacked gold bangles covering the wrists; glossy transparent nails with gold glitter.
+
+**Hairstyle:**
+Long braided hair decorated with small flowers and gemstones.
+
+**Makeup:**
+Smooth luminous bright skin; pink-toned eyeshadow with fine eyeliner; soft pink blush; rosy pink-red lips; glitter accents around the eyes and cheeks.
+
+Beside her sits a fluffy light-purple cat.
+
+**Atmosphere:**
+Romantic, luxurious fantasy setting surrounded by translucent pink and blue mist and smoke mixed with floating gold and pink glitter. The flying carpet hovers above sparkling clouds with tiny floating bokeh lights.
+
+**Lighting:**
+Soft frontal key light; subtle side fill light to reduce shadows; backlight creating dimensional transparency through the veil.
+
+**Photography style:**
+Hyper-realistic studio quality, cinematic lighting, shallow depth of field, shot with an 85mm or 50mm lens, aperture f/1.4–f/2.8, beautifully blurred background.
+
+**Aspect ratio:** 9:16
+Hyper-realistic, ultra-detailed, masterpiece.
+
+ 
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-real-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดคนสวยเหมือนจริง | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "manus",
+  "flow ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/real";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/r${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
