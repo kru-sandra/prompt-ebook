@@ -168,19 +168,30 @@ if(localStorage.getItem("loggedIn") !== "true"){
   <div class="prompt-box">
     <h3>Thai Prompt :</h3>
     <textarea id="thaiPrompt" rows="8">
-สร้างภาพจากใบหน้าภาพแนบ 100%
- 
-หญิงสาวหัวโตตัวจิ๋ว สไตล์สมจริง ไม่ใช่ภาพการ์ตูน ไม่ใช่อนิเมะ
- 
-นั่งอยู่ในห้องนอนแสนน่ารัก ยิ้มกว้าง สดใส 
-สวมชุดนอนลายเป็ดน่ารัก
- 
+สร้างให้ผู้หญิงในรูปหน้าเหมือนต้นฉบับ 100%
+(ตัดโบว์ ตัดสร้อยออก) รูปร่างสมส่วน
+หญิงสาวผิวขาว ผิวขาวอมชมพูขาวสว่าง ผิวขาวใส
+ฉ่ำวาว ร่างสมส่วน
+ดวงตากลมโตสีน้ำตาลขลับ ขนตายาวงอน แต่งหน้า
+สไตล์ฉ่ำวาว ปัดแก้มและปลายจมูกด้วยสีชมพูอ่อนๆ
+ระเรื่อ ริมฝีปากทาลิปกลอสสีชมพูอ่อนไล่เฉด ให้
+ความรู้สึกปากฉ่ำน้ำ
+เล็บรูปอัลมอนด์ สีชมพูนมแวว ขัดเงาสูง ตกแต่ง
+ด้วยเครื่องประดับมุกสีขาวที่ละเอียดอ่อนและราย
+ละเอียดริบบิ้นสีขาวขนาดเล็ก การออกแบบเล็บที่
+หรูหรา
+​Look: Rainbow Knit x High Ponytail
+​ชุด: ชุดเดรสถักไหมพรมสีชมพูพาสเทลสายเดี่ยวขนาดเล็ก (Rainbow Stripe) เนื้อผ้าบางเบา
+สไตล์: ให้ความรู้สึกสดใส ร่าเริง และมีเสน่ห์
+​ทรงผม: ผมสีน้ำตาลชานมหมื่น รวบผมครึ่งศีรษะสูง (High Ponytail) ผูกโบว์เส้นใหญ่สีชมพูพาสเทล
+​สถานที่: คาเฟ่กึ่งสตูดิโอที่มีแสงธรรมชาติส่องถึงแถวสุขุมวิท
 
- 
-อยู่ภายในห้องนอน แสงแดดแรงส่องเข้าทางหน้าต่าง ผมทรงดังโงะเซอร์ ๆ สองข้าง  ติดกิ๊บน่ารัก
- 
-โทนสีสด คมชัด แสงธรรมชาติ ให้บรรยากาศสดใส สนุก มีชีวิตชีวา ความละเอียดสูงมาก 8K
-อัตราส่วน 9:16    </textarea>
+บรรยากาศสบายๆ ผ่อนคลาย คุณอาจจะถือแก้วกาแฟหรือขนมด้วยมืออีกข้างเพื่อเพิ่มพร็อพ
+​สไตล์ภาพถ่าย/อื่นๆ (Photography Style/Other)
+มุมกล้อง: มุมสูง, มุมกว้างปานกลาง (Medium-wide shot) เน้นแฟชั่นและบรรยากาศคาเฟ่
+ความชัดลึก: ชัดตื้นเล็กน้อย (Slight shallow depth of field/Bokeh) เพื่อเน้นนางแบบและชุด ขนาดภาพ 9:16
+    
+    </textarea>
     <button class="copy-btn" onclick="copyText('thaiPrompt')">
       📋 Copy Thai Prompt
     </button>
@@ -190,15 +201,41 @@ if(localStorage.getItem("loggedIn") !== "true"){
   <div class="prompt-box">
     <h3>English Prompt :</h3>
     <textarea id="engPrompt" rows="8">    
-Create an image from the attached face at 100%.
+Create the woman in the image with a face 100% identical to the original.
+(Remove the bow and necklace.) Well-proportioned figure.
 
-A big-headed, tiny-bodied young woman in a realistic style (not a cartoon, not anime).
+A fair-skinned young woman with bright rosy-white, clear glowing skin,
+dewy and radiant complexion, balanced body proportions.
 
-She is sitting in a very cute bedroom, smiling brightly and cheerfully, wearing duck-pattern pajamas.
+Large round dark brown eyes, long curled eyelashes, glamorous makeup
+with a glossy dewy style. Soft pink blush on the cheeks and nose tip.
+Lips with gradient light pink lip gloss, giving a hydrated glossy look.
 
-Inside the bedroom, with strong sunlight streaming through the window. Her hair is styled in two messy space buns, with cute hair clips.
+Almond-shaped nails in glossy milky pink with high-shine polish,
+decorated with delicate white pearl accessories and small white ribbon
+details. Elegant luxury nail design.
 
-Bright tones, sharp details, natural lighting, creating a lively, fun, and vibrant atmosphere.
+Look: Rainbow Knit x High Ponytail
+
+Outfit: A small pastel pink knitted spaghetti-strap dress
+(Rainbow Stripe), made from lightweight fabric.
+
+Style: Bright, cheerful, fresh, and charming vibe.
+
+Hairstyle: Milk-tea brown hair styled in a high half-ponytail,
+tied with a large pastel pink bow.
+
+Location: A café-studio with natural sunlight around the Sukhumvit area.
+
+Relaxed and cozy atmosphere. She may hold a cup of coffee or dessert
+with one hand to add more props.
+
+Photography Style / Other:
+Camera angle: High angle, medium-wide shot emphasizing fashion and
+the café atmosphere.
+Depth of field: Slight shallow depth of field / bokeh to emphasize
+the model and outfit.
+Image ratio: 9:16
  
     </textarea>
     <button class="copy-btn" onclick="copyText('engPrompt')">
