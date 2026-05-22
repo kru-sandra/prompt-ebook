@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>หมวดคนสวยเหมือนจริง</title>
+<title>หมวดเทศกาลต่างๆ</title>
 
 <style>
 body{
@@ -180,7 +180,7 @@ const START = 1;
 const END = 20;
 
 /* ============ CURRENT PAGE (AUTO) ============ */
-const match = location.pathname.match(/gallery-real-(\d+)\.html/);
+const match = location.pathname.match(/gallery-festival-(\d+)\.html/);
 const currentPage = match ? parseInt(match[1]) : 1;
 
 /* ============ TITLE ============ */
@@ -206,10 +206,10 @@ pageImages.slice().reverse().forEach(num=>{
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-    <div class="prompt-no">คนสวย ${id}</div>
-    <img src="../images/real/r${id}.jpg" alt="r${id}">
+    <div class="prompt-no">เทศกาล ${id}</div>
+    <img src="../images/festival/f${id}.jpg" alt="f${id}">
   `;
-  card.onclick = ()=>location.href = `prompt-real-${id}.html`;
+  card.onclick = ()=>location.href = `prompt-festival-${id}.html`;
   gallery.appendChild(card);
 });
 
@@ -219,15 +219,15 @@ function buildPageNav(containerId){
   nav.innerHTML = "";
 
   if(currentPage > 1){
-    nav.innerHTML += `<a href="gallery-real-${currentPage - 1}.html">←</a>`;
+    nav.innerHTML += `<a href="gallery-festival-${currentPage - 1}.html">←</a>`;
   }
 
   for(let i=1;i<=TOTAL_PAGES;i++){
-    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-real-${i}.html">${i}</a>`;
+    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-festival-${i}.html">${i}</a>`;
   }
 
   if(currentPage < TOTAL_PAGES){
-    nav.innerHTML += `<a href="gallery-real-${currentPage + 1}.html">→</a>`;
+    nav.innerHTML += `<a href="gallery-festival-${currentPage + 1}.html">→</a>`;
   }
 }
 
