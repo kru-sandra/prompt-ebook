@@ -214,13 +214,13 @@ Bright tones, sharp details, natural lighting, creating a lively, fun, and vibra
 
 <script>
 /* 🔢 GET PROMPT NUMBER FROM FILE NAME */
-const match = location.pathname.match(/prompt-real-(\d+)\.html/);
+const match = location.pathname.match(/prompt-festival-(\d+)\.html/);
 const promptNo = match ? match[1] : "000";
 
 /* SET TITLE TEXT */
 document.querySelector("#pageTitle .title-sub").textContent =
   `Prompt ${promptNo}`;
-document.title = `หมวดคนสวยเหมือนจริง | Prompt ${promptNo}`;
+document.title = `หมวดเทศกาลต่างๆ | Prompt ${promptNo}`;
 
 /* 🧠 AI LIST */
 const AI_LIST = [
@@ -240,14 +240,14 @@ const AI_LIST = [
 ];
 
 /* 📂 IMAGE PATH */
-const IMAGE_PATH = "../images/real";
+const IMAGE_PATH = "../images/festival";
 
 /* 🖼 BUILD AI IMAGES (LOAD SAFE) */
 const container = document.getElementById("aiImages");
 
 AI_LIST.forEach(ai => {
   const img = new Image();
-  img.src = `${IMAGE_PATH}/r${promptNo}-${ai}.jpg`;
+  img.src = `${IMAGE_PATH}/f${promptNo}-${ai}.jpg`;
 
   img.onload = () => {
     const box = document.createElement("div");
