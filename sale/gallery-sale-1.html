@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>หมวดคนสวยเหมือนจริง</title>
+<title>หมวดขายสินค้า</title>
 
 <style>
 body{
@@ -155,7 +155,7 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
 <!-- TITLE -->
 <h1 id="pageTitle">
-  <span class="title-main">หมวดคนสวยเหมือนจริง</span>
+  <span class="title-main">หมวดขายสินค้า</span>
   <span class="title-sub"></span>
 </h1>
 
@@ -174,13 +174,13 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
 <script>
 /* ================= CONFIG ================= */
-const TOTAL_PAGES = 2;     // 👈 แก้จำนวนหน้าตามที่มีจริง
+const TOTAL_PAGES = 1;     // 👈 แก้จำนวนหน้าตามที่มีจริง
 const PER_PAGE = 20;
 const START = 1;
-const END = 20;
+const END = 1;
 
 /* ============ CURRENT PAGE (AUTO) ============ */
-const match = location.pathname.match(/gallery-real-(\d+)\.html/);
+const match = location.pathname.match(/gallery-sale-(\d+)\.html/);
 const currentPage = match ? parseInt(match[1]) : 1;
 
 /* ============ TITLE ============ */
@@ -206,10 +206,10 @@ pageImages.slice().reverse().forEach(num=>{
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-    <div class="prompt-no">คนสวย ${id}</div>
-    <img src="../images/real/r${id}.jpg" alt="r${id}">
+    <div class="prompt-no">ขายสินค้า ${id}</div>
+    <img src="../images/sale/s${id}.jpg" alt="s${id}">
   `;
-  card.onclick = ()=>location.href = `prompt-real-${id}.html`;
+  card.onclick = ()=>location.href = `prompt-sale-${id}.html`;
   gallery.appendChild(card);
 });
 
@@ -219,15 +219,15 @@ function buildPageNav(containerId){
   nav.innerHTML = "";
 
   if(currentPage > 1){
-    nav.innerHTML += `<a href="gallery-real-${currentPage - 1}.html">←</a>`;
+    nav.innerHTML += `<a href="gallery-sale-${currentPage - 1}.html">←</a>`;
   }
 
   for(let i=1;i<=TOTAL_PAGES;i++){
-    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-real-${i}.html">${i}</a>`;
+    nav.innerHTML += `<a class="${i===currentPage?'active':''}" href="gallery-sale-${i}.html">${i}</a>`;
   }
 
   if(currentPage < TOTAL_PAGES){
-    nav.innerHTML += `<a href="gallery-real-${currentPage + 1}.html">→</a>`;
+    nav.innerHTML += `<a href="gallery-sale-${currentPage + 1}.html">→</a>`;
   }
 }
 
