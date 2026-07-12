@@ -147,7 +147,7 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
   <!-- TOP BAR -->
   <div class="top-bar">
-    <a href="gallery-sale-1.html">← กลับหมวดคนสวย</a>
+    <a href="gallery-sale-1.html">← กลับหมวดขายสินค้า</a>
 
     <div class="top-actions">
       <a href="../content.html">🏠 Home</a>
@@ -157,7 +157,7 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
   <!-- TITLE -->
   <h1 id="pageTitle">
-    <span class="title-main">หมวดคนสวยเหมือนจริง</span>
+    <span class="title-main">หมวดขายสินค้า</span>
     <span class="title-sub">Prompt</span>
   </h1>
 
@@ -203,13 +203,13 @@ The scene is illuminated by soft natural morning light. The background is beauti
 
 <script>
 /* 🔢 GET PROMPT NUMBER FROM FILE NAME */
-const match = location.pathname.match(/prompt-real-(\d+)\.html/);
+const match = location.pathname.match(/prompt-sale-(\d+)\.html/);
 const promptNo = match ? match[1] : "000";
 
 /* SET TITLE TEXT */
 document.querySelector("#pageTitle .title-sub").textContent =
   `Prompt ${promptNo}`;
-document.title = `หมวดคนสวยเหมือนจริง | Prompt ${promptNo}`;
+document.title = `หมวดขายสินค้า | Prompt ${promptNo}`;
 
 /* 🧠 AI LIST */
 const AI_LIST = [
@@ -224,19 +224,19 @@ const AI_LIST = [
   "kling",
   "bing",
   "dreamina",
-  "manus",
+  "manus ai",
   "flow ai"
 ];
 
 /* 📂 IMAGE PATH */
-const IMAGE_PATH = "../images/real";
+const IMAGE_PATH = "../images/sale";
 
 /* 🖼 BUILD AI IMAGES (LOAD SAFE) */
 const container = document.getElementById("aiImages");
 
 AI_LIST.forEach(ai => {
   const img = new Image();
-  img.src = `${IMAGE_PATH}/r${promptNo}-${ai}.jpg`;
+  img.src = `${IMAGE_PATH}/s${promptNo}-${ai}.jpg`;
 
   img.onload = () => {
     const box = document.createElement("div");
