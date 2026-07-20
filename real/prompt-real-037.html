@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดคนสวยสมจริง | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-real-2.html">← กลับหมวดคนสวย</a>
+
+    <div class="top-actions">
+      <a href="../content.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดคนสวยเหมือนจริง</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างภาพเสมือนจริงใช้ใบหน้าบุคคลในภาพต้นฉบับ (ตา หู จมูก ปาก ห้ามแก้ไข) มีผิวขาวมากๆสว่างเหมือนหลอดไฟเน้นผิวฉ่ำวาวเรียบเนียน ดวงตากลมโต รูปร่างดี 
+❤️ทรงผม :ผมสีน้ำตาลชานม หนา ยาวมากๆ เงางาม ถักเปียสองข้างหลวมไปฟูๆ ปอยผมเข้ากับกรอบหน้า เส้นผมโดนใบหน้าเล็กน้อยให้ดูเซ็กซี่
+🩷การแต่งหน้า : แต่งหน้าฉ่ำวาว hyper-realistic texture" หรือ "subsurface scattering ขนตางอน ปัดแก้มและปลายจมูกอมชมพูเล็กน้อย ใช้ไฮไลท์แต้มที่ปลายจมูกและสันจมูก เพื่อให้ดูจมูกเชิด - Aegyo-sal (ดอลลี่อาย): เน้นการเขียนขอบตาล่างให้ดูป่องออกมาด้วยอายแชโดว์สีสว่างและคอนทัวร์จางๆ ใต้ถุงตาเพื่อให้ตาดูโตและขี้อ้อน - อายไลเนอร์: กรีดเส้นบางๆ วิงหางออกไปทางด้านข้างเล็กน้อยเพื่อให้รูปตาดูยาวขึ้น ริมฝีปากแบบไล่สี (Gradient Lips) ใช้ลิปสติกโทนสีชมพูระเรื่อทาจากด้านในแล้วเบลอขอบปากให้ฟุ้งๆ ออกมาด้านนอก  ความฉ่ำวาว:ทับด้วยลิปกลอส (Lip Glaze) เพื่อให้ริมฝีปากดูอิ่มน้ำและสุขภาพดี ใส่คอนแทคเลนส์สีน้ำตาลอ่อนแบบตัดขอบจางๆ เพื่อให้ดวงตาดูซอฟต์และมีความเป็นธรรมชาติเข้ากับลุคการแต่งกาย
+💛💛การแต่งกาย: ชุดถักโครเชต์สีครีมโทนอุ่น ผ้าไหมพรมถักแฮนด์เมด เสื้อครอปสายเดี่ยวติดกระดุมด้านหน้า คอเสื้อขอบหยัก ปักลายส้มและดอกไม้เล็กๆ อย่างประณีต กางเกงขาสั้นเอวสูงผ้าถักโครเชต์ สไตล์โบโฮผสมคอตเทจคอร์ โทนธรรมชาติ เนื้อผ้ามีเท็กซ์เจอร์ น่ารัก สดใส ดูงานแฮนด์เมดคุณภาพสูง
+💙 เครื่องประดับ:นาฬิกา apple watch สี pink gold
+💚พร๊อพ: กระบุงสะพายหลังใส่ส้ม
+💜ท่าทาง:นั่งขอบราวสะพาน หัวเราะเบาๆ หันหน้ามองกล้อง น่ารักสดใส สะพายกระบุง
+
+🩷สถานที่: สะพานไม้ สวนส้ม วิวภูเขา ท้องฟ้าสดใส 
+
+🧡 ภาพถ่าย :ถ่ายแบบคุณภาพสูง Realistic photograph เลนส์กล้อง : F1.8 aperture เลนส์ 85 มม.ความละเอียดคมชัดสมจริง ด้วยแฟลชยิงตรง(Direct Flash) ภาพคมชัดสูง, โฟกัสที่คมชัด,ความละเอียดภาพคมชัดสมจริงสูงสุดขนาดภาพ 9:16
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Create a hyper-realistic image using the exact face from the original reference photo. Do not alter the eyes, ears, nose, or lips in any way. Preserve the person's facial identity exactly.
+Skin
+
+Extremely fair, luminous skin with a glowing, radiant appearance, almost like it emits light.
+Smooth, flawless, dewy complexion with a healthy glass-skin finish.
+Large, round, expressive eyes.
+Well-proportioned, attractive figure.
+❤️ Hairstyle
+
+Very long, thick, glossy milk-tea brown hair.
+Styled in two loose, fluffy braids.
+Soft face-framing strands.
+A few wisps of hair gently touching the face for a subtle, sexy look.
+🩷 Makeup
+
+Dewy, radiant makeup with hyper-realistic skin texture and realistic subsurface scattering.
+Curled eyelashes.
+Soft pink blush on the cheeks and the tip of the nose.
+Highlight applied to the bridge and tip of the nose for a slightly upturned appearance.
+Aegyo-sal (dolly eyes): Enhance the lower eyelids using light eyeshadow with a subtle contour beneath for larger, sweeter-looking eyes.
+Thin eyeliner with a slight wing extending outward to elongate the eyes.
+Gradient lips: Apply soft rosy pink lipstick concentrated on the inner lips and blend outward.
+Finish with a glossy lip glaze for hydrated, plump-looking lips.
+Wear light brown contact lenses with a soft limbal ring for a natural, gentle appearance that complements the outfit.
+💛💛 Outfit
+
+Warm cream-colored handmade crochet knit set.
+Cropped camisole with front buttons.
+Scalloped neckline embroidered with delicate oranges and tiny floral details.
+High-waisted crochet shorts.
+Boho meets cottagecore aesthetic with natural tones.
+Rich fabric texture, charming, bright, and premium handcrafted quality.
+💙 Accessories
+
+Pink Gold Apple Watch.
+💚 Prop
+
+A woven backpack basket filled with oranges.
+💜 Pose
+
+Sitting on the edge of a wooden bridge railing.
+Laughing softly while looking directly at the camera.
+Cute, cheerful, and lively expression.
+Wearing the woven basket on the back.
+🩷 Location
+
+Wooden bridge in an orange orchard.
+Mountain scenery in the background.
+Bright, clear blue sky.
+🧡 Photography
+
+Ultra-high-quality realistic photograph.
+85mm lens.
+f/1.8 aperture.
+Direct flash photography.
+Extremely sharp focus.
+Maximum photorealistic detail and resolution.
+Vertical 9:16 aspect ratio. 
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-real-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดคนสวยเหมือนจริง | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "manus",
+  "flow ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/real";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/r${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
