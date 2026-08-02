@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดขายสินค้า | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-sale-1.html">← กลับหมวดขายสินค้า</a>
+
+    <div class="top-actions">
+      <a href="../content.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดขายสินค้า</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+
+
+    <div class="prompt-box">
+    <h3>วิธีใช้งาน prompt หมวดขายสินค้า</h3>
+    <textarea  rows="8">
+1. เตรียมภาพสินค้าที่ต้องการจะสร้างภาพ 
+2. เข้าแอพ AI สร้างภาพ ซึ่ง AI สร้างภาพที่สร้างออกมาได้สวยที่แนะนำคือ AI ตามตัวอย่างในภาพด้านบนค่ะ 
+   (Gemini, Chatgpt, Flow ai, Manus ai) เลือกใช้สร้างภาพได้ตามนี้ได้เลย 
+3. อัพโหลดภาพสินค้าเข้าไปใน AI สร้างภาพ ใน prompt นี้ เป็น prompt สำหรับการขายเสื้อผ้า สินค้าคือ ชุดที่ให้นางแบบใส่
+4. copy prompt ใน eBook เล่มนี้ ไปว่างในส่วนของ Prompt
+    </textarea>
+  </div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างภาพหญิงสาวเอเชียหน้าหวานสไตล์เกาหลี อายุประมาณ 18–22 ปี ถ่ายภาพเซลฟี่หน้ากระจกเต็มตัวทรงหรู (Luxury Full-Length Mirror) ขนาดใหญ่ สูงประมาณ 210–230 เซนติเมตร กว้างประมาณ 100–120 เซนติเมตร กระจกดีไซน์โค้งด้านบน (Grand Arched Mirror) กรอบโลหะสีทองแชมเปญเงาซาติน ขอบบางเรียบหรูสไตล์ Modern Luxury ตั้งอย่างมั่นคงบนพื้นไม้โอ๊คภายในห้องแต่งตัวสุดหรู กระจกสะอาดใสไร้รอยนิ้วมือ สะท้อนภาพได้คมชัดสมจริง เห็นตัวแบบเต็มตัวตั้งแต่ศีรษะจรดรองเท้า
+
+ฉากเป็นห้องแต่งตัว (Luxury Walk-in Closet) ขนาดใหญ่ภายในเพนต์เฮาส์หรือวิลล่าหรู เพดานสูงโปร่งประมาณ 3.5–4 เมตร ออกแบบสไตล์ Modern Luxury ผสม Minimal Elegance โทนสีครีม งาช้าง เบจ และไม้โอ๊คอ่อน ให้บรรยากาศอบอุ่น สะอาด และหรูหรา
+
+ผนังด้านหลังเป็นตู้เสื้อผ้าบิวท์อินสูงจรดเพดาน ผลิตจากไม้โอ๊คสีอ่อนและบานกระจกใสกรอบสีทองแชมเปญ ภายในจัดแสดงเสื้อผ้าแฟชั่นสีขาว ครีม เบจ น้ำตาลอ่อน และดำ เรียงตามโทนสีอย่างเป็นระเบียบเหมือนโชว์รูมแบรนด์ลักชัวรี เสื้อผ้าแขวนเว้นระยะพอดี ไม่แน่นจนรก ช่วยให้ห้องดูโปร่งและพรีเมียม
+
+มีชั้นวางกระเป๋าแบรนด์แฟชั่นสีครีม น้ำตาล และดำเรียงอย่างสวยงาม ชั้นวางรองเท้าส้นสูง รองเท้าผ้าใบแฟชั่น และรองเท้าหนังสีโทนกลางจัดวางอย่างเป็นระเบียบ พร้อมลิ้นชักเครื่องประดับที่เปิดออกเล็กน้อย ภายในมีนาฬิกา แว่นกันแดด น้ำหอม และเครื่องประดับโทนทองวางอย่างหรูหรา
+
+ด้านข้างห้องมีราวแขวนเสื้อผ้าสีทองแชมเปญ พร้อมชุดแฟชั่นใหม่สำหรับรีวิว 4–6 ชุด แขวนด้วยไม้แขวนสีไม้ธรรมชาติ ช่วยสร้างบรรยากาศเหมือนสตูดิโอแฟชั่นหรือห้องแต่งตัวของอินฟลูเอนเซอร์สายแฟชั่น
+
+ด้านหน้าต่างเป็นกระจกสูงเต็มบานจากพื้นจรดเพดาน ม่านลินินสีขาวโปร่งและม่านทึบสีครีมเปิดออกครึ่งหนึ่ง ให้แสงธรรมชาติยามเช้าส่องเข้ามาอย่างนุ่มนวล มองเห็นวิวสวนสีเขียวด้านนอกแบบเบลอ เพิ่มความรู้สึกผ่อนคลายและหรูหรา
+
+พื้นห้องเป็นไม้โอ๊คสีอ่อนลายธรรมชาติ เคลือบด้านสะอาดสะท้อนแสงเล็กน้อย กลางห้องปูพรมขนสั้นสีงาช้างเนื้อนุ่ม ใต้กระจกมีเก้าอี้สตูลบุผ้ากำมะหยี่สีครีมขาทอง และโต๊ะกลมหินอ่อนสีขาวลายธรรมชาติ พร้อมแจกันดอกทิวลิปสีขาว หนังสือแฟชั่น และเทียนหอมวางตกแต่งอย่างเรียบหรู
+
+บริเวณมุมห้องมีต้นมะกอกในกระถางเซรามิกสีครีม และต้นไทรใบสักขนาดกลาง เพิ่มความสดชื่นให้กับห้องโดยไม่แย่งความเด่นของตัวแบบ
+
+เพดานติดโคมไฟระย้าคริสตัลดีไซน์โมเดิร์นสีทองแชมเปญ ให้แสง Warm White นุ่มนวล เสริมด้วยไฟซ่อน (Indirect Lighting) และไฟ LED ภายในตู้เสื้อผ้า ทำให้เสื้อผ้าและของตกแต่งดูมีมิติ สว่างทั่วห้องโดยไม่มีเงาแข็ง
+
+ช่วงเวลาถ่ายภาพเป็นช่วงสายประมาณ 09.00–10.30 น. แสงธรรมชาติผสมกับแสงไฟภายในห้องอย่างสมดุล ให้โทนภาพอบอุ่น สะอาด และพรีเมียม ไม่มีแสงจ้า ไม่มีเงาแข็ง เหมาะสำหรับรีวิวเสื้อผ้าโดยเฉพาะ
+
+ลักษณะตัวแบบ:
+หญิงสาวเอเชียหน้าหวานสไตล์เกาหลี อายุประมาณ 18–22 ปี ผิวขาวอมชมพู เรียบเนียนสุขภาพดี ใบหน้ารูปไข่ ดวงตากลมโต ยิ้มหวานเห็นฟันเล็กน้อย แต่งหน้าแบบ Clean Girl และ Korean Makeup งานผิวฉ่ำธรรมชาติ บลัชสีชมพูอ่อน ริมฝีปากสีชมพูนู้ด คิ้วทรงธรรมชาติ ขนตางอนยาว
+
+ผมยาวตรงสีน้ำตาลอ่อน แสกกลาง ยาวถึงช่วงเอว เส้นผมเงางาม ปลายผมมีวอลลุ่มเล็กน้อย มีปอยผมด้านหน้าตกอย่างเป็นธรรมชาติ ดูนุ่มสลวย
+
+เสื้อผ้า:
+สวมเสื้อผ้าตามภาพอ้างอิงทุกประการ ทั้งสี ดีไซน์ ทรง เนื้อผ้า รายละเอียดการตัดเย็บ และลวดลายตรงกับต้นฉบับ เห็นรายละเอียดของเนื้อผ้าได้อย่างคมชัด เสื้อผ้าเป็นจุดเด่นหลักของภาพ เหมาะสำหรับการรีวิวแฟชั่นและโชว์ชุดเต็มตัว
+
+ท่าทาง:
+มือขวาถือสมาร์ตโฟนสีเงินหรือสีเทาอ่อน ยกขึ้นถ่ายเซลฟี่ โทรศัพท์บังใบหน้าส่วนใหญ่ไว้ มองหน้าจอมือถือเล็กน้อย ยืนตัวตรง ผ่อนคลาย ไหล่สบาย หลังตรง ขาทั้งสองชิดกันเล็กน้อย ปลายเท้าหันออกเล็กน้อย ให้ความรู้สึกเป็นธรรมชาติ สดใส และดูเป็นอินฟลูเอนเซอร์สายแฟชั่นที่กำลังรีวิวชุด
+
+องค์ประกอบภาพ:
+ถ่ายผ่านเงาสะท้อนในกระจกเต็มตัวทรงหรู กรอบสีทองแชมเปญ กระจกกินพื้นที่ประมาณ 85–90% ของเฟรม แนวตั้งอัตราส่วน 9:16 จัดวางตัวแบบไว้กึ่งกลางเฟรม เว้นพื้นที่ด้านบนเล็กน้อยให้เห็นโคมไฟระย้า และด้านข้างให้เห็นตู้เสื้อผ้า ราวแขวนเสื้อผ้า และของตกแต่งอย่างสมดุล ภาพสะอาด ไม่มีสิ่งรบกวนสายตา ทุกองค์ประกอบช่วยส่งเสริมให้เสื้อผ้าโดดเด่น
+
+สไตล์ภาพ:
+Photorealistic, Ultra Realistic, Luxury Walk-in Closet, Modern Luxury Interior, Korean Aesthetic, Clean Girl Style, High-End Fashion Editorial, Luxury Lifestyle Photography, Elegant Interior Design, Soft Natural Light, Warm Ambient Lighting, Airy Atmosphere, Cinematic Composition, Premium Fashion Lookbook, Shallow Depth of Field
+
+คุณภาพงาน:
+Ultra Detailed, 8K, HDR, Professional Fashion Photography, Hyper Realistic Skin Texture, Ultra Detailed Fabric Texture, Fine Hair Strands, Natural Reflection, Realistic Mirror Reflection, Soft Highlights, Balanced Exposure, Cinematic Lighting, Luxury Magazine Quality, Premium Editorial Photography, รายละเอียดคมชัดสูงทั้งผิว เส้นผม เสื้อผ้า กระจก เฟอร์นิเจอร์ วัสดุไม้ หินอ่อน โลหะสีทอง และแสงภายในห้อง ให้ความรู้สึกเหมือนภาพถ่ายสำหรับแคมเปญแฟชั่นแบรนด์ลักชัวรีระดับโลก
+อัตราส่วน 9:16
+      
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Create image A sweet-faced Korean-style Asian woman, approximately 18–22 years old, is taking a mirror selfie in front of a large luxury full-length mirror. The mirror measures approximately 210–230 cm in height and 100–120 cm in width, featuring a grand arched top design with a slim satin champagne-gold metal frame in a modern luxury style. It stands securely on a light oak wooden floor inside a luxurious walk-in closet. The mirror is crystal clear, spotless, free of fingerprints, and produces a sharp, highly realistic reflection, capturing the model's entire body from head to shoes.
+
+The setting is a spacious luxury walk-in closet inside a high-end penthouse or luxury villa with soaring ceilings approximately 3.5–4 meters high. The interior is designed in a Modern Luxury style blended with Minimal Elegance, featuring a warm palette of cream, ivory, beige, and light oak wood, creating a refined, cozy, clean, and sophisticated atmosphere.
+
+The back wall features floor-to-ceiling built-in wardrobes crafted from light oak wood with clear glass doors framed in champagne gold. Inside, fashion garments in white, cream, beige, light brown, and black are neatly arranged by color like a luxury fashion showroom. The clothing is evenly spaced to maintain a clean, airy, and premium appearance.
+
+Elegant shelves display luxury fashion handbags in cream, brown, and black tones. Nearby, neatly organized shelves showcase high heels, fashionable sneakers, and leather shoes in neutral colors. Slightly opened jewelry drawers reveal luxury watches, sunglasses, perfume bottles, and gold-toned accessories arranged with sophisticated elegance.
+
+On one side of the room stands a champagne-gold clothing rack displaying 4–6 new fashion outfits prepared for review, hanging on natural wooden hangers. The setup resembles a professional fashion studio or the luxurious dressing room of a fashion influencer.
+
+Floor-to-ceiling windows fill one side of the room, dressed with sheer white linen curtains and cream blackout curtains partially opened. Gentle morning sunlight streams into the room, while the blurred green garden view outside creates a relaxing yet luxurious ambiance.
+
+The flooring consists of natural light oak wood with a matte finish that subtly reflects light. At the center of the room lies a soft ivory short-pile rug. Beneath the mirror sits a cream velvet stool with gold legs beside a round white marble table with natural veining, decorated with a white tulip arrangement, luxury fashion books, and scented candles in an elegant minimalist style.
+
+In one corner of the room, a potted olive tree in a cream ceramic planter and a medium-sized fiddle-leaf fig add a refreshing natural touch without distracting from the model.
+
+The ceiling features a modern champagne-gold crystal chandelier emitting soft warm white lighting, complemented by indirect ambient lighting and integrated LED wardrobe lighting. The lighting beautifully enhances the clothing, furniture, and decorative elements while providing even illumination throughout the room without harsh shadows.
+
+The photo is taken during late morning, approximately 9:00–10:30 AM, combining soft natural daylight with balanced interior lighting. The overall image has a warm, clean, premium tone with no overexposure or harsh shadows, making it ideal for fashion outfit reviews.
+
+Model Appearance:
+A beautiful Korean-style Asian woman aged approximately 18–22 years old with fair rosy skin and a healthy, flawless complexion. She has an oval face, large expressive eyes, and a gentle smile showing a slight glimpse of her teeth. Her makeup follows the Clean Girl and Korean Makeup aesthetic with naturally radiant skin, soft pink blush, nude pink lips, natural eyebrows, and long curled eyelashes.
+
+She has long, straight light brown hair parted in the center, reaching her waist. Her hair is silky, glossy, with slightly voluminous ends and soft face-framing strands that fall naturally, creating an elegant and feminine look.
+
+Outfit:
+She wears the exact outfit shown in the reference image, perfectly matching the original in color, design, silhouette, fabric, tailoring details, and patterns. The fabric texture is rendered with exceptional clarity. The outfit serves as the primary focal point of the image, making it ideal for fashion reviews and full-body outfit showcases.
+
+Pose:
+She holds a silver or light gray smartphone in her right hand, raised to take a mirror selfie. The phone covers most of her face while she looks slightly toward the screen. She stands upright in a relaxed posture with relaxed shoulders, a straight back, her legs positioned close together, and her feet angled slightly outward, creating a natural, youthful appearance similar to a fashion influencer reviewing an outfit.
+
+Composition:
+Captured through the reflection of the luxury full-length mirror with a champagne-gold frame. The mirror occupies approximately 85–90% of the frame in a vertical 9:16 composition. The model stands centered within the frame, leaving a small amount of space above to reveal the crystal chandelier, while both sides subtly showcase the wardrobe, clothing rack, and decorative elements in perfect visual balance. The composition is clean and distraction-free, with every element enhancing the prominence of the outfit.
+
+Style:
+Photorealistic, Ultra Realistic, Luxury Walk-in Closet, Modern Luxury Interior, Korean Aesthetic, Clean Girl Style, High-End Fashion Editorial, Luxury Lifestyle Photography, Elegant Interior Design, Soft Natural Light, Warm Ambient Lighting, Airy Atmosphere, Cinematic Composition, Premium Fashion Lookbook, Shallow Depth of Field.
+
+Quality:
+Ultra Detailed, 8K, HDR, Professional Fashion Photography, Hyper Realistic Skin Texture, Ultra Detailed Fabric Texture, Fine Hair Strands, Natural Reflection, Realistic Mirror Reflection, Soft Highlights, Balanced Exposure, Cinematic Lighting, Luxury Magazine Quality, Premium Editorial Photography. Exceptionally sharp details throughout the skin, hair, clothing, mirror, furniture, wood, marble, champagne-gold metal, and interior lighting, creating the appearance of a luxury fashion campaign for a world-class premium brand.
+
+Aspect Ratio: 9:16
+      
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-sale-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดขายสินค้า | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "manus ai",
+  "flow ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/sale";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/s${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
