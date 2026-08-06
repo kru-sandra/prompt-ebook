@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดขายสินค้า | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-sale-1.html">← กลับหมวดขายสินค้า</a>
+
+    <div class="top-actions">
+      <a href="../content.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดขายสินค้า</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+
+
+    <div class="prompt-box">
+    <h3>วิธีใช้งาน prompt หมวดขายสินค้า</h3>
+    <textarea  rows="8">
+1. เตรียมภาพสินค้าที่ต้องการจะสร้างภาพ 
+2. เข้าแอพ AI สร้างภาพ ซึ่ง AI สร้างภาพที่สร้างออกมาได้สวยที่แนะนำคือ AI ตามตัวอย่างในภาพด้านบนค่ะ 
+   (Gemini, Chatgpt, Flow ai, Manus ai) เลือกใช้สร้างภาพได้ตามนี้ได้เลย 
+3. อัพโหลดภาพสินค้าเข้าไปใน AI สร้างภาพ ใน prompt นี้ เป็น prompt สำหรับการขายเสื้อผ้า สินค้าคือ ชุดที่ให้นางแบบใส่
+4. copy prompt ใน eBook เล่มนี้ ไปว่างในส่วนของ Prompt
+    </textarea>
+  </div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+ภาพถ่ายแนวตั้ง สไตล์ภาพถ่ายจริงจากกล้องมือถือ (User-Generated Content / UGC), มุมมองบุคคลที่หนึ่งกำลังยืนอยู่ในแผนกเสื้อผ้าของห้างสรรพสินค้าหรือซูเปอร์มาร์เก็ตขนาดใหญ่ในประเทศไทย
+
+องค์ประกอบหลัก:
+มือผู้หญิงสองข้างกำลังถือและโชว์สินค้าให้เห็นชัดเจนตรงกลางภาพ (มือข้างหนึ่งจับไม้แขวนเสื้อด้านบน อีกข้างประคองหรือสัมผัสตัวสินค้าอย่างนุ่มนวล), นิ้วมือเรียวสวย ทาเล็บสีเรียบหรู สวมแหวนแฟชั่นวงเล็กๆ และสร้อยข้อมือสีทองเส้นบาง, ตัวสินค้าที่ถืออยู่คือ ภาพที่แนบมา  โดยคงรายละเอียด ดีไซน์ของ สินค้าตามรูปที่แนบ ให้เหมือนต้นฉบับมากที่สุด สินค้าเป็นเสื้อที่ใส่ไม้แขวนหรูอยู่
+
+พื้นหลังและบรรยากาศ:
+บรรยากาศในห้างสรรพสินค้าไทยที่มีเพดานสูง  และดวงไฟเพดานส่องสว่าง, โฟกัสหลักอยู่ที่สินค้าตรงกลาง ส่วนพื้นหลังเป็นแบบเบลอ (Depth of Field ตื้น), ด้านหลังเห็นราวแขวนเสื้อผ้าสีสันต่างๆ เรียงรายอยู่ไกลๆ, ด้านล่างของภาพมีป้ายราคาสีเหลืองสไตล์ไทยติดอยู่ที่ราวเหล็ก เขียนข้อความโปรโมชั่นตัวเลขไทย/อารบิกสีดำชัดเจน เช่น "ลดล้างสต็อก ตัวละ 39.- บาท"
+
+แสงและสี:
+แสงไฟสว่างสดใสแบบในห้างสรรพสินค้าเสื้อ (Bright indoor  lighting), สีสันสมจริง นุ่มนวล ดูเป็นธรรมชาติ ไม่แต่งสีจัดเกินไป ให้ความรู้สึกเหมือนกำลังเดินช้อปปิ้งและถ่ายรูปรีวิวสินค้าจริงๆ
+
+อัตราส่วน 9:16
+ความละเอียดภาพ 4K
+      
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Portrait photo in a realistic smartphone photography style (User-Generated Content / UGC), captured from a first-person perspective while standing in the clothing section of a large department store or supermarket in Thailand.
+
+Main Composition:
+Two female hands are holding and clearly presenting the product at the center of the frame. One hand is holding the top of the luxury clothes hanger, while the other gently supports or touches the garment. The hands have slim, elegant fingers with solid-color polished nails, wearing a delicate fashion ring and a thin gold bracelet.
+
+The product being held is the attached reference image. Preserve the product's design, details, colors, shape, and overall appearance as accurately as possible, closely matching the original reference. The product is displayed on an elegant premium clothes hanger.
+
+Background & Atmosphere:
+The setting is inside a modern Thai department store with high ceilings and bright overhead lighting. The main focus is on the product in the center, while the background is softly blurred with a shallow depth of field. Clothing racks filled with various colorful garments are visible in the distance.
+
+At the bottom of the image, there is a yellow Thai-style price tag attached to a metal clothing rack. The tag displays a clear promotional message in black Thai/Arabic numerals, for example:
+"Clearance Sale – 39 THB each"
+
+Lighting & Color:
+Bright indoor department store lighting, with natural, realistic colors and soft tones. Avoid excessive color grading or oversaturation. The image should feel authentic, as if someone is casually shopping and taking a genuine product review photo with a smartphone.
+
+Aspect Ratio: 9:16
+Resolution: 4K
+      
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-sale-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดขายสินค้า | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "manus ai",
+  "flow ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/sale";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/s${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
