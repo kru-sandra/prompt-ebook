@@ -184,10 +184,9 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
     <textarea rows="8">
   
-1. เตรียมภาพสินค้าที่ต้องการจะสร้างภาพ 
-2. เข้าแอพ AI สร้างภาพ ซึ่ง AI สร้างภาพที่สร้างออกมาได้สวยที่แนะนำคือ AI ตามตัวอย่างในภาพด้านบนค่ะ 
-   (Gemini, Chatgpt, Flow ai, Manus ai) เลือกใช้สร้างภาพได้ตามนี้ได้เลย 
-3. อัพโหลดภาพสินค้าเข้าไปใน AI สร้างภาพ ใน prompt นี้ เป็น prompt สำหรับการขายเสื้อผ้า สินค้าคือ ชุดที่ให้นางแบบใส่
+1. เตรียมภาพสินค้าที่ต้องการจะสร้างVDO 
+2. เข้าแอพ Gemini หรือใช้งานผ่าน Website Gemini (แนะนำให้สร้างใน Gemini จะได้ข้อความที่ค่อนข้างถูกต้องค่ะ) 
+3. อัพโหลดภาพสินค้าเข้าไปใน Gemini
 4. copy prompt ใน eBook เล่มนี้ ไปว่างในส่วนของ Prompt
     </textarea>
   </div>
@@ -196,19 +195,26 @@ if(localStorage.getItem("loggedIn") !== "true"){
   <div class="prompt-box">
     <h3>Thai Prompt :</h3>
     <textarea id="thaiPrompt" rows="8">
-ภาพถ่ายแนวตั้ง สไตล์ภาพถ่ายจริงจากกล้องมือถือ (User-Generated Content / UGC), มุมมองบุคคลที่หนึ่งกำลังยืนอยู่ในแผนกเสื้อผ้าของห้างสรรพสินค้าหรือซูเปอร์มาร์เก็ตขนาดใหญ่ในประเทศไทย
+ทำหน้าที่เป็นผู้สร้างวิดีโอระดับมืออาชีพ สร้างวิดีโอรีวิวสินค้าแบบ Aesthetic Faceless Product Review ความยาว 10 วินาที ในอัตราส่วนแนวตั้ง 9:16 โดยอ้างอิงจากรูปภาพสินค้าที่แนบมา
+โครงสร้างวิดีโอ (รวม 10 วินาที)
 
-องค์ประกอบหลัก:
-มือผู้หญิงสองข้างกำลังถือและโชว์สินค้าให้เห็นชัดเจนตรงกลางภาพ (มือข้างหนึ่งจับไม้แขวนเสื้อด้านบน อีกข้างประคองหรือสัมผัสตัวสินค้าอย่างนุ่มนวล), นิ้วมือเรียวสวย ทาเล็บสีเรียบหรู สวมแหวนแฟชั่นวงเล็กๆ และสร้อยข้อมือสีทองเส้นบาง, ตัวสินค้าที่ถืออยู่คือ ภาพที่แนบมา  โดยคงรายละเอียด ดีไซน์ของ สินค้าตามรูปที่แนบ ให้เหมือนต้นฉบับมากที่สุด สินค้าเป็นเสื้อที่ใส่ไม้แขวนหรูอยู่
+0–2 วินาที: เปิดคลิปด้วยภาพสินค้าสไตล์ Aesthetic ที่สวยสะดุดตา พร้อมข้อความสั้น ๆ บนหน้าจอที่ดึงดูดความสนใจ
+2–7 วินาที: นำเสนอวิธีใช้งานสินค้าหรือจุดเด่นสำคัญอย่างรวดเร็วและชัดเจน
+7–10 วินาที: ปิดท้ายด้วยผลลัพธ์หลังใช้งาน พร้อมคำกระตุ้นให้ดำเนินการ (Call to Action) ชวนผู้ชมกดที่ตะกร้าสีเหลืองเพื่อสั่งซื้อ
+สไตล์ภาพและเสียง
 
-พื้นหลังและบรรยากาศ:
-บรรยากาศในห้างสรรพสินค้าไทยที่มีเพดานสูง  และดวงไฟเพดานส่องสว่าง, โฟกัสหลักอยู่ที่สินค้าตรงกลาง ส่วนพื้นหลังเป็นแบบเบลอ (Depth of Field ตื้น), ด้านหลังเห็นราวแขวนเสื้อผ้าสีสันต่างๆ เรียงรายอยู่ไกลๆ, ด้านล่างของภาพมีป้ายราคาสีเหลืองสไตล์ไทยติดอยู่ที่ราวเหล็ก เขียนข้อความโปรโมชั่นตัวเลขไทย/อารบิกสีดำชัดเจน เช่น "ลดล้างสต็อก ตัวละ 39.- บาท"
+โทนภาพ: สว่าง สีครีม สีน้ำตาล และโทนอุ่น
+สถานที่: ภายในบ้านที่สะอาด อบอุ่น เป็นระเบียบ และให้ความรู้สึกสบาย
+เสียงพากย์: ผู้หญิงไทย น้ำเสียงอบอุ่น เป็นธรรมชาติ และมีพลังในการโน้มน้าวใจ
+ข้อกำหนดสำหรับคำพูด: ในช่วง Call to Action (วินาทีที่ 7–10) ผู้พากย์ ต้องพูดอย่างชัดเจน ว่า "พิกัดที่ตะกร้า" หรือ "กดสั่งที่ตะกร้า"
+ข้อความและกราฟิกประกอบ
 
-แสงและสี:
-แสงไฟสว่างสดใสแบบในห้างสรรพสินค้าเสื้อ (Bright indoor  lighting), สีสันสมจริง นุ่มนวล ดูเป็นธรรมชาติ ไม่แต่งสีจัดเกินไป ให้ความรู้สึกเหมือนกำลังเดินช้อปปิ้งและถ่ายรูปรีวิวสินค้าจริงๆ
-
-อัตราส่วน 9:16
-ความละเอียดภาพ 4K
+เพิ่มกราฟิกแอนิเมชันวาดมือสีขาวคุณภาพสูงตลอดทั้งวิดีโอ
+ข้อความทั้งหมดต้องเป็น ภาษาไทย 100% สะกดถูกต้อง ใช้ฟอนต์ลายมือสีขาวที่สวยงาม พร้อมแอนิเมชันการเขียนที่ลื่นไหล (ห้ามมีตัวอักษรผิดเพี้ยนหรือสุ่มตัวอักษร)
+สร้างเส้นวาดมือสีขาวแบบบางและคมชัด เพื่อลากตามรายละเอียดสำคัญของสินค้าอย่างแม่นยำ แล้วค่อย ๆ จางหายอย่างเป็นธรรมชาติ
+เพิ่มไอคอนวาดมือ เช่น ลูกศร วงกลม ประกายดาว ดวงดาว และเครื่องหมายถูก เพื่อเน้นจุดเด่นหรือการใช้งานของสินค้า
+ข้อห้าม: ใช้ดีไซน์แบบมินิมอลเท่านั้น ห้ามมีแถบซับไตเติล ห้ามใช้ข้อความสไตล์คาราโอเกะ ห้ามใช้สติกเกอร์ ห้ามใช้บอลลูนคำพูด และห้ามแสดงป้ายราคาโดยเด็ดขาด
+ข้อห้ามอย่างเคร่งครัด: ห้ามพูดหรือแสดงข้อความว่า "พิกัดในคอมเม้นท์" หรือ "พิกัดใต้คอมเมนต์" โดยเด็ดขาด ให้คงความสะอาดตา เรียบหรู และดูพรีเมียม
       
     </textarea>
     <button class="copy-btn" onclick="copyText('thaiPrompt')">
@@ -220,24 +226,25 @@ if(localStorage.getItem("loggedIn") !== "true"){
   <div class="prompt-box">
     <h3>English Prompt :</h3>
     <textarea id="engPrompt" rows="8">    
-Portrait photo in a realistic smartphone photography style (User-Generated Content / UGC), captured from a first-person perspective while standing in the clothing section of a large department store or supermarket in Thailand.
+Act as a professional video creator. Generate a 10-second Vertical 9:16 Aesthetic Faceless Product Review video based on the attached product photo.
 
-Main Composition:
-Two female hands are holding and clearly presenting the product at the center of the frame. One hand is holding the top of the luxury clothes hanger, while the other gently supports or touches the garment. The hands have slim, elegant fingers with solid-color polished nails, wearing a delicate fashion ring and a thin gold bracelet.
+VIDEO STRUCTURE (10s TOTAL):
+- 0–2s: Hook with aesthetic product shot + short engaging on-screen text.
+- 2–7s: Showcase product usage or key highlights quickly.
+- 7–10s: Close with results + Call to Action (CTA) directing viewers to click the yellow basket.
 
-The product being held is the attached reference image. Preserve the product's design, details, colors, shape, and overall appearance as accurately as possible, closely matching the original reference. The product is displayed on an elegant premium clothes hanger.
+AESTHETIC & AUDIO:
+- Visual style: Bright, Cream, Brown, Warm tones.
+- Setting: Clean, cozy, and organized home environment.
+- Audio: Thai female voiceover with a warm, natural, and persuasive tone. 
+- Speech Constraint: During the Call to Action (7-10s), the voiceover MUST explicitly say "พิกัดที่ตะกร้า" or "กดสั่งที่ตะกร้า".
 
-Background & Atmosphere:
-The setting is inside a modern Thai department store with high ceilings and bright overhead lighting. The main focus is on the product in the center, while the background is softly blurred with a shallow depth of field. Clothing racks filled with various colorful garments are visible in the distance.
-
-At the bottom of the image, there is a yellow Thai-style price tag attached to a metal clothing rack. The tag displays a clear promotional message in black Thai/Arabic numerals, for example:
-"Clearance Sale – 39 THB each"
-
-Lighting & Color:
-Bright indoor department store lighting, with natural, realistic colors and soft tones. Avoid excessive color grading or oversaturation. The image should feel authentic, as if someone is casually shopping and taking a genuine product review photo with a smartphone.
-
-Aspect Ratio: 9:16
-Resolution: 4K
+OVERLAY & GRAPHICS:
+- Universal Overlay: Add high-quality white hand-drawn animated graphics.
+- Text: 100% correct Thai text in a beautiful white handwritten font with smooth writing animation. (NO random or broken characters).
+- Outlines: Generate thin, precise white hand-drawn lines to accurately trace product features, then fade out naturally.
+- Details: Add hand-drawn icons (arrows, circles, sparkles, stars, checkmarks) to highlight key actions.
+- Prohibitions: Minimalist style ONLY. NO subtitle bars, NO Karaoke text, NO stickers, NO speech bubbles. NO price tags. STRICTLY PROHIBITED: Do NOT say or show "พิกัดในคอมเม้นท์" or "พิกัดใต้คอมเมนต์". Keep it clean and high-end.
       
     </textarea>
     <button class="copy-btn" onclick="copyText('engPrompt')">
