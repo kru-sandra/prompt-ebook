@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดคนสวยสมจริง | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-real-2.html">← กลับหมวดคนสวย</a>
+
+    <div class="top-actions">
+      <a href="../content.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดคนสวยเหมือนจริง</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างภาพพอร์ตเทรตสมจริงของหญิงสาวชาวเอเชีย (ใช้ใบหน้า ทรงผม และรูปลักษณ์ตามภาพอ้างอิง 100% ห้ามเปลี่ยนแปลงใด ๆ)
+หญิงสาวมองกล้อง ยิ้มแย้ม
+ใส่เสื้อคอกระเช้าสีขาวลายดอก แบบคนไทย
+ผ้าถุงสีส้มลายปาเต๊ะ
+รองเท้าแตะสีขาว
+ไม่ต้องมีแว่นตา
+ถักเปีย 2 ข้างอย่างหลวม ประดับผมด้วยกิ๊บน่ารักๆ 
+ ผมสีน้ำตาลเข้มมีปอยผมเล็กน้อย ไม่มีหน้าม้า
+
+แต่งหน้า: การแต่งหน้า: สไตล์ K-Beauty Douyin ดวงตาสีน้ําตาลกลมโต ขนตายาวงอน บลัชออนสีชมพูทั่วแก้มและสันจมูก ริมฝีปากมันวาวสีชมพูไล่ระดับสีอวบอิ่มพร้อมผิวน้ํา แสงกระทบทำให้หน้าและร่างกายดูเงา สีหน้าน่ารัก ขี้เล่นปนเซ็กซี่ ดูมีเสน่ห์
+
+เธอกำลังนั่งเก็บไข่เป็ดไข่ห่าน ไข่ไก่มากมายในรังไข่ มีเป็ดบาบารี่สีขาว มีไก่และมีห่าน มากมาย มือถือตะกร้าใส่ไข่เป็ด
+
+บรรยากาศ ภูเขา ต้นไม้
+
+ภาพ ระยะใกล้สำหรับบรรณาธิการ , 
+Canon EOS R5, เลนส์ 85 มม. f/1.2, 
+รูรับแสง f/1.2, DOF ตื้นพิเศษ, 
+,ผิวพอร์ซเลนเปล่งประกาย,  ผิวขาวอมชมพูมาก เนียนใส
+สุนทรียศาสตร์แฟชั่นที่เน้นรายละเอียดอย่าง พิถีพิถัน, 
+อัตราส่วนภาพ 9:16 –ไฮเปอร์เรียลลิสม์
+ภาพเหมือนจริงคมชัด
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Create a photorealistic image using the exact facial features of the person in the original reference image (do not alter the eyes, ears, nose, or mouth). The person should have extremely fair, radiant skin that glows like a light bulb, with a smooth, dewy, luminous complexion. Large round eyes, a well-proportioned figure with a slim waist and a full, voluptuous bust. Close-up shot with only a small portion of the legs visible.
+
+❤️ Hairstyle:
+Very long, thick, shiny milk-tea brown hair with plenty of volume. Face-framing strands that complement the face, with a few strands gently touching the face to create a sexy look.
+
+🩷 Makeup:
+Dewy makeup with a hyper-realistic skin texture and subsurface scattering effect. Curled eyelashes. Apply a soft pink blush to the cheeks and tip of the nose. Add highlights to the bridge and tip of the nose to make it appear more lifted. Create Aegyo-sal (Dolly Eyes) by emphasizing the lower eyelids with light-colored eyeshadow and subtle contouring beneath the eye bags to make the eyes appear larger and more charming. Apply a thin eyeliner with a slight wing extending outward to elongate the eyes. Use gradient lips with a soft pink lipstick applied to the inner lips and blended outward. Finish with a glossy lip glaze for plump, hydrated-looking lips. Wear light brown contact lenses with a subtle limbal ring for soft, natural-looking eyes that complement the outfit.
+
+Outfit:
+Top: A fitted halter-neck crop top with a sweetheart neckline. Slight ruching at the center of the bust, decorated with a small white floral embellishment or brooch in the middle.
+
+Bottom: A matching pastel blue high-waisted mini skirt with a tiered ruffle design consisting of approximately three layers. The outer layer is made of sheer, flowing chiffon-like fabric over a solid base.
+
+Accessories:
+Wear a delicate silver necklace with a small pendant and silver rings on the fingers.
+
+Tuck a frangipani flower behind one ear.
+
+Pose:
+Sitting in shallow water, splashing water with the hands while laughing brightly. Cute, charming, and full of life. Ocean waves splash water onto the hair and body.
+
+Location:
+A white sandy beach with crystal-clear turquoise water, beautiful rock formations, and waves crashing against the rocks.
+
+Photography:
+High-quality realistic photograph. Camera settings: 85mm lens, f/1.8 aperture. Ultra-high resolution with sharp, lifelike detail. Shot using direct flash. Extremely sharp focus and maximum photorealistic image quality. Aspect ratio: 9:16.
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-real-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดคนสวยเหมือนจริง | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "manus ai",
+  "flow ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/real";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/r${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
