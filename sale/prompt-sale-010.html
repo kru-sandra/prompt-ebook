@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดขายสินค้า | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-sale-1.html">← กลับหมวดขายสินค้า</a>
+
+    <div class="top-actions">
+      <a href="../content.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดขายสินค้า</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+<div class="prompt-box">
+
+    <!-- ข้อความแจ้งเตือน -->
+    <div style="
+        background:#fff3cd;
+        color:#d60000;
+        border:2px solid #ff4d4f;
+        border-radius:12px;
+        padding:12px;
+        text-align:center;
+        font-size:20px;
+        font-weight:bold;
+        margin-bottom:15px;
+    ">
+        📹 Prompt นี้เป็น Prompt สำหรับสร้าง VDO
+  </div>
+
+    <h3>วิธีใช้งาน Prompt หมวดขายสินค้า</h3>
+
+    <textarea rows="8">
+  
+1. เตรียมภาพสินค้าและรายละเอียดสินค้าที่ต้องการจะสร้างVDO ปักตะกร้า ต้องใส่รายละเอียดสินค้า เพื่อความแม่นยำของ การสร้าง VDO มากขึ้นค่ะ 
+2. เข้าแอพ Gemini หรือใช้งานผ่าน Website Gemini (แนะนำให้สร้างใน Gemini จะได้ข้อความที่ค่อนข้างถูกต้องค่ะ) 
+3. อัพโหลดภาพสินค้าเป็นภาพที่ 1 และภาพรายละเอียดสินค้าในภาพที่ 2 เข้าไปใน Gemini
+4. copy prompt ใน eBook เล่มนี้ ไปวางในส่วนของ Prompt
+    </textarea>
+  </div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างวิดีโอโฆษณาสินค้าแนวตั้ง 9:16 ความยาว 10 วินาที
+สไตล์ Cute Minimal Online Seller, Clean Girl, Soft Feminine, Cozy,
+Premium และ Natural Product Lifestyle
+ใช้สินค้าที่ผู้ใช้แนบมาเป็น HERO PRODUCT และต้องรักษารูปลักษณ์ของสินค้าให้ตรงกับสินค้าต้นฉบับมากที่สุดในทุกเฟรม
+
+IMPORTANT:
+ให้ใช้ภาพสินค้าอ้างอิงที่ผู้ใช้แนบมาเป็น REFERENCE หลักสำหรับรูปลักษณ์สินค้าเท่านั้น
+ห้ามเปลี่ยนสี รูปทรง ขนาด สัดส่วน โลโก้ ฉลาก ฝา ฝาพับ
+หรือรายละเอียดใด ๆ ของสินค้า
+จุดเด่นของวิดีโอนี้คือ:
+
+"มือผู้หญิงสวย ๆ ที่แต่งเล็บอย่างประณีต
+กำลังถือและนำเสนอสินค้าอย่างเป็นธรรมชาติ"
+มือและเล็บต้องดูสวย สุขภาพดี สะอาด
+และเป็นมือผู้หญิงจริง
+ไม่ต้องเห็นใบหน้าหรือร่างกายเต็มตัว
+ให้โฟกัสที่มือ + เล็บ + สินค้าเป็นหลัก
+
+==================================================
+
+SCENE / BACKGROUND
+สร้างฉากหลังเป็นโต๊ะถ่ายสินค้าของแม่ค้าออนไลน์หรือContent Creator ผู้หญิง
+สไตล์ Cute Minimal, Feminine, Clean และน่ารัก
+บรรยากาศเหมือนมุมถ่ายคอนเทนต์สินค้าจริงในบ้านที่จัดไว้อย่างสวยงาม
+ไม่ดูเหมือนสตูดิโอแข็ง ๆ และไม่ดูเหมือน CGI
+
+องค์ประกอบฉาก:
+โต๊ะสีขาว ครีม หรือ Beige อ่อน
+พื้นผิวโต๊ะสะอาด เรียบ และดู Premium
+ฉากหลังโทนขาว ครีม ชมพูอ่อนหรือ Beige
+มีดอกไม้เล็ก ๆ หรือดอกทิวลิปสีชมพูอ่อน
+มีแจกันเซรามิกทรงน่ารัก
+มีริบบิ้นหรือผ้าผืนเล็กสีอ่อนวางอย่างเป็นธรรมชาติ
+สามารถมีถาดเล็ก ๆหรือแท่นวางสินค้าแบบ Minimal
+อาจมีของตกแต่งน่ารัก เช่น โบว์ กระจกเล็ก เทียน หรือของจุกจิกสไตล์ผู้หญิง
+ของประกอบฉากต้องมีจำนวนน้อยและจัดวางอย่างมีรสนิยม
+
+ใช้โทนสี:
+White
+Cream
+Beige
+Blush Pink
+Soft Pink
+Warm Nude
+Light Brown
+
+
+ห้ามใช้สีสดจัด
+ห้ามให้ Background แย่งความสนใจจากสินค้าและมือ
+ฉากควรให้ความรู้สึกเหมือน:
+
+"แม่ค้าออนไลน์ผู้หญิงที่มีรสนิยมกำลังถ่ายสินค้าด้วยตัวเองที่บ้าน"
+
+==================================================
+
+HERO HAND / NAILS
+ต้องมีมือผู้หญิงสวยเป็นองค์ประกอบสำคัญตลอดช่วงProduct Demonstration
+
+ลักษณะมือ:
+มือผู้หญิงจริง
+รูปมือเรียวสวย
+นิ้วเรียวยาวและเป็นธรรมชาติ
+ผิวดูสุขภาพดี
+ผิวมีรายละเอียดแบบคนจริง
+ไม่ดูเป็นมือ CGI
+ไม่มีเครื่องประดับจำนวนมาก
+สามารถใส่แหวนเล็ก ๆ แบบ Minimal ได้ 1 วง หากเหมาะสม
+
+เล็บ:
+เล็บสวยและได้รับการดูแลอย่างดี
+รูปทรง Almond หรือ Soft Square
+ความยาวปานกลาง
+Nail Art แบบ Minimal และ Feminine
+สีเล็บ Nude Pink / Milky White / Soft Pink / French Tip
+สามารถมีลายเล็ก ๆ เช่น ดอกไม้จิ๋ว หัวใจเล็ก ๆ หรือ Pearl Detail
+
+ต้องดูแพงและน่ารัก ไม่แฟนซีเกินไป เล็บต้องดูสะอาด เรียบร้อย
+และเหมาะกับภาพลักษณ์ของสินค้า
+ห้ามทำเล็บยาวเกินจริง
+ห้ามใช้สีเล็บฉูดฉาด
+ห้ามมี Nail Art ที่ดึงความสนใจมากกว่าสินค้า
+
+==================================================
+
+0–2 วินาที — ATTENTION HOOK
+เปิดด้วย Close-up ของมือผู้หญิงที่กำลังถือสินค้า
+มือค่อย ๆ
+ยกหรือหยิบสินค้าเข้ามาในเฟรมอย่างนุ่มนวล
+ให้สินค้าอยู่ในตำแหน่งเด่นของภาพ
+มือเป็นองค์ประกอบที่ช่วยสร้างความรู้สึก Feminine และ Premium
+กล้องใช้:
+
+Slow Push-in
+หรือ
+
+Gentle Tracking Shot
+ให้เห็นรายละเอียด:
+สินค้า
+มือ
+เล็บ
+Texture ของสินค้า
+
+ฉากหลัง Minimal
+สร้าง Hookด้วยภาพที่ดูสวยและน่าหยุดดูตั้งแต่เฟรมแรก
+ให้ AI วิเคราะห์ประเภทสินค้า จากข้อมูลในภาพที่ 2 ที่แนบไป แล้วสร้างข้อความบรรยายภาษาไทย
+ที่เหมาะสมกับสินค้าโดยอัตโนมัติ
+ข้อความต้อง:
+- สั้น
+- อ่านง่าย
+- สื่อถึงจุดเด่นหรือประโยชน์ของสินค้า
+- ภาษาไทย
+- ไม่ใช้ข้อความยาว
+- ไม่ใช้ Subtitle Bar
+
+Typography:
+Cute Bold / Playful Sticker
+ตัวอักษรภาษาไทยหนา กลมมน อวบอิ่ม สไตล์ Bubble Cartoon
+โทนสี พาสเทล พร้อมขอบสีดำและขอบสีขาวแบบสติกเกอร์
+
+Animation:
+Cute Pop-up Animation แบบเด้งนุ่มนวล
+ให้ข้อความค่อย ๆ ปรากฏและขยับเด้งเล็กน้อยอย่างสนุกสนาน
+
+
+==================================================
+
+2–7 วินาที — PRODUCT HOLDING + DEMONSTRATION
+ให้มือผู้หญิงเป็นผู้ถือและนำเสนอสินค้าอย่างเป็นธรรมชาติ
+ตัวอย่างการเคลื่อนไหว:
+
+
+ หยิบสินค้าขึ้นมา
+ ถือสินค้าให้กล้องเห็น
+ค่อย ๆ หมุนสินค้าเพื่อโชว์รายละเอียด
+ใช้นิ้วแตะบริเวณจุดเด่น
+ เปิดฝาหรือบรรจุภัณฑ์
+     หากสินค้าสามารถเปิดได้
+กดหรือใช้งานสินค้า หากเหมาะสม
+
+ จัดวางสินค้าลงบนโต๊ะอย่างนุ่มนวล
+
+ให้ AIวิเคราะห์ประเภทสินค้าและวิธีใช้งานจริงจากสินค้าในภาพที่ 1 แนบมา และรายละเอียดสินค้าในภาพที่ 2 ที่แนบมา
+
+แล้วเลือก Action ที่เหมาะสมที่สุดโดยอัตโนมัติ
+
+IMPORTANT:
+ทุกการใช้งานต้องสมจริงตามประเภทสินค้านั้น
+ห้ามให้มือทำท่าที่ไม่เกี่ยวข้องกับสินค้า
+ห้ามใช้ Action ที่เป็นไปไม่ได้
+ห้ามสร้างฟังก์ชันของสินค้าที่ไม่มีอยู่จริง
+เน้น Shotแบบ:
+
+Beauty Product Close-up
+Hand Holding Product
+Product Detail
+Natural Hand Movement
+Macro Product Shot
+ให้มือและสินค้าอยู่ใน Focus
+
+Background ใช้ Natural Depth of Field และ Blurเล็กน้อย
+VOICEOVER:
+ช่วง 2–7 วินาที ให้มีเสียงพากย์ผู้หญิงไทย
+น้ำเสียง:
+หวานแบบเป็นธรรมชาติ
+สดใส
+อบอุ่น
+น่าเชื่อถือ
+เหมือนแม่ค้าออนไลน์กำลังแนะนำสินค้าให้ลูกค้า
+ ไม่เป็นเสียงโฆษณาแข็ง ๆ
+
+ให้ AIสร้างบทพูดภาษาไทยที่เหมาะสมกับสินค้านั้นโดยอัตโนมัติ
+เน้น:
+
+จุดเด่นของสินค้า
+วิธีใช้งาน
+ประโยชน์ที่เข้าใจง่าย
+ความรู้สึกหลังใช้งาน
+หากสามารถสื่อได้อย่างถูกต้อง
+ห้ามกล่าวอ้างสรรพคุณเกินจริง
+ห้ามสร้างข้อมูลที่ไม่มีหลักฐานจากสินค้า
+
+==================================================
+
+7–10 วินาที — HERO SHOT + CALL TO ACTION
+สร้าง Hero
+Shot ที่สวยที่สุดของวิดีโอ
+ให้มือผู้หญิงถือสินค้าอยู่ใกล้กล้อง
+หรือวางสินค้าไว้บนโต๊ะ แล้วมือค่อย ๆ
+จัดตำแหน่งสินค้าอย่างเป็นธรรมชาติ
+เน้น:
+
+
+ สินค้าคมชัด
+ เล็บสวย
+ มือดูเป็นธรรมชาติ
+Background น่ารัก
+ แสง Soft และ Premium
+กล้องค่อย ๆ Push-in เข้าหาสินค้า
+สามารถเพิ่ม Soft Glow และ Natural Highlight บริเวณสินค้าเล็กน้อย
+
+ช่วงท้ายให้แสดงข้อความ Call to Action ภาษาไทยแบบสั้น ๆ
+ตัวอย่างแนวทาง:
+
+"น่ารักมาก ต้องมีแล้ว 💗"
+
+"ชอบแบบนี้ กดสั่งเลย"
+
+"กดสั่งที่ตะกร้าตอนนี้เลย 🛒"
+
+ให้ AIเลือกข้อความที่เหมาะสมกับสินค้าจริงโดยอัตโนมัติ
+VOICEOVER:
+
+ช่วงท้ายต้องมีคำกระตุ้นให้สั่งซื้ออย่างเป็นธรรมชาติ
+
+พูดด้วยน้ำเสียง Soft Selling
+ไม่ตะโกน
+ไม่เร่ง
+ไม่ฟังเหมือน Hard Sell
+==================================================
+
+HAND-DRAWN GRAPHICS
+สามารถเพิ่ม Hand-drawn Graphics สีขาวหรือ Soft Pinkแบบบางและ Premium
+ใช้เฉพาะบางจังหวะ เช่น:
+
+
+ ลูกศรชี้สินค้า
+
+ วงกลมรอบจุดเด่น
+
+ เส้นลากตามรูปทรงสินค้า
+
+ ประกายดาวเล็ก ๆ
+
+ หัวใจเล็ก ๆ
+
+ เครื่องหมายถูก
+กราฟิกต้องดูเหมือนวาดด้วยมือจริง
+
+·  ตัดเส้นรอบตัวบุคคลและสินค้าเป็นเส้นสีขาวหนา
+คล้ายสติ๊กเกอร์ไดคัท
+· ด้านบนใส่ข้อความภาษาไทยขนาดใหญ่มาก เป็นจุดเด่นที่สุดของภาพ
+· ตัวอักษรมีเส้นขอบสีขาวหนา และมีเงาหรือขอบดำบาง ๆ
+เพื่อให้ข้อความโดดเด่น
+· ข้อความบรรทัดแรกใช้โทนสีพาสเทล
+·  เพิ่มลูกเล่นเป็นดาวประกาย
+เส้นวาดมือ ลูกศร และ doodle รอบข้อความ
+ห้ามใช้กราฟิกมากจนรก
+ห้ามใช้:
+
+Sticker
+
+Emoji ขนาดใหญ่
+
+Graphic สีสด
+
+Animation ฉูดฉาด
+==================================================
+
+TEXT
+ข้อความทั้งหมดบนหน้าจอต้องเป็นภาษาไทย100% 
+ใช้ฟอนต์ไทยแบบ Bold / Rounded / Bubble น่ารัก ๆ
+ 
+ให้ AIสร้างข้อความที่เหมาะกับสินค้าแต่ละช่วงเวลาโดยอัตโนมัติ
+ข้อความต้อง:
+
+
+ สั้น
+
+ กระชับ
+
+ สะกดข้อความถูกต้อง
+
+ อ่านง่าย
+
+ ดู Premium
+
+ เป็นภาษาไทย
+
+ ใช้ Elegant Handwritten / Feminine Typography
+
+ Animation แบบเขียนด้วยมือ
+ห้ามมี:
+
+
+ ตัวอักษรสุ่ม
+
+ ตัวอักษรผิดเพี้ยน
+
+ ข้อความอ่านไม่ออก
+
+ ภาษาอังกฤษที่ไม่จำเป็น
+
+ Subtitle Bar
+
+ Karaoke Text
+==================================================
+
+CAMERA
+ใช้ Cinematic
+Product Photography + Realistic Lifestyle Product Content
+Camera Movement:
+
+
+ Slow Push-in
+
+ Gentle Pan
+
+ Smooth Tracking
+
+ Subtle Dolly-in
+
+ Macro Close-up
+
+ Product Detail Shot
+
+ Hand Holding Shot
+การเคลื่อนไหวต้องนุ่มนวลและเป็นธรรมชาติ
+เน้นความรู้สึก:
+
+"แม่ค้าออนไลน์กำลังถ่ายรีวิวสินค้าเองด้วยมือถือ/กล้องคุณภาพดี"
+แต่ภาพต้องยังคงคุณภาพระดับ Premium Commercial
+ห้าม:
+
+
+ Camera Shake
+
+ Zoom เร็ว
+
+ Whip Pan
+
+ Transition รุนแรง
+
+ เอฟเฟกต์ฉูดฉาด
+
+ การเคลื่อนไหวกล้องที่ดูไม่เป็นธรรมชาติ
+==================================================
+
+LIGHTING
+ใช้ Soft
+Natural Daylight
+ผสม Warm
+Ambient Light เล็กน้อย
+แสงต้อง:
+
+
+ นุ่ม
+
+ สว่าง
+
+ อบอุ่น
+
+ กระจายตัว
+
+ ไม่มีเงาแข็งบนมือ
+
+ ไม่มีเงาดำบนสินค้า
+ให้เกิด Natural Highlight บน:
+
+
+ ตัวสินค้า
+
+ ผิวมือ
+
+ เล็บ
+
+ พื้นผิวโต๊ะ
+หลีกเลี่ยงการทำให้ผิวมือขาวลอยหรือ Smooth จนดูปลอม
+รักษา Textureผิวแบบคนจริง
+==================================================
+
+AUDIO
+VOICEOVER:
+ผู้หญิงไทย
+เสียงหวานแบบเป็นธรรมชาติ
+อบอุ่น
+สดใส
+น่าเชื่อถือ
+เป็นกันเอง
+
+Soft Selling
+ให้เสียงเหมือน:
+
+"แม่ค้าออนไลน์ผู้หญิงกำลังแนะนำสินค้าชิ้นโปรดให้ลูกค้า"
+Background Music:
+
+Cute Minimal Lifestyle
+
+Soft Feminine
+
+Clean Girl
+
+Cozy
+
+Elegant
+ดนตรีต้องเบาและไม่กลบเสียงพากย์
+เพิ่ม Natural
+SFX ตามการเคลื่อนไหวจริง เช่น:
+
+
+ เสียงหยิบสินค้า
+
+ เสียงวางสินค้า
+
+ เสียงเปิดฝา
+
+ เสียงกดสินค้า
+
+ เสียงสัมผัสบรรจุภัณฑ์
+SFX ต้องเบาและสมจริง
+==================================================
+
+PRODUCT CONSISTENCY
+สินค้าที่ผู้ใช้แนบมาต้องเป็นสินค้าเดียวกันตลอดวิดีโอ
+รักษา:
+
+
+ รูปทรง
+
+ สี
+
+ ขนาด
+
+ สัดส่วน
+
+ โลโก้
+
+ ฉลาก
+
+ ฝา
+
+ วัสดุ
+
+ Texture
+
+ Packaging
+
+ ตัวอักษรบนสินค้า
+ให้เหมือนต้นฉบับมากที่สุด
+ห้าม AIออกแบบสินค้าใหม่
+ห้ามเปลี่ยน Product Packaging
+ห้ามเพิ่มรายละเอียดที่ไม่มีอยู่จริง
+==================================================
+
+STRICT NEGATIVE PROMPT
+ห้ามเปลี่ยนรูปลักษณ์สินค้า
+ห้ามเปลี่ยนสีสินค้า
+ห้ามเปลี่ยนรูปทรงสินค้า
+ห้ามเปลี่ยนสัดส่วนสินค้า
+ห้ามสร้างโลโก้ใหม่
+ห้ามสร้างฉลากใหม่
+ห้ามเพิ่มข้อความบนสินค้า
+ห้ามเปลี่ยน Packaging
+ห้ามสร้างสินค้าใหม่
+ห้ามสร้างมือผิดรูป
+ห้ามนิ้วเกิน
+ห้ามนิ้วขาด
+ห้ามนิ้วบิด
+ห้ามนิ้วเชื่อมกัน
+ห้ามข้อนิ้วผิดธรรมชาติ
+ห้ามเล็บผิดรูป
+ห้ามเล็บละลาย
+ห้าม Nail Art เพี้ยน
+ห้ามมือซ้ำ
+ห้ามมีมือหลายข้างโดยไม่มีเหตุผล
+ห้ามให้สินค้าลอย
+ห้ามมีสินค้าซ้ำหลายชิ้นโดยไม่มีเหตุผล
+ห้ามวัตถุลอย
+ห้าม Object สอดประสานกันผิดธรรมชาติ
+ห้ามฉากรก
+ห้าม Background แย่งความสนใจ
+ห้ามสีสดจัด
+ห้าม Neon
+ห้าม Cartoon
+ห้าม CGI Look
+ห้าม Plastic Skin
+ห้ามผิวมือ Smooth จนผิดธรรมชาติ
+ห้ามใช้ Sticker
+ห้ามใช้ Speech Bubble
+ห้ามใช้ Subtitle Bar
+ห้ามใช้ Karaoke Text
+ห้ามใช้ Graphic ขนาดใหญ่
+ห้ามใช้ Transition รุนแรง
+ห้าม Camera Shake
+ห้าม Zoom เร็ว
+ห้ามแสดงราคา
+ห้ามแสดงส่วนลด
+ห้ามแสดงป้ายราคา
+ห้ามพูดหรือแสดงข้อความ:
+
+"พิกัดในคอมเมนต์"
+
+"พิกัดใต้คอมเมนต์"
+Call to Action ต้องสื่อสารให้ผู้ชมเข้าใจว่าต้องกดตะกร้าเพื่อสั่งซื้อ
+==================================================
+
+FINAL VISUAL DIRECTION
+ภาพรวมสุดท้ายต้องให้ความรู้สึก:
+Cute Minimal Online Seller
+
++
+
+Beautiful Female Hand
+
++
+
+Pretty Nail Art
+
++
+
+Product Holding
+
++
+
+Soft Pink / Cream Background
+
++
+
+Cute Minimal Home Studio
+
++
+
+Clean Girl
+
++
+
+Feminine
+
++
+
+Cozy
+
++
+
+Premium
+
++
+
+Natural Lifestyle
+
++
+
+Highly Realistic
+จุดสำคัญที่สุดคือ:
+"มือผู้หญิงสวยและเล็บสวยต้องช่วยทำให้สินค้าดูน่าใช้และน่าซื้อ
+แต่ต้องไม่แย่งความสนใจจาก HERO PRODUCT"
+ให้ภาพดูเหมือนคอนเทนต์จากแม่ค้าออนไลน์ตัวจริงที่มีรสนิยม
+ถ่ายสินค้าในมุมเล็ก ๆ ที่บ้าน แต่มีคุณภาพภาพระดับ Premium Commercial
+เก็บรายละเอียดของสินค้าให้เหมือนต้นฉบับมากที่สุดทุกฉาก
+      
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">    
+Act as a professional video creator. Generate a 10-second Vertical 9:16 Aesthetic Faceless Product Review video based on the attached product photo.
+
+VIDEO STRUCTURE (10s TOTAL):
+- 0–2s: Hook with aesthetic product shot + short engaging on-screen text.
+- 2–7s: Showcase product usage or key highlights quickly.
+- 7–10s: Close with results + Call to Action (CTA) directing viewers to click the yellow basket.
+
+AESTHETIC & AUDIO:
+- Visual style: Bright, Cream, Brown, Warm tones.
+- Setting: Clean, cozy, and organized home environment.
+- Audio: Thai female voiceover with a warm, natural, and persuasive tone. 
+- Speech Constraint: During the Call to Action (7-10s), the voiceover MUST explicitly say "พิกัดที่ตะกร้า" or "กดสั่งที่ตะกร้า".
+
+OVERLAY & GRAPHICS:
+- Universal Overlay: Add high-quality white hand-drawn animated graphics.
+- Text: 100% correct Thai text in a beautiful white handwritten font with smooth writing animation. (NO random or broken characters).
+- Outlines: Generate thin, precise white hand-drawn lines to accurately trace product features, then fade out naturally.
+- Details: Add hand-drawn icons (arrows, circles, sparkles, stars, checkmarks) to highlight key actions.
+- Prohibitions: Minimalist style ONLY. NO subtitle bars, NO Karaoke text, NO stickers, NO speech bubbles. NO price tags. STRICTLY PROHIBITED: Do NOT say or show "พิกัดในคอมเม้นท์" or "พิกัดใต้คอมเมนต์". Keep it clean and high-end.
+      
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-sale-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดขายสินค้า | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "Gemini3","Gemini1","Gemini2",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "manus ai",
+  "flow ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/sale";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/s${promptNo}-${ai}.jpg`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
