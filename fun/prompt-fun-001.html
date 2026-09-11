@@ -147,7 +147,7 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
   <!-- TOP BAR -->
   <div class="top-bar">
-    <a href="gallery-sale-1.html">← กลับหมวดขายสินค้า</a>
+    <a href="gallery-fun-1.html">← กลับหมวดภาพ</a>
 
     <div class="top-actions">
       <a href="../content.html">🏠 Home</a>
@@ -157,7 +157,7 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
   <!-- TITLE -->
   <h1 id="pageTitle">
-    <span class="title-main">หมวดขายสินค้า</span>
+    <span class="title-main">หมวดภาพตลก</span>
     <span class="title-sub">Prompt</span>
   </h1>
 
@@ -166,12 +166,12 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
 
     <div class="prompt-box">
-    <h3>วิธีใช้งาน prompt หมวดขายสินค้า</h3>
+    <h3>วิธีใช้งาน prompt หมวดภาพตลก</h3>
     <textarea  rows="8">
-1. เตรียมภาพหน้าตรงของผู้ที่นำมาเป็นนางแบบ (เป็นภาพหน้าคนที่ถ่ายชัดๆ ไม่ใช้ AI แต่งจะได้ภาพที่ค่อนข้างตรงต้นฉบับค่ะ) และ ภาพสินค้าที่ต้องการจะสร้างภาพ(ภาพชัด ถ้าไม่มีองค์ประกอบใดๆ มาแย่งความสำคัญจะดีมาก)
+1. เตรียมภาพหน้าตรงของผู้ที่นำมาเป็นนางแบบ (เป็นภาพหน้าคนที่ถ่ายชัดๆ ไม่ใช้ AI แต่งจะได้ภาพที่ค่อนข้างตรงต้นฉบับค่ะ)
 2. เข้าแอพ AI สร้างภาพ ซึ่ง AI สร้างภาพที่สร้างออกมาได้สวยที่แนะนำคือ AI ตามตัวอย่างในภาพด้านบนค่ะ 
    (Gemini, Chatgpt, Flow ai) เลือกใช้สร้างภาพได้ตามนี้ได้เลย 
-3. อัพโหลดภาพหน้านางแบบเป้นภาพที่ 1 และภาพสินค้าเป็นภาพที่ 2 เข้าไปใน AI สร้างภาพ ใน prompt นี้ เป็น prompt สำหรับการถือสินค้าชิ้นเล็กๆ แนะนำเป็นสินค้าที่ นางแบบสามารถถือได้ และถ้าแจ้งขนาดไปด้วย จะทำให้ภาพที่ได้มีขนาดสมจริงมากขึ้น
+3. อัพโหลดภาพหน้านางแบบ เข้าไปใน AI สร้างภาพ 
 4. copy prompt ใน eBook เล่มนี้ ไปว่างในส่วนของ Prompt
     </textarea>
   </div>
@@ -339,17 +339,17 @@ Canon EOS R5, 85mm f/1.2 lens, f/1.2 aperture, extremely shallow depth of field,
 
 <script>
 /* 🔢 GET PROMPT NUMBER FROM FILE NAME */
-const match = location.pathname.match(/prompt-sale-(\d+)\.html/);
+const match = location.pathname.match(/prompt-fun-(\d+)\.html/);
 const promptNo = match ? match[1] : "000";
 
 /* SET TITLE TEXT */
 document.querySelector("#pageTitle .title-sub").textContent =
   `Prompt ${promptNo}`;
-document.title = `หมวดขายสินค้า | Prompt ${promptNo}`;
+document.title = `หมวดภาพตลก | Prompt ${promptNo}`;
 
 /* 🧠 AI LIST */
 const AI_LIST = [
-  "gemini",
+  "Gemini",
   "whisk",
   "meta",
   "copilot",
@@ -365,14 +365,14 @@ const AI_LIST = [
 ];
 
 /* 📂 IMAGE PATH */
-const IMAGE_PATH = "../images/sale";
+const IMAGE_PATH = "../images/fun";
 
 /* 🖼 BUILD AI IMAGES (LOAD SAFE) */
 const container = document.getElementById("aiImages");
 
 AI_LIST.forEach(ai => {
   const img = new Image();
-  img.src = `${IMAGE_PATH}/s${promptNo}-${ai}.jpg`;
+  img.src = `${IMAGE_PATH}/fun${promptNo}-${ai}.jpg`;
 
   img.onload = () => {
     const box = document.createElement("div");
