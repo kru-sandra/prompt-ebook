@@ -207,7 +207,7 @@ pageImages.slice().reverse().forEach(num=>{
   card.className = "card";
   card.innerHTML = `
     <div class="prompt-no">ขายสินค้า ${id}</div>
-    <img src="../images/sale/s${id}.jpg" alt="s${id}">
+    <img src="../images/sale/s${id}.${num === 11 ? "webp" : "jpg"}" alt="ขายสินค้า ${id}">
   `;
   card.onclick = ()=>location.href = `prompt-sale-${id}.html`;
   gallery.appendChild(card);
