@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>หมวดขายสินค้า | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-sale-1.html">← กลับหมวดขายสินค้า</a>
+
+    <div class="top-actions">
+      <a href="../content.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">หมวดขายสินค้า</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES -->
+  <div class="ai-images" id="aiImages"></div>
+  <div class="prompt-box" id="mainPreview">
+    <h3>ภาพตัวอย่าง Prompt 011</h3>
+    <img src="../images/sale/s011.webp" alt="ภาพตัวอย่างขายสินค้า 011" style="display:block;width:100%;max-width:420px;margin:0 auto;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.1);" onerror="this.parentElement.style.display='none'">
+  </div>
+<div class="prompt-box">
+
+    <!-- ข้อความแจ้งเตือน -->
+    <div style="
+        background:#fff3cd;
+        color:#d60000;
+        border:2px solid #ff4d4f;
+        border-radius:12px;
+        padding:12px;
+        text-align:center;
+        font-size:20px;
+        font-weight:bold;
+        margin-bottom:15px;
+    ">
+        📹 Prompt นี้เป็น Prompt สำหรับสร้าง VDO
+  </div>
+
+    <h3>วิธีใช้งาน Prompt หมวดขายสินค้า</h3>
+
+    <textarea rows="8">
+  
+1. เตรียมภาพสินค้าและรายละเอียดสินค้าที่ต้องการจะสร้างVDO ปักตะกร้า ต้องใส่รายละเอียดสินค้า เพื่อความแม่นยำของ การสร้าง VDO มากขึ้นค่ะ 
+2. เข้าแอพ Gemini หรือใช้งานผ่าน Website Gemini (แนะนำให้สร้างใน Gemini จะได้ข้อความที่ค่อนข้างถูกต้องค่ะ) 
+3. อัพโหลดภาพสินค้าเป็นภาพที่ 1 และภาพรายละเอียดสินค้าในภาพที่ 2 เข้าไปใน Gemini
+4. copy prompt ใน eBook เล่มนี้ ไปวางในส่วนของ Prompt
+    </textarea>
+  </div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">
+สร้างวิดีโอโฆษณาสินค้าแนวตั้ง 9:16 ความยาว 10 วินาที
+สไตล์ Cute Minimal Online Seller, Clean Girl, Soft Feminine, Cozy, Premium และ Natural Product Lifestyle
+ใช้สินค้าที่ผู้ใช้แนบมาเป็น HERO PRODUCT และรักษารูปลักษณ์ให้ตรงกับสินค้าต้นฉบับมากที่สุดในทุกเฟรม
+IMPORTANT:
+ใช้ภาพสินค้าอ้างอิงที่ผู้ใช้แนบมาเป็น REFERENCE หลักสำหรับรูปลักษณ์สินค้าเท่านั้น ห้ามเปลี่ยนสี รูปทรง ขนาด สัดส่วน โลโก้ ฉลาก ฝา ฝาพับ หรือรายละเอียดใด ๆ ของสินค้า
+จุดเด่นของวิดีโอนี้คือผู้หญิงไทยหนึ่งคนกำลังพูดแนะนำและถือ HERO PRODUCT อย่างเป็นธรรมชาติ ให้เห็นใบหน้าและช่วงตัวในระดับที่เหมาะกับการพูดกับกล้อง พร้อมเห็นมือและเล็บที่ดูแลอย่างประณีตขณะถือหรือนำเสนอสินค้า
+ผู้หญิงมีสีหน้าเป็นมิตร ยิ้มอย่างเป็นธรรมชาติ มองกล้องเป็นระยะ และพูดด้วยท่าทางผ่อนคลาย ผู้หญิง สินค้า เสื้อผ้า และฉากต้องดูสมจริง เข้ากับสไตล์ Cute Minimal, Clean Girl, Soft Feminine, Cozy และ Premium ให้สินค้าเป็นจุดสนใจหลัก ใบหน้าและท่าทางช่วยเสริมการนำเสนอโดยไม่แย่งความสนใจจากสินค้า
+==================================================
+SCENE / BACKGROUND
+สร้างฉากหลังเป็นโต๊ะถ่ายสินค้าของแม่ค้าออนไลน์หรือ Content Creator ผู้หญิง สไตล์ Cute Minimal, Feminine, Clean และน่ารัก บรรยากาศเหมือนมุมถ่ายคอนเทนต์สินค้าจริงในบ้านที่จัดไว้อย่างสวยงาม ไม่ดูเหมือนสตูดิโอแข็ง ๆ และไม่ดูเหมือน CGI
+องค์ประกอบฉาก:
+- โต๊ะสีขาว ครีม หรือ Beige อ่อน
+- พื้นผิวโต๊ะสะอาด เรียบ และดู Premium
+- ฉากหลังโทนขาว ครีม ชมพูอ่อน หรือ Beige
+- มีดอกไม้เล็ก ๆ หรือดอกทิวลิปสีชมพูอ่อน
+- มีแจกันเซรามิกทรงน่ารัก
+- มีริบบิ้นหรือผ้าผืนเล็กสีอ่อนวางอย่างเป็นธรรมชาติ
+- สามารถมีถาดเล็ก ๆ หรือแท่นวางสินค้าแบบ Minimal
+- อาจมีของตกแต่งน่ารัก เช่น โบว์ กระจกเล็ก เทียน หรือของจุกจิกสไตล์ผู้หญิง
+- ของประกอบฉากต้องมีจำนวนน้อยและจัดวางอย่างมีรสนิยม
+ใช้โทนสี:
+White, Cream, Beige, Blush Pink, Soft Pink, Warm Nude และ Light Brown
+ห้ามใช้สีสดจัด ห้ามให้ Background แย่งความสนใจจากสินค้าและผู้หญิง ฉากควรให้ความรู้สึกเหมือนแม่ค้าออนไลน์ผู้หญิงที่มีรสนิยมกำลังถ่ายสินค้าด้วยตัวเองที่บ้าน
+==================================================
+ผู้หญิง / ใบหน้า / การพูด
+ให้มีผู้หญิงไทยเพียงหนึ่งคนปรากฏตลอดวิดีโอ เป็นคนเดียวกันทุกฉาก ลุคสะอาด สุภาพ เป็นกันเอง และเข้ากับภาพลักษณ์ Cute Minimal Online Seller, Clean Girl และ Soft Feminine
+ให้เห็นใบหน้าและช่วงตัวอย่างเป็นธรรมชาติ เหมาะกับการพูดแนะนำสินค้ากับกล้อง สีหน้าเป็นมิตร ยิ้มอย่างพอดี และสบตากล้องเป็นระยะ ไม่แสดงท่าทางเกินจริง
+การพูดต้องเป็นภาษาไทย เสียงเป็นธรรมชาติ ชัดเจน และตรงกับการขยับปากทุกช่วง ห้ามใช้เสียงพากย์นอกฉากแทนการพูดหน้ากล้อง
+==================================================
+HERO HAND / NAILS
+มือผู้หญิงต้องดูสวย เป็นองค์ประกอบสำคัญตลอดช่วง Product Demonstration
+ลักษณะมือ:
+- มือผู้หญิงจริง รูปมือเรียวสวย นิ้วเรียวยาวและเป็นธรรมชาติ
+- ผิวดูสุขภาพดี มีรายละเอียดแบบคนจริง ไม่ดูเป็นมือ CGI
+- ไม่มีเครื่องประดับจำนวนมาก สามารถใส่แหวนเล็ก ๆ แบบ Minimal ได้ 1 วง หากเหมาะสม
+เล็บ:
+- เล็บสวยและได้รับการดูแลอย่างดี
+- รูปทรง Almond หรือ Soft Square ความยาวปานกลาง
+- Nail Art แบบ Minimal และ Feminine
+- สี Nude Pink / Milky White / Soft Pink / French Tip
+- สามารถมีลายเล็ก ๆ เช่น ดอกไม้จิ๋ว หัวใจเล็ก ๆ หรือ Pearl Detail
+เล็บต้องดูแพงและน่ารัก ไม่แฟนซีเกินไป สะอาด เรียบร้อย และเหมาะกับภาพลักษณ์ของสินค้า ห้ามทำเล็บยาวเกินจริง ห้ามใช้สีเล็บฉูดฉาด และห้ามมี Nail Art ที่ดึงความสนใจมากกว่าสินค้า
+==================================================
+0–2 วินาที — ATTENTION HOOK
+เปิดด้วยภาพผู้หญิงยิ้มและมองกล้อง พร้อมถือสินค้ายกเข้ามาในเฟรมอย่างนุ่มนวล เธอพูดประโยคเปิดสั้น ๆ ภาษาไทยที่ AI สร้างให้เหมาะกับสินค้า โดยอ้างอิงเฉพาะข้อมูลที่เห็นหรือได้รับ
+จัดเฟรมให้เห็นใบหน้า มือ เล็บ และสินค้าอย่างสมดุล จากนั้นค่อย ๆ ขยับกล้องเข้าใกล้สินค้า ให้สินค้าอยู่ในตำแหน่งเด่นของภาพ มือและเล็บช่วยสร้างความรู้สึก Feminine และ Premium
+ใช้กล้อง Slow Push-in หรือ Gentle Tracking Shot ให้เห็นรายละเอียดสินค้า มือ เล็บ และ Texture ของสินค้า ฉากหลัง Minimal สร้าง Hook ที่ดูสวยและน่าหยุดดูตั้งแต่เฟรมแรก
+ให้ AI วิเคราะห์ประเภทสินค้าจากข้อมูลในภาพที่ 2 ที่แนบมา แล้วสร้างข้อความสั้น ๆ ภาษาไทยที่เหมาะกับสินค้าโดยอัตโนมัติ ข้อความต้องอ่านง่าย สื่อถึงจุดเด่นหรือประโยชน์ของสินค้า และไม่ใช้ Subtitle Bar
+Typography:
+Cute Bold / Playful Sticker ตัวอักษรภาษาไทยหนา กลมมน อวบอิ่ม สไตล์ Bubble Cartoon โทนสีพาสเทล พร้อมขอบสีดำและขอบสีขาวแบบสติกเกอร์
+Animation:
+Cute Pop-up Animation แบบเด้งนุ่มนวล ให้ข้อความค่อย ๆ ปรากฏและขยับเด้งเล็กน้อยอย่างสนุกสนาน
+==================================================
+2–7 วินาที — PRODUCT HOLDING + DEMONSTRATION
+ให้ผู้หญิงคนเดิมพูดกับกล้องโดยตรงระหว่างถือและสาธิตสินค้า การขยับปากต้องตรงกับเสียงพูดภาษาไทยอย่างเป็นธรรมชาติ ให้มือผู้หญิงถือและนำเสนอสินค้าอย่างเป็นธรรมชาติ ตัวอย่างการเคลื่อนไหว:
+- หยิบสินค้าขึ้นมา
+- ถือสินค้าให้กล้องเห็น
+- ค่อย ๆ หมุนสินค้าเพื่อโชว์รายละเอียด
+- ใช้นิ้วแตะบริเวณจุดเด่น
+- เปิดฝาหรือบรรจุภัณฑ์ หากสินค้าสามารถเปิดได้
+- กดหรือใช้งานสินค้า หากเหมาะสม
+- จัดวางสินค้าลงบนโต๊ะอย่างนุ่มนวล
+ให้ AI วิเคราะห์ประเภทสินค้าและวิธีใช้งานจริงจากสินค้าในภาพที่ 1 และรายละเอียดสินค้าในภาพที่ 2 ที่แนบมา แล้วเลือก Action ที่เหมาะสมที่สุดโดยอัตโนมัติ
+ทุกการใช้งานต้องสมจริงตามประเภทสินค้านั้น ห้ามให้มือทำท่าที่ไม่เกี่ยวข้องกับสินค้า ห้ามใช้ Action ที่เป็นไปไม่ได้ และห้ามสร้างฟังก์ชันของสินค้าที่ไม่มีอยู่จริง
+เน้น Shot แบบ Beauty Product Close-up, Hand Holding Product, Product Detail, Natural Hand Movement และ Macro Product Shot ให้ใบหน้า มือ และสินค้าอยู่ใน Focus อย่างสมดุล โดยไม่บังรายละเอียดสำคัญของสินค้า
+Background ใช้ Natural Depth of Field และ Blur เล็กน้อย
+บทพูดช่วง 2–7 วินาที:
+ผู้หญิงพูดกับกล้องด้วยน้ำเสียงหวานแบบเป็นธรรมชาติ สดใส อบอุ่น และน่าเชื่อถือ เหมือนแม่ค้าออนไลน์กำลังแนะนำสินค้าให้ลูกค้า ไม่เป็นเสียงโฆษณาแข็ง ๆ ให้ AI สร้างบทพูดภาษาไทยที่เหมาะสมกับสินค้านั้นโดยอัตโนมัติ เน้นจุดเด่น วิธีใช้งาน ประโยชน์ที่เข้าใจง่าย หรือความรู้สึกหลังใช้งาน หากมีข้อมูลรองรับ
+ห้ามกล่าวอ้างสรรพคุณเกินจริง ห้ามสร้างข้อมูลที่ไม่มีหลักฐานจากสินค้า บทพูดต้องสั้น กระชับ และพอดีกับช่วงเวลา
+==================================================
+7–10 วินาที — HERO SHOT + CALL TO ACTION
+สร้าง Hero Shot ที่สวยที่สุดของวิดีโอ ให้ผู้หญิงคนเดิมถือสินค้าอยู่ใกล้กล้อง หรือวางสินค้าไว้บนโต๊ะแล้วมือค่อย ๆ จัดตำแหน่งสินค้าอย่างเป็นธรรมชาติ เธอถือสินค้าให้เห็นชัด โดยหันฉลากหรือด้านสำคัญเข้าหากล้องตามรูปทรงสินค้าจริง
+เน้น:
+- สินค้าคมชัด
+- เล็บสวยและมือดูเป็นธรรมชาติ
+- ใบหน้าและสีหน้าเป็นมิตร
+- Background น่ารัก
+- แสง Soft และ Premium
+กล้องค่อย ๆ Push-in เข้าหาสินค้า สามารถเพิ่ม Soft Glow และ Natural Highlight บริเวณสินค้าเล็กน้อย
+ช่วงท้ายให้แสดงข้อความ Call to Action ภาษาไทยแบบสั้น ๆ ตัวอย่าง:
+- “น่ารักมาก ต้องมีแล้ว 💗”
+- “ชอบแบบนี้ กดสั่งเลย”
+- “กดสั่งที่ตะกร้าตอนนี้เลย 🛒”
+ให้ AI เลือกข้อความที่เหมาะสมกับสินค้าจริงโดยอัตโนมัติ ผู้หญิงพูด Call to Action ด้วยน้ำเสียง Soft Selling เป็นธรรมชาติ ไม่ตะโกน ไม่เร่ง และไม่ฟังเหมือน Hard Sell ข้อความและเสียงพูดต้องสื่อให้ผู้ชมเข้าใจว่าต้องกดตะกร้าเพื่อสั่งซื้อ
+==================================================
+HAND-DRAWN GRAPHICS
+สามารถเพิ่ม Hand-drawn Graphics สีขาวหรือ Soft Pink แบบบางและ Premium ใช้เฉพาะบางจังหวะ เช่น ลูกศรชี้สินค้า วงกลมรอบจุดเด่น เส้นลากตามรูปทรงสินค้า ประกายดาวเล็ก ๆ หัวใจเล็ก ๆ หรือเครื่องหมายถูก
+กราฟิกต้องดูเหมือนวาดด้วยมือจริง สามารถตัดเส้นรอบตัวบุคคลและสินค้าเป็นเส้นสีขาวหนาคล้ายสติกเกอร์ไดคัท ด้านบนใส่ข้อความภาษาไทยขนาดใหญ่มากให้เป็นจุดเด่นของภาพ ตัวอักษรมีเส้นขอบสีขาวหนาและมีเงาหรือขอบดำบาง ๆ ข้อความบรรทัดแรกใช้โทนสีพาสเทล เพิ่มลูกเล่นเป็นดาวประกาย เส้นวาดมือ ลูกศร และ Doodle รอบข้อความ
+ห้ามใช้กราฟิกมากจนรก ห้ามใช้ Sticker, Emoji ขนาดใหญ่, Graphic สีสด หรือ Animation ฉูดฉาด
+==================================================
+TEXT
+ข้อความทั้งหมดบนหน้าจอต้องเป็นภาษาไทย 100% ใช้ฟอนต์ไทยแบบ Bold / Rounded / Bubble น่ารัก ๆ ให้ AI สร้างข้อความที่เหมาะกับสินค้าแต่ละช่วงเวลาโดยอัตโนมัติ
+ข้อความต้องสั้น กระชับ สะกดถูกต้อง อ่านง่าย ดู Premium และเป็นภาษาไทย ใช้ Elegant Handwritten / Feminine Typography และ Animation แบบเขียนด้วยมือ
+ห้ามมีตัวอักษรสุ่ม ตัวอักษรผิดเพี้ยน ข้อความอ่านไม่ออก ภาษาอังกฤษที่ไม่จำเป็น Subtitle Bar หรือ Karaoke Text
+==================================================
+CAMERA
+ใช้ Cinematic Product Photography + Realistic Lifestyle Product Content
+Camera Movement:
+- Slow Push-in
+- Gentle Pan
+- Smooth Tracking
+- Subtle Dolly-in
+- Macro Close-up
+- Product Detail Shot
+- Hand Holding Shot
+- Medium Close-up สำหรับผู้หญิงพูดกับกล้อง
+การเคลื่อนไหวต้องนุ่มนวลและเป็นธรรมชาติ เน้นความรู้สึกเหมือนแม่ค้าออนไลน์กำลังถ่ายรีวิวสินค้าเองด้วยมือถือหรือกล้องคุณภาพดี แต่ภาพต้องยังคงคุณภาพระดับ Premium Commercial
+ห้าม Camera Shake, Zoom เร็ว, Whip Pan, Transition รุนแรง, เอฟเฟกต์ฉูดฉาด หรือการเคลื่อนไหวกล้องที่ดูไม่เป็นธรรมชาติ
+==================================================
+LIGHTING
+ใช้ Soft Natural Daylight ผสม Warm Ambient Light เล็กน้อย แสงต้องนุ่ม สว่าง อบอุ่น กระจายตัว ไม่มีเงาแข็งบนมือหรือใบหน้า และไม่มีเงาดำบนสินค้า
+ให้เกิด Natural Highlight บนตัวสินค้า ผิวมือ เล็บ ใบหน้า และพื้นผิวโต๊ะ หลีกเลี่ยงการทำให้ผิวมือหรือผิวหน้าขาวลอย หรือ Smooth จนดูปลอม รักษา Texture ผิวแบบคนจริง
+==================================================
+AUDIO
+เสียงพูด:
+ผู้หญิงไทยคนเดียวกับที่ปรากฏในภาพ พูดกับกล้องด้วยเสียงหวานแบบเป็นธรรมชาติ อบอุ่น สดใส น่าเชื่อถือ และเป็นกันเอง ใช้แนว Soft Selling ให้เสียงเหมือนแม่ค้าออนไลน์ผู้หญิงกำลังแนะนำสินค้าชิ้นโปรดให้ลูกค้า
+เสียงพูดต้องตรงกับการขยับปาก พูดภาษาไทยชัดเจน จังหวะพอดีกับวิดีโอ 10 วินาที และไม่ใช้เสียงบรรยายทับภาพแทนการพูดหน้ากล้อง
+Background Music:
+Cute Minimal Lifestyle, Soft Feminine, Clean Girl, Cozy และ Elegant ดนตรีต้องเบาและไม่กลบเสียงพูด
+เพิ่ม Natural SFX ตามการเคลื่อนไหวจริง เช่น เสียงหยิบสินค้า เสียงวางสินค้า เสียงเปิดฝา เสียงกดสินค้า หรือเสียงสัมผัสบรรจุภัณฑ์ SFX ต้องเบาและสมจริง
+==================================================
+PRODUCT CONSISTENCY
+สินค้าที่ผู้ใช้แนบมาต้องเป็นสินค้าเดียวกันตลอดวิดีโอ รักษารูปทรง สี ขนาด สัดส่วน โลโก้ ฉลาก ฝา วัสดุ Texture Packaging และตัวอักษรบนสินค้าให้เหมือนต้นฉบับมากที่สุด
+ห้าม AI ออกแบบสินค้าใหม่ ห้ามเปลี่ยน Product Packaging และห้ามเพิ่มรายละเอียดที่ไม่มีอยู่จริง
+==================================================
+STRICT NEGATIVE PROMPT
+ห้ามเปลี่ยนรูปลักษณ์ สี รูปทรง หรือสัดส่วนสินค้า
+ห้ามสร้างโลโก้ใหม่ ฉลากใหม่ หรือเพิ่มข้อความบนสินค้า
+ห้ามเปลี่ยน Packaging หรือสร้างสินค้าใหม่
+ห้ามสร้างมือผิดรูป นิ้วเกิน นิ้วขาด นิ้วบิด นิ้วเชื่อมกัน หรือข้อนิ้วผิดธรรมชาติ
+ห้ามทำเล็บผิดรูป เล็บละลาย หรือ Nail Art เพี้ยน
+ห้ามทำให้มือหรือผู้หญิงซ้ำกัน
+ห้ามมีมือหลายข้างโดยไม่มีเหตุผล
+ห้ามให้สินค้าลอยหรือมีสินค้าซ้ำหลายชิ้นโดยไม่มีเหตุผล
+ห้ามทำให้วัตถุลอย หรือ Object สอดประสานกันผิดธรรมชาติ
+ห้ามทำให้ฉากรก หรือ Background แย่งความสนใจ
+ห้ามใช้สีสดจัดหรือ Neon
+ห้ามทำให้ภาพดูเป็น Cartoon, CGI Look หรือ Plastic Skin
+ห้ามทำให้ผิวมือหรือผิวหน้าดู Smooth จนผิดธรรมชาติ
+ห้ามใช้ Sticker, Speech Bubble, Subtitle Bar, Karaoke Text หรือ Graphic ขนาดใหญ่
+ห้ามใช้ Transition รุนแรง Camera Shake หรือ Zoom เร็ว
+ห้ามแสดงราคา ส่วนลด หรือป้ายราคา
+ห้ามพูดหรือแสดงข้อความ “พิกัดในคอมเมนต์” หรือ “พิกัดใต้คอมเมนต์”
+ห้ามให้ผู้หญิงคนอื่นปรากฏ
+ห้ามให้ปากขยับไม่ตรงกับเสียงพูด
+ห้ามให้เสียงพูดกลายเป็นเสียงพากย์นอกฉาก
+ห้ามให้ผู้หญิงพูดประโยคยาวเกินเวลาหรือพูดเร็วผิดธรรมชาติ
+ห้ามให้มือ ใบหน้า หรือท่าทางบังสินค้าและรายละเอียดบนฉลาก
+Call to Action ต้องสื่อสารให้ผู้ชมเข้าใจว่าต้องกดตะกร้าเพื่อสั่งซื้อ
+==================================================
+FINAL VISUAL DIRECTION
+ภาพรวมสุดท้ายต้องให้ความรู้สึก:
+Cute Minimal Online Seller
+- ผู้หญิงไทยพูดแนะนำสินค้า
+- Beautiful Female Hand
+- Pretty Nail Art
+- Product Holding
+- Soft Pink / Cream Background
+- Cute Minimal Home Studio
+- Clean Girl
+- Feminine
+- Cozy
+- Premium
+- Natural Lifestyle
+- Highly Realistic
+จุดสำคัญที่สุดคือผู้หญิงพูดและถือสินค้าอย่างเป็นธรรมชาติ มือและเล็บสวยช่วยทำให้สินค้าดูน่าใช้และน่าซื้อ แต่ต้องไม่แย่งความสนใจจาก HERO PRODUCT ให้ภาพดูเหมือนคอนเทนต์จากแม่ค้าออนไลน์ตัวจริงที่มีรสนิยม ถ่ายสินค้าในมุมเล็ก ๆ ที่บ้าน แต่มีคุณภาพภาพระดับ Premium Commercial เก็บรายละเอียดของสินค้าให้เหมือนต้นฉบับมากที่สุดทุกฉาก
+    </textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">
+Create a vertical 9:16 product advertising video, 10 seconds long.
+Style: Cute Minimal Online Seller, Clean Girl, Soft Feminine, Cozy, Premium, and Natural Product Lifestyle.
+Use the product uploaded by the user as the HERO PRODUCT and preserve its appearance as closely as possible to the original product in every frame.
+
+IMPORTANT:
+Use the uploaded product reference image as the primary REFERENCE for the product's appearance only. Do not change the product's color, shape, size, proportions, logo, label, cap, lid, folding parts, or any other product details.
+
+The key feature of this video is one Thai woman speaking directly to the camera to introduce and naturally hold the HERO PRODUCT. Show her face and upper body at a suitable scale for speaking to the camera, while also showing her carefully manicured hands and nails as she holds or presents the product.
+The woman should look friendly, smile naturally, make occasional eye contact with the camera, and speak in a relaxed manner. The woman, product, clothing, and scene must look realistic and match the Cute Minimal, Clean Girl, Soft Feminine, Cozy, and Premium style. Keep the product as the main focus; her face and gestures should support the presentation without competing with the product.
+
+==================================================
+SCENE / BACKGROUND
+Create a product-filming table setup for a female online seller or content creator, in a Cute Minimal, Feminine, Clean, and cute style. It should feel like a real, beautifully arranged product-content corner inside a home—not a rigid studio or CGI.
+
+Scene elements:
+- A white, cream, or light beige table
+- A clean, smooth, premium-looking tabletop
+- A white, cream, soft pink, or beige background
+- Small flowers or soft pink tulips
+- A cute-shaped ceramic vase
+- A light-colored ribbon or small piece of fabric placed naturally
+- Optionally, a small tray or minimalist product stand
+- Optional cute feminine decor such as a bow, small mirror, candle, or small accessories
+- Keep props minimal and tastefully arranged
+
+Color palette:
+White, Cream, Beige, Blush Pink, Soft Pink, Warm Nude, and Light Brown.
+
+Do not use overly bright colors. Do not let the background compete with the product or the woman. The scene should feel like a tasteful female online seller filming her own products at home.
+
+==================================================
+WOMAN / FACE / SPEAKING
+Only one Thai woman should appear throughout the entire video, and she must remain the same person in every scene. Her look should be clean, polite, friendly, and consistent with Cute Minimal Online Seller, Clean Girl, and Soft Feminine styling.
+Show her face and upper body naturally, framed appropriately for presenting a product to the camera. Her expression should be friendly, with a gentle smile and occasional eye contact. Avoid exaggerated gestures.
+She must speak Thai in a natural, clear voice, and her lip movements must match the speech throughout. Do not use off-screen voiceover instead of on-camera speaking.
+
+==================================================
+HERO HAND / NAILS
+The woman's hands must look beautiful and remain an important element throughout the Product Demonstration.
+
+Hand characteristics:
+- Realistic female hands with an elegant shape and naturally slender fingers
+- Healthy-looking skin with realistic human detail; the hands must not look CGI
+- No excessive jewelry; one small minimalist ring may be used if appropriate
+
+Nails:
+- Beautiful, well-maintained nails
+- Almond or Soft Square shape, medium length
+- Minimal and Feminine Nail Art
+- Nude Pink / Milky White / Soft Pink / French Tip colors
+- Small details such as tiny flowers, little hearts, or pearl details may be included
+
+Nails should look elegant, premium, and cute without being overly fancy. They must be clean, neat, and suitable for the product's image. Do not make nails unrealistically long, use overly bright nail colors, or use Nail Art that draws more attention than the product.
+
+==================================================
+0–2 SECONDS — ATTENTION HOOK
+Open with the woman smiling and looking at the camera while gently bringing the product into the frame. She says a short opening line in Thai, generated by the AI to suit the product and based only on visible or provided information.
+Frame her face, hands, nails, and product in a balanced way. Then slowly move the camera closer to the product, keeping it prominent. Her hands and nails should add a Feminine and Premium feeling.
+Use a Slow Push-in or Gentle Tracking Shot to show the product, hands, nails, and product texture. Keep the background Minimal. Create a beautiful visual Hook that catches attention from the first frame.
+
+Analyze the product type using the information in the SECOND attached image and automatically create a short Thai on-screen description suitable for the product. The text must be easy to read, communicate a key feature or benefit, and must not use a Subtitle Bar.
+
+Typography:
+Cute Bold / Playful Sticker. Use bold, rounded, plump Thai letters in a Bubble Cartoon style, with pastel colors, a black outline, and a white sticker-style border.
+
+Animation:
+Cute Pop-up Animation with a soft bounce. Let the text appear gradually and bounce slightly in a playful way.
+
+==================================================
+2–7 SECONDS — PRODUCT HOLDING + DEMONSTRATION
+The same woman speaks directly to the camera while holding and demonstrating the product. Her lip movements must match the Thai speech naturally. Her hands should hold and present the product naturally.
+
+Possible movements:
+- Pick up the product
+- Hold the product so the camera can see it
+- Slowly rotate it to show its details
+- Gently point to or tap a key feature with a finger
+- Open the cap or packaging if it can actually be opened
+- Press or use the product if appropriate
+- Gently place the product on the table
+
+Analyze the actual product type and its real usage method from the product in the FIRST attached image and the product details in the SECOND attached image. Automatically choose the most appropriate action.
+Every interaction must be realistic for the actual product. Do not make the hands perform unrelated actions, use impossible actions, or invent product functions that do not exist.
+
+Focus on shots such as Beauty Product Close-up, Hand Holding Product, Product Detail, Natural Hand Movement, and Macro Product Shot. Keep the woman's face, hands, and product in balanced focus without covering important product details.
+Use Natural Depth of Field and slight background blur.
+
+Spoken dialogue for seconds 2–7:
+The woman speaks to the camera in a naturally sweet, bright, warm, and trustworthy voice, like an online seller introducing a product to a customer. Do not make it sound like a stiff commercial. Automatically generate a suitable Thai script for the actual product, focusing on its key features, how to use it, easy-to-understand benefits, or the experience after using it when supported by information.
+Do not make exaggerated claims or invent information unsupported by the product. The dialogue must be short, concise, and suitable for the available time.
+
+==================================================
+7–10 SECONDS — HERO SHOT + CALL TO ACTION
+Create the most beautiful Hero Shot in the video. The same woman holds the product close to the camera, or the product is placed on the table while her hand naturally adjusts its position. She must hold it clearly, turning the label or important side toward the camera according to the actual product shape.
+
+Emphasize:
+- A sharp, clear product
+- Beautiful nails and natural-looking hands
+- A friendly face and expression
+- A cute background
+- Soft, Premium lighting
+
+The camera slowly Pushes-in toward the product. A subtle Soft Glow and Natural Highlight may be added around it.
+
+At the end, show a short Thai Call to Action, for example:
+- “น่ารักมาก ต้องมีแล้ว 💗”
+- “ชอบแบบนี้ กดสั่งเลย”
+- “กดสั่งที่ตะกร้าตอนนี้เลย 🛒”
+
+Automatically choose a message that suits the actual product. The woman speaks the Call to Action in a natural Soft Selling tone—no shouting, rushing, or Hard Sell delivery. Both the on-screen text and spoken line must make it clear that viewers should click the shopping cart to order.
+
+==================================================
+HAND-DRAWN GRAPHICS
+Optionally add thin, Premium-looking Hand-drawn Graphics in white or Soft Pink at selected moments, such as an arrow pointing to the product, a circle around a key feature, a line following the product's shape, small sparkles, little hearts, or check marks.
+The graphics should look genuinely hand-drawn. A thick white die-cut-sticker-style outline may trace around the person and product. At the top, place very large Thai text as a key visual element. Give the text a thick white outline and a subtle black shadow or outline. Use a pastel color for the first line, with small sparkle stars, hand-drawn lines, arrows, and Doodles around the text.
+Do not overcrowd the scene. Do not use large Stickers or Emojis, bright-colored graphics, or flashy animations.
+
+==================================================
+TEXT
+All on-screen text must be 100% in Thai. Use cute Thai fonts in a Bold / Rounded / Bubble style. Automatically generate appropriate text for the product at each moment.
+Text must be short, concise, correctly spelled, easy to read, Premium-looking, and in Thai. Use Elegant Handwritten / Feminine Typography with a handwriting-style animation.
+Do not include random or distorted characters, unreadable text, unnecessary English, Subtitle Bars, or Karaoke Text.
+
+==================================================
+CAMERA
+Use Cinematic Product Photography + Realistic Lifestyle Product Content.
+
+Camera Movement:
+- Slow Push-in
+- Gentle Pan
+- Smooth Tracking
+- Subtle Dolly-in
+- Macro Close-up
+- Product Detail Shot
+- Hand Holding Shot
+- Medium Close-up for the woman speaking to the camera
+
+Movement must be smooth and natural. The scene should feel like an online seller filming her own product review with a phone or high-quality camera, while maintaining Premium Commercial image quality.
+Do not use Camera Shake, fast Zoom, Whip Pan, harsh Transitions, flashy Effects, or unnatural camera movement.
+
+==================================================
+LIGHTING
+Use Soft Natural Daylight with a small amount of Warm Ambient Light. Lighting must be soft, bright, warm, and diffused, with no harsh shadows on the hands or face and no dark shadows on the product.
+Create Natural Highlights on the product, hand skin, nails, face, and tabletop. Avoid making the hands or face unnaturally pale or so Smooth that they look fake. Preserve realistic human skin Texture.
+
+==================================================
+AUDIO
+Speech:
+The same Thai woman shown on screen speaks directly to the camera in a naturally sweet, warm, bright, trustworthy, and friendly voice. Use a Soft Selling style, as if a female online seller is recommending a favorite product to a customer.
+The speech must match the lip movements, be clearly spoken in Thai, fit naturally within the 10-second video, and must not be replaced by narration over the scene.
+
+Background Music:
+Cute Minimal Lifestyle, Soft Feminine, Clean Girl, Cozy, and Elegant. Keep the music quiet so it does not overpower the speech.
+Add Natural SFX that match real movements, such as picking up or placing the product, opening a cap, pressing the product, or touching its packaging. SFX must be subtle and realistic.
+
+==================================================
+PRODUCT CONSISTENCY
+The product uploaded by the user must remain the same product throughout the entire video. Preserve its shape, color, size, proportions, logo, label, cap, material, Texture, Packaging, and any text printed on it as closely as possible to the original.
+Do not redesign the product, change its Product Packaging, or add details that do not exist.
+
+==================================================
+STRICT NEGATIVE PROMPT
+Do not change the product's appearance, color, shape, or proportions.
+Do not create a new logo or label, or add text to the product.
+Do not change the Packaging or create a new product.
+Do not create deformed hands, extra or missing fingers, twisted fingers, merged fingers, or unnatural knuckles.
+Do not create deformed or melted nails, or distorted Nail Art.
+Do not duplicate the hands or the woman.
+Do not show multiple hands without a reason.
+Do not make the product float or duplicate multiple products without a reason.
+Do not make objects float or intersect unnaturally.
+Do not clutter the scene or let the Background compete with the product.
+Do not use overly bright colors or Neon.
+Do not make the image look like a Cartoon, CGI Look, or Plastic Skin.
+Do not Smooth the hand or facial skin until it looks unnatural.
+Do not use Stickers, Speech Bubbles, Subtitle Bars, Karaoke Text, or oversized Graphics.
+Do not use harsh Transitions, Camera Shake, or fast Zoom.
+Do not display prices, discounts, or price tags.
+Do not say or display “พิกัดในคอมเมนต์” or “พิกัดใต้คอมเมนต์”.
+Do not show another woman.
+Do not let the mouth movements fall out of sync with the speech.
+Do not replace on-camera speaking with off-screen voiceover.
+Do not make the woman speak sentences that are too long or speak unnaturally fast.
+Do not let hands, face, or gestures block the product or label details.
+The Call to Action must clearly tell viewers to click the shopping cart to place an order.
+
+==================================================
+FINAL VISUAL DIRECTION
+The final visual should feel like:
+Cute Minimal Online Seller
+- A Thai woman speaking to introduce a product
+- Beautiful Female Hand
+- Pretty Nail Art
+- Product Holding
+- Soft Pink / Cream Background
+- Cute Minimal Home Studio
+- Clean Girl
+- Feminine
+- Cozy
+- Premium
+- Natural Lifestyle
+- Highly Realistic
+
+Most importantly, the woman must speak and hold the product naturally. Beautiful hands and nails should make the product look desirable and worth buying, but must not compete with the HERO PRODUCT. The video should feel like authentic content created by a tasteful real online seller filming a product in a small corner of her home, with Premium Commercial image quality. Preserve the product's original details as closely as possible in every scene.
+    </textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-sale-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `หมวดขายสินค้า | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST */
+const AI_LIST = [
+  "gemini","gemini1","gemini2",
+  "whisk",
+  "meta",
+  "copilot",
+  "chatgpt",
+  "leonardo",
+  "raphaeal",
+  "vheer",
+  "kling",
+  "bing",
+  "dreamina",
+  "manus ai",
+  "flow ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/sale";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/s${promptNo}-${ai}.webp`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
