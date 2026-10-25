@@ -65,15 +65,8 @@ body{
 /* AI IMAGE GRID */
 .ai-images{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap:12px;
-  max-width:620px;
-  margin:0 auto;
-}
-
-@media (max-width:480px){
-  .ai-images{gap:10px;}
-  .ai-box span{font-size:14px;}
 }
 
 .ai-box{
@@ -168,17 +161,8 @@ if(localStorage.getItem("loggedIn") !== "true"){
     <span class="title-sub">Prompt</span>
   </h1>
 
-  <!-- AI IMAGES: IMAGE 1 IS LABELED CHATGPT; IMAGE 2 IS LABELED GEMINI -->
-  <div class="ai-images" id="aiImages">
-    <div class="ai-box">
-      <img src="../images/festival/f004-gemini.webp" alt="สาวน้อยฮาโลวีน - ChatGPT" style="aspect-ratio:9/16;object-fit:contain;">
-      <span>ChatGPT</span>
-    </div>
-    <div class="ai-box">
-      <img src="../images/festival/f004-chatgpt.webp" alt="สาวน้อยฮาโลวีน - Gemini" style="aspect-ratio:9/16;object-fit:contain;">
-      <span>Gemini</span>
-    </div>
-  </div>
+  <!-- AI IMAGES (ชื่อใต้ภาพดึงจากข้อความหลังเครื่องหมาย - ในชื่อไฟล์) -->
+  <div class="ai-images" id="aiImages"></div>
 
   <!-- THAI PROMPT -->
   <div class="prompt-box">
@@ -226,7 +210,36 @@ document.querySelector("#pageTitle .title-sub").textContent =
   `Prompt ${promptNo}`;
 document.title = `หมวดเทศกาลต่างๆ | Prompt ${promptNo}`;
 
-/* 🖼 SHOW THE WEBP EXAMPLE IMAGE */
+/* 🧠 AI LIST — ดึงชื่อเครื่องมือจากส่วนท้ายของชื่อไฟล์ */
+const AI_LIST = [
+  "gemini",
+  "chatgpt"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/festival";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/f${promptNo}-${ai}.webp`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
 /* 📋 COPY */
 function copyText(id){
   const text = document.getElementById(id);
