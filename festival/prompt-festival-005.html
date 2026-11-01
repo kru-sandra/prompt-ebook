@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>เทศกาล | Prompt</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:#fff6f8;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* TOP BAR */
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.top-bar a{
+  text-decoration:none;
+  color:#ff6f91;
+  font-weight:600;
+  font-size:15px;
+}
+
+.top-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+/* TITLE */
+#pageTitle{
+  text-align:center;
+  margin:10px 0 30px;
+  line-height:1.3;
+}
+
+#pageTitle .title-main{
+  display:block;
+  font-size:24px;     /* หมวดบุคคล (ใหญ่กว่า) */
+  font-weight:700;
+  color:#333;
+}
+
+#pageTitle .title-sub{
+  display:block;
+  font-size:16px;     /* Prompt 084 (เล็กลง) */
+  font-weight:600;
+  color:#666;
+  margin-top:4px;
+}
+
+/* AI IMAGE GRID */
+.ai-images{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.ai-box{
+  text-align:center;
+}
+
+.ai-box img{
+  width:100%;
+  aspect-ratio:9 / 16;
+  height:auto;
+  object-fit:cover;
+  display:block;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-box span{
+  display:block;
+  margin-top:6px;
+  font-weight:600;
+  text-transform:capitalize;
+}
+
+/* PROMPT BOX */
+.prompt-box{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:30px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.prompt-box h3{
+  margin-top:0;
+}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  padding:14px;
+  border:1px solid #ddd;
+  font-size:15px;
+  resize:none;
+  box-sizing:border-box;
+}
+
+/* COPY BUTTON */
+.copy-btn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#ff6f91;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#999;
+  margin:40px 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 LOGIN GUARD -->
+<script>
+if(localStorage.getItem("loggedIn") !== "true"){
+  window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="gallery-festival-1.html">← กลับหมวดเทศกาล</a>
+
+    <div class="top-actions">
+      <a href="../cover.html">🏠 Home</a>
+      <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+  </div>
+
+  <!-- TITLE -->
+  <h1 id="pageTitle">
+    <span class="title-main">เทศกาล</span>
+    <span class="title-sub">Prompt</span>
+  </h1>
+
+  <!-- AI IMAGES (ชื่อใต้ภาพดึงจากข้อความหลังเครื่องหมาย - ในชื่อไฟล์) -->
+  <div class="ai-images" id="aiImages"></div>
+
+  <!-- THAI PROMPT -->
+  <div class="prompt-box">
+    <h3>Thai Prompt :</h3>
+    <textarea id="thaiPrompt" rows="8">สร้างตัวละครการ์ตูน 3D Chibi คุณภาพสูงที่น่ารักมาก เป็นเด็กหญิงตัวน้อยในชุดแม่มดฮาโลวีน แสดงภาพเต็มตัว ยืนอยู่ตรงกลาง หันหน้าตรงมาทางผู้ชม พร้อมรอยยิ้มสดใสและอ้าปากยิ้มอย่างมีความสุข
+
+ลักษณะตัวละคร:
+เด็กหญิงสไตล์ Chibi ที่น่ารักเป็นพิเศษ มีศีรษะขนาดใหญ่โดดเด่น ลำตัวเล็ก แขนขาสั้นและมีสัดส่วนอวบกลมน่ารัก ดวงตากลมโตสีน้ำตาลช็อกโกแลตเป็นประกาย แก้มอิ่มสีชมพู จมูกเล็ก และรอยยิ้มแสนหวาน ผมยาว หนา ฟู มีวอลลุ่ม สีน้ำตาลดาร์กช็อกโกแลต เป็นลอนคลื่นสวยงาม มีหน้าม้าตรงนุ่ม ๆ ผมยาวสยายลงมาคลุมไหล่ทั้งสองข้าง เส้นผมเงางามและมีรายละเอียดลอนผมที่นุ่มเป็นธรรมชาติ
+
+ชุดแม่มดฮาโลวีน:
+สวมชุด Sweet Gothic Lolita สำหรับเทศกาลฮาโลวีนที่สวยงาม ในโทนสีส้มฟักทองสดใสและสีดำ
+- หมวกแม่มดสีดำทรงแหลมขนาดใหญ่ ปีกหมวกกว้างและโค้งงอน ตกแต่งด้วยริบบิ้นผ้าซาตินสีส้มสดใสและโบว์สีส้มขนาดใหญ่
+- เสื้อท่อนบนเข้ารูปทรงคอร์เซ็ตสีดำ ผูกเชือกไขว้ด้านหน้าด้วยริบบิ้นสีเหลืองทอง
+- คอเสื้อทรง Sweetheart สีดำ ตกแต่งด้วยลูกไม้ลายดอกไม้ละเอียดอ่อน
+- แขนเสื้อพองโปร่งแสงสีส้มฟักทอง ปลายแขนตกแต่งด้วยลูกไม้สีดำ
+- กระโปรง Tutu สีส้มฟักทองหลายชั้น ฟูฟ่อง พร้อมระบายลูกไม้สีดำสวยงามตามชายกระโปรง
+- มีลายใบหน้าฟักทอง Jack-o'-lantern สีดำสุดน่ารัก 2 ใบ พิมพ์อยู่ด้านหน้ากระโปรงสีส้ม
+- ถุงมือยาวลูกไม้สีดำสง่างาม
+- ถุงน่องลายตาข่ายสีดำ พร้อมรายละเอียดสายรัดถุงน่องลูกไม้ที่ประณีต
+- รองเท้าส้นสูง Mary Jane สีดำสุดน่ารัก แต่งเติมด้วยสีส้มสดใส
+- ต่างหูรูปฟักทองสีส้มขนาดเล็กน่ารัก
+- สร้อยคอ Choker ลูกไม้สีดำสวยงาม
+
+ท่าทาง:
+ยืนโพสท่าน่ารักสดใสอย่างขี้เล่น แขนทั้งสองข้างกางออกเล็กน้อย ขาทั้งสองข้างไขว้กันอย่างนุ่มนวล สีหน้ามีความสุขและร่าเริง ต้องแสดงตัวละครให้เห็นครบทั้งตัว ตั้งแต่หมวกแม่มดจนถึงรองเท้า
+
+ฉากหลัง:
+ค่ำคืนฮาโลวีนอันแสนมหัศจรรย์ในหมู่บ้านแฟนตาซีสุดลึกลับ มีคฤหาสน์เก่าแก่สไตล์บ้านผีสิงพร้อมหน้าต่างเรืองแสงสีทอง มีฟักทองแกะสลักขนาดใหญ่เรืองแสงอยู่ทั้งสองข้าง มีของตกแต่งฮาโลวีนลอยอยู่ในอากาศ ใยแมงมุมสีดำ ธงสามเหลี่ยมสีส้มลวดลายค้างคาว พระจันทร์เต็มดวงขนาดใหญ่ส่องแสง ต้นไม้ลึกลับ และหมอกเวทมนตร์บางเบา
+
+สไตล์งานภาพ 3D Chibi:
+ตัวละคร 3D Chibi ที่น่ารักเป็นพิเศษ มีสัดส่วนแบบ Super Deformed ศีรษะใหญ่และลำตัวเล็ก ดวงตาโตเป็นประกายสื่ออารมณ์ ใบหน้ากลมน่ารัก แขนขาสั้นเรียว ผิวเนียนนุ่ม สไตล์ภาพยนตร์แอนิเมชัน 3D ระดับพรีเมียม ให้ความรู้สึกเหมือนตุ๊กตาสะสมดีไซเนอร์ รายละเอียดประณีตสวยงาม พื้นผิวผ้าเสมือนจริง กระโปรง Tulle ฟูฟ่อง รายละเอียดลูกไม้ซับซ้อน การเรนเดอร์ 3D เงางามสวยงาม แสงแบบภาพยนตร์ และโทนสีส้มสดใสตัดกับสีดำ
+
+องค์ประกอบภาพ:
+แสดงตัวละครเต็มตัว จัดวางไว้ตรงกลางภาพ ภาพแนวตั้งอัตราส่วน 9:16 รายละเอียดสูง ภาพประกอบการ์ตูน 3D ระดับมืออาชีพ พร้อมบรรยากาศฮาโลวีนที่เต็มไปด้วยมนตร์เสน่ห์
+
+ข้อห้าม: ไม่ใช้มนุษย์เสมือนจริง ไม่ใช้สัดส่วนผู้ใหญ่แบบสมจริง ไม่มีตัวอักษร ไม่มีลายน้ำ และไม่มีโลโก้</textarea>
+    <button class="copy-btn" onclick="copyText('thaiPrompt')">
+      📋 Copy Thai Prompt
+    </button>
+  </div>
+
+  <!-- ENGLISH PROMPT -->
+  <div class="prompt-box">
+    <h3>English Prompt :</h3>
+    <textarea id="engPrompt" rows="8">Create an adorable high-quality 3D Chibi cartoon character of a cute little girl dressed as a Halloween witch. Full body, standing in the center, facing forward, with a cheerful open-mouth smile.
+
+**Character Appearance:**
+An extremely cute chibi girl with a very large oversized head, tiny petite body, short chubby proportions, big round sparkling chocolate brown eyes, plump rosy cheeks, a tiny nose, and a sweet adorable smile. Long, thick, fluffy, voluminous dark chocolate brown wavy hair with soft straight bangs, cascading over both shoulders. Beautiful glossy hair with detailed soft curls.
+
+**Halloween Witch Outfit:**
+She wears a beautiful Sweet Gothic Lolita Halloween costume in vivid pumpkin orange and black.
+
+- A large oversized black pointed witch hat with a wide curved brim, decorated with a bright orange satin ribbon and a large orange bow.
+- A fitted black corset-style bodice with golden yellow crisscross lace-up ribbons down the front.
+- A black sweetheart neckline with delicate floral lace decoration.
+- Puffy sheer transparent pumpkin-orange sleeves with black lace cuffs.
+- A large fluffy layered pumpkin-orange tutu skirt with beautiful black lace ruffles along the hem.
+- Two cute black jack-o'-lantern pumpkin faces printed on the front of the orange skirt.
+- Long elegant black lace gloves.
+- Black fishnet patterned stockings with delicate lace garter details.
+- Cute black Mary Jane high-heeled shoes with bright orange accents.
+- Small adorable orange pumpkin-shaped earrings.
+- A beautiful black lace choker necklace.
+
+**Pose:**
+Standing in a cute playful pose, both arms slightly extended outward, legs gently crossed, with a happy cheerful expression. Show the entire character from the witch hat to the shoes.
+
+**Background:**
+A magical Halloween night in a spooky fantasy village, a beautiful old haunted mansion with glowing golden windows, large glowing carved pumpkins on both sides, floating Halloween decorations, black spiderwebs, orange triangular bat banners, a giant glowing full moon, mysterious trees and soft magical mist.
+
+**3D Chibi Art Style:**
+Extremely adorable 3D Chibi character, super deformed proportions, oversized head and tiny body, huge sparkling expressive eyes, cute rounded face, short petite limbs, soft smooth skin, premium 3D animated movie aesthetic, collectible designer toy style, beautifully detailed miniature character, realistic soft fabric textures, fluffy tulle skirt, intricate lace details, glossy 3D rendering, cinematic lighting, vibrant orange and black color palette.
+
+**Composition:**
+Full body, centered character, vertical portrait 9:16, high detail, professional 3D cartoon illustration, magical Halloween atmosphere.
+
+No photorealistic human, no realistic adult proportions, no text, no watermark, no logo.</textarea>
+    <button class="copy-btn" onclick="copyText('engPrompt')">
+      📋 Copy English Prompt
+    </button>
+  </div>
+
+  <footer>
+    © 2025 AI Persona Studio | Created by Kru Sandra | All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+/* 🔢 GET PROMPT NUMBER FROM FILE NAME */
+const match = location.pathname.match(/prompt-festival-(\d+)\.html/);
+const promptNo = match ? match[1] : "000";
+
+/* SET TITLE TEXT */
+document.querySelector("#pageTitle .title-sub").textContent =
+  `Prompt ${promptNo}`;
+document.title = `เทศกาล | Prompt ${promptNo}`;
+
+/* 🧠 AI LIST — ดึงชื่อเครื่องมือจากส่วนท้ายของชื่อไฟล์ */
+const AI_LIST = [
+  "dola",
+  "gemini",
+  "meta ai"
+];
+
+/* 📂 IMAGE PATH */
+const IMAGE_PATH = "../images/festival";
+
+/* 🖼 BUILD AI IMAGES (LOAD SAFE) */
+const container = document.getElementById("aiImages");
+
+AI_LIST.forEach(ai => {
+  const img = new Image();
+  img.src = `${IMAGE_PATH}/f${promptNo}-${ai}.webp`;
+
+  img.onload = () => {
+    const box = document.createElement("div");
+    box.className = "ai-box";
+    img.alt = ai;
+
+    const span = document.createElement("span");
+    span.textContent = ai;
+
+    box.appendChild(img);
+    box.appendChild(span);
+    container.appendChild(box);
+  };
+});
+
+/* 📋 COPY */
+function copyText(id){
+  const text = document.getElementById(id);
+  text.select();
+  navigator.clipboard.writeText(text.value);
+  alert("คัดลอกเรียบร้อยแล้ว ✨");
+}
+
+/* 🚪 LOGOUT */
+function logout(){
+  if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
